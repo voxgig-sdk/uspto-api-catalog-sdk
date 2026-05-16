@@ -1,0 +1,41 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 9
+  metrics: count: method: 9
+
+  entity: patent: {
+    path: "/enriched-citation/v3": {
+      op: list: method: *GET
+    }
+    path: "/office-action-citations/v2": {
+      op: list: method: *GET
+    }
+    path: "/office-action-rejections/v2": {
+      op: list: method: *GET
+    }
+    path: "/office-action-text/v1": {
+      op: load: method: *GET
+    }
+    path: "/office-action-weekly-zips/v1": {
+      op: list: method: *GET
+    }
+    path: "/patent-assignment/v1.4": {
+      op: list: method: *GET
+    }
+    path: "/ptab/v3": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: trademark: {
+    path: "/trademark-assignment/v1.4": {
+      op: list: method: *GET
+    }
+    path: "/tsdr/v1.0": {
+      op: load: method: *GET
+    }
+  }
+
+}

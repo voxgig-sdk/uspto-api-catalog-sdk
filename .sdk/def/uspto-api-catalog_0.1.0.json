@@ -1,0 +1,684 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "USPTO API Catalog",
+    "description": "The USPTO API Catalog provides developers with access to various APIs related to intellectual property. It includes information about registering, searching, and managing patents and trademarks, allowing for easy integration of government data into applications.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "USPTO Open Data Portal",
+      "url": "https://developer.uspto.gov/api-catalog"
+    },
+    "termsOfService": "https://www.uspto.gov/terms-use"
+  },
+  "servers": [
+    {
+      "url": "https://developer.uspto.gov",
+      "description": "USPTO Production Server"
+    }
+  ],
+  "paths": {
+    "/ptab/v3": {
+      "get": {
+        "tags": [
+          "Patents",
+          "PTAB"
+        ],
+        "summary": "PTAB API v3",
+        "description": "Access Patent Trial and Appeal Board (PTAB) data. This API has been migrated to the Open Data Portal.",
+        "operationId": "getPTABData",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Search query for PTAB data",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with PTAB data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized - API key required"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/enriched-citation/v3": {
+      "get": {
+        "tags": [
+          "Patents"
+        ],
+        "summary": "USPTO Enriched Citation API v3",
+        "description": "Retrieve enriched citation data for patents. Notice: In early 2026, this product will be decommissioned and migrated to the new Open Data Portal.",
+        "operationId": "getEnrichedCitations",
+        "parameters": [
+          {
+            "name": "patentNumber",
+            "in": "query",
+            "description": "Patent number to retrieve citation data for",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with enriched citation data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "citations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized - API key required"
+          },
+          "404": {
+            "description": "Patent not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/trademark-assignment/v1.4": {
+      "get": {
+        "tags": [
+          "Trademarks"
+        ],
+        "summary": "Trademark Assignment Search Data API",
+        "description": "Use this API to retrieve trademark assignment information from the USPTO assignment search database and generate XML data.",
+        "operationId": "getTrademarkAssignments",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "description": "Search query for trademark assignments",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format (xml or json)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ],
+              "default": "xml"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with trademark assignment data",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assignments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized - API key required"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/office-action-weekly-zips/v1": {
+      "get": {
+        "tags": [
+          "Patents"
+        ],
+        "summary": "USPTO Office Action Weekly Zips API",
+        "description": "Access weekly office action zip files. Notice: This product has been migrated to the new Open Data Portal.",
+        "operationId": "getOfficeActionWeeklyZips",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date for the weekly zip file (YYYY-MM-DD format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with office action weekly zip data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "files": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "date": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized - API key required"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/tsdr/v1.0": {
+      "get": {
+        "tags": [
+          "Trademarks"
+        ],
+        "summary": "TSDR Data API",
+        "description": "The Trademark Status Document Retrieval (TSDR) system allows you to make programmatic requests for trademark case status and document information.",
+        "operationId": "getTSDRData",
+        "parameters": [
+          {
+            "name": "serialNumber",
+            "in": "query",
+            "description": "Trademark serial number",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "registrationNumber",
+            "in": "query",
+            "description": "Trademark registration number",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with trademark status data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "trademarkStatus": {
+                      "type": "object",
+                      "properties": {
+                        "serialNumber": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "documents": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized - API key required"
+          },
+          "404": {
+            "description": "Trademark not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/office-action-text/v1": {
+      "get": {
+        "tags": [
+          "Patents"
+        ],
+        "summary": "USPTO Office Action Text Retrieval API",
+        "description": "Retrieve office action text data. Notice: In early 2026, this product will be decommissioned and migrated to the new Open Data Portal.",
+        "operationId": "getOfficeActionText",
+        "parameters": [
+          {
+            "name": "applicationNumber",
+            "in": "query",
+            "description": "Patent application number",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with office action text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "officeAction": {
+                      "type": "object",
+                      "properties": {
+                        "applicationNumber": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized - API key required"
+          },
+          "404": {
+            "description": "Office action not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/office-action-citations/v2": {
+      "get": {
+        "tags": [
+          "Patents"
+        ],
+        "summary": "USPTO Office Action Citations API",
+        "description": "Retrieve office action citation data. Notice: In early 2026, this product will be decommissioned and migrated to the new Open Data Portal.",
+        "operationId": "getOfficeActionCitations",
+        "parameters": [
+          {
+            "name": "applicationNumber",
+            "in": "query",
+            "description": "Patent application number",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with office action citations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "citations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "citationNumber": {
+                            "type": "string"
+                          },
+                          "citationType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized - API key required"
+          },
+          "404": {
+            "description": "Citations not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/office-action-rejections/v2": {
+      "get": {
+        "tags": [
+          "Patents"
+        ],
+        "summary": "USPTO Office Action Rejection API",
+        "description": "Retrieve office action rejection data. Notice: In early 2026, this product will be decommissioned and migrated to the new Open Data Portal.",
+        "operationId": "getOfficeActionRejections",
+        "parameters": [
+          {
+            "name": "applicationNumber",
+            "in": "query",
+            "description": "Patent application number",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with office action rejections",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rejections": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "rejectionType": {
+                            "type": "string"
+                          },
+                          "rejectionText": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized - API key required"
+          },
+          "404": {
+            "description": "Rejections not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/patent-assignment/v1.4": {
+      "get": {
+        "tags": [
+          "Patents"
+        ],
+        "summary": "Patent Assignment Search API",
+        "description": "Use this API to retrieve patent assignment information from the USPTO assignment search database and generate XML files.",
+        "operationId": "getPatentAssignments",
+        "parameters": [
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "description": "Search query for patent assignments",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format (xml or json)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "xml",
+                "json"
+              ],
+              "default": "xml"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with patent assignment data",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assignments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "assignmentId": {
+                            "type": "string"
+                          },
+                          "patentNumber": {
+                            "type": "string"
+                          },
+                          "assignor": {
+                            "type": "string"
+                          },
+                          "assignee": {
+                            "type": "string"
+                          },
+                          "assignmentDate": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized - API key required"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "name": "X-API-KEY",
+        "in": "header",
+        "description": "API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal."
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "statusCode": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Patents",
+      "description": "APIs related to patent data and operations"
+    },
+    {
+      "name": "Trademarks",
+      "description": "APIs related to trademark data and operations"
+    },
+    {
+      "name": "PTAB",
+      "description": "Patent Trial and Appeal Board related APIs"
+    }
+  ],
+  "externalDocs": {
+    "description": "USPTO API Catalog Documentation",
+    "url": "https://developer.uspto.gov/api-catalog"
+  }
+}

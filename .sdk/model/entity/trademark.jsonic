@@ -1,0 +1,109 @@
+# Entity: trademark
+
+main: kit: entity: trademark: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "assignment"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "trademark_status"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "trademark"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "xml"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "search_query"
+                orig: "search_query"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/trademark-assignment/v1.4"
+          parts: [
+            "trademark-assignment"
+            "v1.4"
+          ]
+          select: {
+            exist: [
+              "format"
+              "search_query"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "registration_number"
+                orig: "registration_number"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "serial_number"
+                orig: "serial_number"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/tsdr/v1.0"
+          parts: [
+            "tsdr"
+            "v1.0"
+          ]
+          select: {
+            exist: [
+              "registration_number"
+              "serial_number"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

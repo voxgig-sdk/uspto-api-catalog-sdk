@@ -1,0 +1,125 @@
+<?php
+declare(strict_types=1);
+
+// Patent entity test
+
+require_once __DIR__ . '/../usptoapicatalog_sdk.php';
+require_once __DIR__ . '/Runner.php';
+
+use PHPUnit\Framework\TestCase;
+use Voxgig\Struct\Struct as Vs;
+
+class PatentEntityTest extends TestCase
+{
+    public function test_create_instance(): void
+    {
+        $testsdk = UsptoApiCatalogSDK::test(null, null);
+        $ent = $testsdk->Patent(null);
+        $this->assertNotNull($ent);
+    }
+
+    public function test_basic_flow(): void
+    {
+        $setup = patent_basic_setup(null);
+        // Per-op sdk-test-control.json skip.
+        $_live = !empty($setup["live"]);
+        foreach (["list", "load"] as $_op) {
+            [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "patent." . $_op, $_live ? "live" : "unit");
+            if ($_shouldSkip) {
+                $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
+                return;
+            }
+        }
+        // The basic flow consumes synthetic IDs from the fixture. In live mode
+        // without an *_ENTID env override, those IDs hit the live API and 4xx.
+        if (!empty($setup["synthetic_only"])) {
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set USPTOAPICATALOG_TEST_PATENT_ENTID JSON to run live");
+            return;
+        }
+        $client = $setup["client"];
+
+        // Bootstrap entity data from existing test data.
+        $patent_ref01_data_raw = Vs::items(Helpers::to_map(
+            Vs::getpath($setup["data"], "existing.patent")));
+        $patent_ref01_data = null;
+        if (count($patent_ref01_data_raw) > 0) {
+            $patent_ref01_data = Helpers::to_map($patent_ref01_data_raw[0][1]);
+        }
+
+        // LIST
+        $patent_ref01_ent = $client->Patent(null);
+        $patent_ref01_match = [];
+
+        [$patent_ref01_list_result, $err] = $patent_ref01_ent->list($patent_ref01_match, null);
+        $this->assertNull($err);
+        $this->assertIsArray($patent_ref01_list_result);
+
+        // LOAD
+        $patent_ref01_match_dt0 = [];
+        [$patent_ref01_data_dt0_loaded, $err] = $patent_ref01_ent->load($patent_ref01_match_dt0, null);
+        $this->assertNull($err);
+        $this->assertNotNull($patent_ref01_data_dt0_loaded);
+
+    }
+}
+
+function patent_basic_setup($extra)
+{
+    Runner::load_env_local();
+
+    $entity_data_file = __DIR__ . '/../../.sdk/test/entity/patent/PatentTestData.json';
+    $entity_data_source = file_get_contents($entity_data_file);
+    $entity_data = json_decode($entity_data_source, true);
+
+    $options = [];
+    $options["entity"] = $entity_data["existing"];
+
+    $client = UsptoApiCatalogSDK::test($options, $extra);
+
+    // Generate idmap.
+    $idmap = [];
+    foreach (["patent01", "patent02", "patent03"] as $k) {
+        $idmap[$k] = strtoupper($k);
+    }
+
+    // Detect ENTID env override before envOverride consumes it. When live
+    // mode is on without a real override, the basic test runs against synthetic
+    // IDs from the fixture and 4xx's. Surface this so the test can skip.
+    $entid_env_raw = getenv("USPTOAPICATALOG_TEST_PATENT_ENTID");
+    $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
+
+    $env = Runner::env_override([
+        "USPTOAPICATALOG_TEST_PATENT_ENTID" => $idmap,
+        "USPTOAPICATALOG_TEST_LIVE" => "FALSE",
+        "USPTOAPICATALOG_TEST_EXPLAIN" => "FALSE",
+        "USPTOAPICATALOG_APIKEY" => "NONE",
+    ]);
+
+    $idmap_resolved = Helpers::to_map(
+        $env["USPTOAPICATALOG_TEST_PATENT_ENTID"]);
+    if ($idmap_resolved === null) {
+        $idmap_resolved = Helpers::to_map($idmap);
+    }
+
+    if ($env["USPTOAPICATALOG_TEST_LIVE"] === "TRUE") {
+        $merged_opts = Vs::merge([
+            [
+                "apikey" => $env["USPTOAPICATALOG_APIKEY"],
+            ],
+            $extra ?? [],
+        ]);
+        $client = new UsptoApiCatalogSDK(Helpers::to_map($merged_opts));
+    }
+
+    $live = $env["USPTOAPICATALOG_TEST_LIVE"] === "TRUE";
+    return [
+        "client" => $client,
+        "data" => $entity_data,
+        "idmap" => $idmap_resolved,
+        "env" => $env,
+        "explain" => $env["USPTOAPICATALOG_TEST_EXPLAIN"] === "TRUE",
+        "live" => $live,
+        "synthetic_only" => $live && !$idmap_overridden,
+        "now" => (int)(microtime(true) * 1000),
+    ];
+}

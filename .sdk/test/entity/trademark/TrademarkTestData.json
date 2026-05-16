@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "trademark": {
+      "TRADEMARK00": {
+        "assignment": [],
+        "trademark_status": {}
+      },
+      "TRADEMARK01": {
+        "assignment": [],
+        "trademark_status": {}
+      },
+      "TRADEMARK02": {
+        "assignment": [],
+        "trademark_status": {}
+      }
+    }
+  },
+  "new": {
+    "trademark": {
+      "trademark_ref01": {
+        "assignment": [],
+        "trademark_status": {}
+      }
+    }
+  }
+}
