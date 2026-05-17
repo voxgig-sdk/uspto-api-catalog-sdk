@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/uspto-api-catalog-sdk/core"
+	"github.com/voxgig-sdk/uspto-api-catalog-sdk/go/core"
 )
 
 type BaseFeature struct {

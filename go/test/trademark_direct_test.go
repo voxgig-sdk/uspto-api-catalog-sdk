@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/uspto-api-catalog-sdk"
-	"github.com/voxgig-sdk/uspto-api-catalog-sdk/core"
+	sdk "github.com/voxgig-sdk/uspto-api-catalog-sdk/go"
+	"github.com/voxgig-sdk/uspto-api-catalog-sdk/go/core"
 )
 
 func TestTrademarkDirect(t *testing.T) {

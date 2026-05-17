@@ -1,10 +1,10 @@
 package voxgigusptoapicatalogsdk
 
 import (
-	"github.com/voxgig-sdk/uspto-api-catalog-sdk/core"
-	"github.com/voxgig-sdk/uspto-api-catalog-sdk/entity"
-	"github.com/voxgig-sdk/uspto-api-catalog-sdk/feature"
-	_ "github.com/voxgig-sdk/uspto-api-catalog-sdk/utility"
+	"github.com/voxgig-sdk/uspto-api-catalog-sdk/go/core"
+	"github.com/voxgig-sdk/uspto-api-catalog-sdk/go/entity"
+	"github.com/voxgig-sdk/uspto-api-catalog-sdk/go/feature"
+	_ "github.com/voxgig-sdk/uspto-api-catalog-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

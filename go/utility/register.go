@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/uspto-api-catalog-sdk/core"
+import "github.com/voxgig-sdk/uspto-api-catalog-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

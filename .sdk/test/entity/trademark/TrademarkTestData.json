@@ -3,15 +3,18 @@
     "trademark": {
       "TRADEMARK00": {
         "assignment": [],
-        "trademark_status": {}
+        "trademark_status": {},
+        "id": "TRADEMARK00"
       },
       "TRADEMARK01": {
         "assignment": [],
-        "trademark_status": {}
+        "trademark_status": {},
+        "id": "TRADEMARK01"
       },
       "TRADEMARK02": {
         "assignment": [],
-        "trademark_status": {}
+        "trademark_status": {},
+        "id": "TRADEMARK02"
       }
     }
   },

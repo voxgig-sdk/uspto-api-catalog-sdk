@@ -15,7 +15,8 @@
         "patent_number": "s96",
         "rejection_text": "s97",
         "rejection_type": "s98",
-        "url": "s99"
+        "url": "s99",
+        "id": "PATENT00"
       },
       "PATENT01": {
         "assignee": "s118",
@@ -31,7 +32,8 @@
         "patent_number": "s122",
         "rejection_text": "s123",
         "rejection_type": "s124",
-        "url": "s125"
+        "url": "s125",
+        "id": "PATENT01"
       },
       "PATENT02": {
         "assignee": "s1a4",
@@ -47,7 +49,8 @@
         "patent_number": "s1ae",
         "rejection_text": "s1af",
         "rejection_type": "s1b0",
-        "url": "s1b1"
+        "url": "s1b1",
+        "id": "PATENT02"
       }
     }
   },

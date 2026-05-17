@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/uspto-api-catalog-sdk/go/utility/struct"
 )
 
 type UsptoApiCatalogSDK struct {
