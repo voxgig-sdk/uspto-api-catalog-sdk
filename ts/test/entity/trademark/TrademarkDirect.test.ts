@@ -135,14 +135,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'USPTOAPICATALOG_TEST_TRADEMARK_ENTID': {},
     'USPTOAPICATALOG_TEST_LIVE': 'FALSE',
-    'USPTOAPICATALOG_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.USPTOAPICATALOG_TEST_LIVE
 
   if (live) {
     const client = new UsptoApiCatalogSDK({
-      apikey: env.USPTOAPICATALOG_APIKEY,
     })
 
     let idmap: any = env['USPTOAPICATALOG_TEST_TRADEMARK_ENTID']

@@ -92,7 +92,6 @@ function trademark_basic_setup($extra)
         "USPTOAPICATALOG_TEST_TRADEMARK_ENTID" => $idmap,
         "USPTOAPICATALOG_TEST_LIVE" => "FALSE",
         "USPTOAPICATALOG_TEST_EXPLAIN" => "FALSE",
-        "USPTOAPICATALOG_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -104,7 +103,6 @@ function trademark_basic_setup($extra)
     if ($env["USPTOAPICATALOG_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["USPTOAPICATALOG_APIKEY"],
             ],
             $extra ?? [],
         ]);

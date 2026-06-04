@@ -98,7 +98,6 @@ def _trademark_basic_setup(extra):
         "USPTOAPICATALOG_TEST_TRADEMARK_ENTID": idmap,
         "USPTOAPICATALOG_TEST_LIVE": "FALSE",
         "USPTOAPICATALOG_TEST_EXPLAIN": "FALSE",
-        "USPTOAPICATALOG_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +108,6 @@ def _trademark_basic_setup(extra):
     if env.get("USPTOAPICATALOG_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("USPTOAPICATALOG_APIKEY"),
             },
             extra or {},
         ])

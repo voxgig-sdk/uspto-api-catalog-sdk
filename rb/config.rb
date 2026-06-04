@@ -15,9 +15,6 @@ module UsptoApiCatalogConfig
       },
       "options" => {
         "base" => "https://developer.uspto.gov",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
