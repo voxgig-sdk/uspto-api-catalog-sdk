@@ -10,13 +10,13 @@ The Ruby SDK for the UsptoApiCatalog API — an entity-oriented client using idi
 
 ## Install
 ```bash
-gem install uspto-api-catalog-sdk
+gem install voxgig-sdk-uspto-api-catalog
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "uspto-api-catalog-sdk"
+gem "voxgig-sdk-uspto-api-catalog"
 ```
 
 Then run:

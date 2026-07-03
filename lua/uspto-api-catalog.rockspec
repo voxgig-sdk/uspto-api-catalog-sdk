@@ -8,12 +8,14 @@ source = {
   dir = "uspto-api-catalog-sdk/lua"
 }
 description = {
-  summary = "UsptoApiCatalog SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the USPTO API Catalog public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/uspto-api-catalog-sdk",
+  issues_url = "https://github.com/voxgig-sdk/uspto-api-catalog-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "uspto-api-catalog" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

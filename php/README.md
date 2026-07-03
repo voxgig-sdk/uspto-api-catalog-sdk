@@ -10,7 +10,7 @@ The PHP SDK for the UsptoApiCatalog API — an entity-oriented client using PHP 
 
 ## Install
 ```bash
-composer require voxgig/uspto-api-catalog-sdk
+composer require voxgig-sdk/uspto-api-catalog
 ```
 
 

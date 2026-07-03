@@ -10,7 +10,7 @@ The Python SDK for the UsptoApiCatalog API — an entity-oriented client followi
 
 ## Install
 ```bash
-pip install uspto-api-catalog-sdk
+pip install voxgig-sdk-uspto-api-catalog
 ```
 
 Or install from source:

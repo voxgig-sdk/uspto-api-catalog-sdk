@@ -10,7 +10,7 @@ The TypeScript SDK for the UsptoApiCatalog API — a type-safe, entity-oriented 
 
 ## Install
 ```bash
-npm install uspto-api-catalog
+npm install @voxgig-sdk/uspto-api-catalog
 ```
 ## Tutorial: your first API call
 

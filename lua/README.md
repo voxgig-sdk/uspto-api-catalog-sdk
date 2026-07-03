@@ -10,7 +10,7 @@ The Lua SDK for the UsptoApiCatalog API — an entity-oriented client using Lua 
 
 ## Install
 ```bash
-luarocks install uspto-api-catalog-sdk
+luarocks install voxgig-sdk-uspto-api-catalog
 ```
 
 If the module is not yet published, add the source directory to
