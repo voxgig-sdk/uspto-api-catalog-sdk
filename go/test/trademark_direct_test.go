@@ -164,12 +164,14 @@ func trademarkDirectSetup(mockres any) *trademarkDirectSetupResult {
 	env := envOverride(map[string]any{
 		"USPTOAPICATALOG_TEST_TRADEMARK_ENTID": map[string]any{},
 		"USPTOAPICATALOG_TEST_LIVE":    "FALSE",
+		"USPTOAPICATALOG_APIKEY":       "NONE",
 	})
 
 	live := env["USPTOAPICATALOG_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["USPTOAPICATALOG_APIKEY"],
 		}
 		client := sdk.NewUsptoApiCatalogSDK(mergedOpts)
 

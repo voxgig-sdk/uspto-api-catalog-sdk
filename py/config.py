@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://developer.uspto.gov",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -27,128 +30,130 @@ def make_config():
       "patent": {
         "fields": [
           {
+            "active": True,
             "name": "assignee",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "assignment_date",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "assignment_id",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 2,
           },
           {
+            "active": True,
             "name": "assignor",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 3,
           },
           {
+            "active": True,
             "name": "citation",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 4,
           },
           {
+            "active": True,
             "name": "citation_number",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 5,
           },
           {
+            "active": True,
             "name": "citation_type",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 6,
           },
           {
+            "active": True,
             "name": "data",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 7,
           },
           {
+            "active": True,
             "name": "date",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 8,
           },
           {
+            "active": True,
             "name": "office_action",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 9,
           },
           {
+            "active": True,
             "name": "patent_number",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 10,
           },
           {
+            "active": True,
             "name": "rejection_text",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 11,
           },
           {
+            "active": True,
             "name": "rejection_type",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 12,
           },
           {
+            "active": True,
             "name": "url",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 13,
           },
         ],
         "name": "patent",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": "xml",
                       "kind": "query",
                       "name": "format",
                       "orig": "format",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "search_query",
                       "orig": "search_query",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -168,19 +173,19 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "application_number",
                       "orig": "application_number",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -199,19 +204,19 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 1,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "application_number",
                       "orig": "application_number",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -230,19 +235,19 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 2,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "date",
                       "orig": "date",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -261,19 +266,19 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 3,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "patent_number",
                       "orig": "patent_number",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -292,19 +297,19 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 4,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "query",
                       "orig": "query",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -323,26 +328,26 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 5,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "application_number",
                       "orig": "application_number",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -361,11 +366,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
@@ -376,44 +379,46 @@ def make_config():
       "trademark": {
         "fields": [
           {
+            "active": True,
             "name": "assignment",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "trademark_status",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 1,
           },
         ],
         "name": "trademark",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": "xml",
                       "kind": "query",
                       "name": "format",
                       "orig": "format",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "search_query",
                       "orig": "search_query",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -433,34 +438,34 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "registration_number",
                       "orig": "registration_number",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "serial_number",
                       "orig": "serial_number",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -480,11 +485,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },

@@ -129,6 +129,7 @@ func patentBasicSetup(extra map[string]any) *entityTestSetup {
 		"USPTOAPICATALOG_TEST_PATENT_ENTID": idmap,
 		"USPTOAPICATALOG_TEST_LIVE":      "FALSE",
 		"USPTOAPICATALOG_TEST_EXPLAIN":   "FALSE",
+		"USPTOAPICATALOG_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["USPTOAPICATALOG_TEST_PATENT_ENTID"])
@@ -139,6 +140,7 @@ func patentBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["USPTOAPICATALOG_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["USPTOAPICATALOG_APIKEY"],
 			},
 			extra,
 		})

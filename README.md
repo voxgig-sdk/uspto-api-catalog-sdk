@@ -1,20 +1,8 @@
 # UsptoApiCatalog SDK
 
-Search and retrieve US Patent and Trademark Office intellectual property data
+USPTO API Catalog client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About USPTO API Catalog
-
-The USPTO API Catalog is a developer entry point published by the [United States Patent and Trademark Office](https://www.uspto.gov/), the federal agency that grants U.S. patents and registers trademarks. The catalogue surfaces machine-readable access to USPTO intellectual-property datasets through the [developer.uspto.gov](https://developer.uspto.gov) hub (which redirects to [data.uspto.gov](https://data.uspto.gov)).
-
-What you can do with the catalogue:
-
-- Query the intellectual-property marketplace dataset by free-text search (for example `searchText=vehicles`).
-- Discover other USPTO APIs covering patents and trademarks from a single index.
-- Pull government-sourced IP data for analytics, prior-art tooling, and brand-monitoring use cases.
-
-Operational notes: the catalogue endpoint exposes GET requests over HTTPS and does not document an API-key requirement on the landing page. CORS is disabled, so calls typically need to come from a server. Response times observed by third-party monitors averaged around 800 ms. Rate limits, auth schemes, and field-level licence terms vary per underlying API and should be confirmed in each API's own documentation.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install uspto-api-catalog-sdk
 luarocks install uspto-api-catalog-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { UsptoApiCatalogSDK } from 'uspto-api-catalog'
 
-const client = new UsptoApiCatalogSDK({})
+const client = new UsptoApiCatalogSDK({
+  apikey: process.env.USPTO-API-CATALOG_APIKEY,
+})
 
 // List all patents
 const patents = await client.Patent().list()
+console.log(patents.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Patent** | U.S. patent records and related intellectual-property marketplace data exposed through USPTO patent APIs reachable from the catalogue. | `/patent-assignment/v1.4` |
-| **Trademark** | U.S. trademark filings and registrations accessible via the USPTO trademark APIs linked from the catalogue. | `/trademark-assignment/v1.4` |
+| **Patent** |  | `/patent-assignment/v1.4` |
+| **Trademark** |  | `/trademark-assignment/v1.4` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -111,17 +101,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from usptoapicatalog_sdk import UsptoApiCatalogSDK
 
-client = UsptoApiCatalogSDK({})
+client = UsptoApiCatalogSDK({
+    "apikey": os.environ.get("USPTO-API-CATALOG_APIKEY"),
+})
 
 # List all patents
-patents, err = client.Patent(None).list(None, None)
+patents, err = client.Patent().list()
+print(patents)
 
 # Load a specific patent
-patent, err = client.Patent(None).load(
-    {"id": "example_id"}, None
-)
+patent, err = client.Patent().load({"id": "example_id"})
+print(patent)
 ```
 
 ### PHP
@@ -130,15 +123,17 @@ patent, err = client.Patent(None).load(
 <?php
 require_once 'usptoapicatalog_sdk.php';
 
-$client = new UsptoApiCatalogSDK([]);
+$client = new UsptoApiCatalogSDK([
+    "apikey" => getenv("USPTO-API-CATALOG_APIKEY"),
+]);
 
 // List all patents
-[$patents, $err] = $client->Patent(null)->list(null, null);
+[$patents, $err] = $client->Patent()->list();
+print_r($patents);
 
 // Load a specific patent
-[$patent, $err] = $client->Patent(null)->load(
-    ["id" => "example_id"], null
-);
+[$patent, $err] = $client->Patent()->load(["id" => "example_id"]);
+print_r($patent);
 ```
 
 ### Golang
@@ -146,10 +141,13 @@ $client = new UsptoApiCatalogSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/uspto-api-catalog-sdk/go"
 
-client := sdk.NewUsptoApiCatalogSDK(map[string]any{})
+client := sdk.NewUsptoApiCatalogSDK(map[string]any{
+    "apikey": os.Getenv("USPTO-API-CATALOG_APIKEY"),
+})
 
 // List all patents
 patents, err := client.Patent(nil).List(nil, nil)
+fmt.Println(patents)
 ```
 
 ### Ruby
@@ -157,15 +155,17 @@ patents, err := client.Patent(nil).List(nil, nil)
 ```ruby
 require_relative "UsptoApiCatalog_sdk"
 
-client = UsptoApiCatalogSDK.new({})
+client = UsptoApiCatalogSDK.new({
+  "apikey" => ENV["USPTO-API-CATALOG_APIKEY"],
+})
 
 # List all patents
-patents, err = client.Patent(nil).list(nil, nil)
+patents, err = client.Patent().list
+puts patents
 
 # Load a specific patent
-patent, err = client.Patent(nil).load(
-  { "id" => "example_id" }, nil
-)
+patent, err = client.Patent().load({ "id" => "example_id" })
+puts patent
 ```
 
 ### Lua
@@ -173,15 +173,17 @@ patent, err = client.Patent(nil).load(
 ```lua
 local sdk = require("uspto-api-catalog_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("USPTO-API-CATALOG_APIKEY"),
+})
 
 -- List all patents
-local patents, err = client:Patent(nil):list(nil, nil)
+local patents, err = client:Patent():list()
+print(patents)
 
 -- Load a specific patent
-local patent, err = client:Patent(nil):load(
-  { id = "example_id" }, nil
-)
+local patent, err = client:Patent():load({ id = "example_id" })
+print(patent)
 ```
 
 ## Unit testing in offline mode
@@ -200,25 +202,21 @@ const result = await client.Patent().load({ id: 'test01' })
 ### Python
 
 ```python
-client = UsptoApiCatalogSDK.test(None, None)
-result, err = client.Patent(None).load(
-    {"id": "test01"}, None
-)
+client = UsptoApiCatalogSDK.test()
+result, err = client.Patent().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = UsptoApiCatalogSDK::test(null, null);
-[$result, $err] = $client->Patent(null)->load(
-    ["id" => "test01"], null
-);
+$client = UsptoApiCatalogSDK::test();
+[$result, $err] = $client->Patent()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Patent(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -227,19 +225,15 @@ result, err := client.Patent(nil).Load(
 ### Ruby
 
 ```ruby
-client = UsptoApiCatalogSDK.test(nil, nil)
-result, err = client.Patent(nil).load(
-  { "id" => "test01" }, nil
-)
+client = UsptoApiCatalogSDK.test
+result, err = client.Patent().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Patent(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Patent():load({ id = "test01" })
 ```
 
 ## How it works
@@ -343,15 +337,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the USPTO API Catalog
-
-- Upstream: [https://developer.uspto.gov](https://developer.uspto.gov)
-
-- Data is produced by the United States Patent and Trademark Office, a U.S. federal agency.
-- U.S. federal government works are generally in the public domain within the United States (17 U.S.C. § 105).
-- No explicit licence or attribution text is published on the catalogue landing page; check the individual API documentation for terms before redistribution.
-- CORS is reported as disabled on the catalogue endpoint, so browser-only clients may need a proxy.
 
 ---
 

@@ -15,6 +15,9 @@ module UsptoApiCatalogConfig
       },
       "options" => {
         "base" => "https://developer.uspto.gov",
+        "auth" => {
+          "prefix" => "Bearer",
+        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -27,128 +30,130 @@ module UsptoApiCatalogConfig
         "patent" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "assignee",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "assignment_date",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "assignment_id",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 2,
             },
             {
+              "active" => true,
               "name" => "assignor",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 3,
             },
             {
+              "active" => true,
               "name" => "citation",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 4,
             },
             {
+              "active" => true,
               "name" => "citation_number",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 5,
             },
             {
+              "active" => true,
               "name" => "citation_type",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 6,
             },
             {
+              "active" => true,
               "name" => "data",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 7,
             },
             {
+              "active" => true,
               "name" => "date",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 8,
             },
             {
+              "active" => true,
               "name" => "office_action",
               "req" => false,
               "type" => "`$OBJECT`",
-              "active" => true,
               "index$" => 9,
             },
             {
+              "active" => true,
               "name" => "patent_number",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 10,
             },
             {
+              "active" => true,
               "name" => "rejection_text",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 11,
             },
             {
+              "active" => true,
               "name" => "rejection_type",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 12,
             },
             {
+              "active" => true,
               "name" => "url",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 13,
             },
           ],
           "name" => "patent",
           "op" => {
             "list" => {
+              "input" => "data",
               "name" => "list",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "example" => "xml",
                         "kind" => "query",
                         "name" => "format",
                         "orig" => "format",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "search_query",
                         "orig" => "search_query",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -168,19 +173,19 @@ module UsptoApiCatalogConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "application_number",
                         "orig" => "application_number",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -199,19 +204,19 @@ module UsptoApiCatalogConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 1,
                 },
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "application_number",
                         "orig" => "application_number",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -230,19 +235,19 @@ module UsptoApiCatalogConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 2,
                 },
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "date",
                         "orig" => "date",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -261,19 +266,19 @@ module UsptoApiCatalogConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 3,
                 },
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "patent_number",
                         "orig" => "patent_number",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -292,19 +297,19 @@ module UsptoApiCatalogConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 4,
                 },
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "query",
                         "orig" => "query",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -323,26 +328,26 @@ module UsptoApiCatalogConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 5,
                 },
               ],
-              "input" => "data",
               "key$" => "list",
             },
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "application_number",
                         "orig" => "application_number",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -361,11 +366,9 @@ module UsptoApiCatalogConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },
@@ -376,44 +379,46 @@ module UsptoApiCatalogConfig
         "trademark" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "assignment",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "trademark_status",
               "req" => false,
               "type" => "`$OBJECT`",
-              "active" => true,
               "index$" => 1,
             },
           ],
           "name" => "trademark",
           "op" => {
             "list" => {
+              "input" => "data",
               "name" => "list",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "example" => "xml",
                         "kind" => "query",
                         "name" => "format",
                         "orig" => "format",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "search_query",
                         "orig" => "search_query",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -433,34 +438,34 @@ module UsptoApiCatalogConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "list",
             },
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "registration_number",
                         "orig" => "registration_number",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "serial_number",
                         "orig" => "serial_number",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -480,11 +485,9 @@ module UsptoApiCatalogConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },

@@ -113,12 +113,14 @@ function trademark_direct_setup($mockres)
     $env = Runner::env_override([
         "USPTOAPICATALOG_TEST_TRADEMARK_ENTID" => [],
         "USPTOAPICATALOG_TEST_LIVE" => "FALSE",
+        "USPTOAPICATALOG_APIKEY" => "NONE",
     ]);
 
     $live = $env["USPTOAPICATALOG_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["USPTOAPICATALOG_APIKEY"],
         ];
         $client = new UsptoApiCatalogSDK($merged_opts);
         return [

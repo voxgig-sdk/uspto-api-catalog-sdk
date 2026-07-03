@@ -98,6 +98,7 @@ function patent_basic_setup(extra)
     ["USPTOAPICATALOG_TEST_PATENT_ENTID"] = idmap,
     ["USPTOAPICATALOG_TEST_LIVE"] = "FALSE",
     ["USPTOAPICATALOG_TEST_EXPLAIN"] = "FALSE",
+    ["USPTOAPICATALOG_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -109,6 +110,7 @@ function patent_basic_setup(extra)
   if env["USPTOAPICATALOG_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["USPTOAPICATALOG_APIKEY"],
       },
       extra or {},
     })

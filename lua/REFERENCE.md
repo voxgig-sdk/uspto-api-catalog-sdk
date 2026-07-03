@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -117,7 +117,7 @@ local patent = client:Patent(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Patent(nil):list(nil, nil)
+local results, err = client:Patent():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -125,7 +125,7 @@ local results, err = client:Patent(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Patent(nil):load({ id = "patent_id" }, nil)
+local result, err = client:Patent():load({ id = "patent_id" })
 ```
 
 ### Common Methods
@@ -178,7 +178,7 @@ local trademark = client:Trademark(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Trademark(nil):list(nil, nil)
+local results, err = client:Trademark():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -186,7 +186,7 @@ local results, err = client:Trademark(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Trademark(nil):load({ id = "trademark_id" }, nil)
+local result, err = client:Trademark():load({ id = "trademark_id" })
 ```
 
 ### Common Methods

@@ -1,6 +1,11 @@
 # UsptoApiCatalog PHP SDK
 
-The PHP SDK for the UsptoApiCatalog API. Provides an entity-oriented interface using PHP conventions.
+
+
+The PHP SDK for the UsptoApiCatalog API — an entity-oriented client using PHP conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -20,13 +25,15 @@ loading a specific record.
 <?php
 require_once 'usptoapicatalog_sdk.php';
 
-$client = new UsptoApiCatalogSDK([]);
+$client = new UsptoApiCatalogSDK([
+    "apikey" => getenv("USPTO-API-CATALOG_APIKEY"),
+]);
 ```
 
 ### 2. List patents
 
 ```php
-[$result, $err] = $client->Patent(null)->list(null, null);
+[$result, $err] = $client->Patent()->list();
 if ($err) { throw new \Exception($err); }
 
 if (is_array($result)) {
@@ -40,7 +47,7 @@ if (is_array($result)) {
 ### 3. Load a patent
 
 ```php
-[$result, $err] = $client->Patent(null)->load(["id" => "example_id"], null);
+[$result, $err] = $client->Patent()->load(["id" => "example_id"]);
 if ($err) { throw new \Exception($err); }
 print_r($result);
 ```
@@ -86,11 +93,9 @@ print_r($fetchdef["headers"]);
 Create a mock client for unit testing — no server required:
 
 ```php
-$client = UsptoApiCatalogSDK::test(null, null);
+$client = UsptoApiCatalogSDK::test();
 
-[$result, $err] = $client->UsptoApiCatalog(null)->load(
-    ["id" => "test01"], null
-);
+[$result, $err] = $client->UsptoApiCatalog()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -125,6 +130,7 @@ Create a `.env.local` file at the project root:
 
 ```
 USPTO-API-CATALOG_TEST_LIVE=TRUE
+USPTO-API-CATALOG_APIKEY=<your-key>
 ```
 
 Then run:
@@ -147,6 +153,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

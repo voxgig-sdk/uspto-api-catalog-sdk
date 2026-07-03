@@ -119,6 +119,7 @@ function basicSetup(extra?: any) {
     'USPTO_API_CATALOG_TEST_PATENT_ENTID': idmap,
     'USPTO_API_CATALOG_TEST_LIVE': 'FALSE',
     'USPTO_API_CATALOG_TEST_EXPLAIN': 'FALSE',
+    'USPTO_API_CATALOG_APIKEY': 'NONE',
   })
 
   idmap = env['USPTO_API_CATALOG_TEST_PATENT_ENTID']
@@ -128,6 +129,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new UsptoApiCatalogSDK(merge([
       {
+        apikey: env.USPTO_API_CATALOG_APIKEY,
       },
       extra
     ]))

@@ -99,12 +99,14 @@ def _patent_direct_setup(mockres):
     env = runner.env_override({
         "USPTOAPICATALOG_TEST_PATENT_ENTID": {},
         "USPTOAPICATALOG_TEST_LIVE": "FALSE",
+        "USPTOAPICATALOG_APIKEY": "NONE",
     })
 
     live = env.get("USPTOAPICATALOG_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("USPTOAPICATALOG_APIKEY"),
         }
         client = UsptoApiCatalogSDK(merged_opts)
         return {

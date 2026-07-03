@@ -18,28 +18,7 @@ main: {
       termsOfService: "https://www.uspto.gov/terms-use"
       title: "USPTO API Catalog"
       version: "1.0.0"
-      tagline: "Search and retrieve US Patent and Trademark Office intellectual property data"
-      homepage: "https://developer.uspto.gov"
-      docs_url: "https://developer.uspto.gov"
-      license_short: "U.S. Government public data; works of the federal government are generally not subject to copyright in the United States."
-      license_md: `- Data is produced by the United States Patent and Trademark Office, a U.S. federal agency.
-- U.S. federal government works are generally in the public domain within the United States (17 U.S.C. § 105).
-- No explicit licence or attribution text is published on the catalogue landing page; check the individual API documentation for terms before redistribution.
-- CORS is reported as disabled on the catalogue endpoint, so browser-only clients may need a proxy.`
-      about_md: `The USPTO API Catalog is a developer entry point published by the [United States Patent and Trademark Office](https://www.uspto.gov/), the federal agency that grants U.S. patents and registers trademarks. The catalogue surfaces machine-readable access to USPTO intellectual-property datasets through the [developer.uspto.gov](https://developer.uspto.gov) hub (which redirects to [data.uspto.gov](https://data.uspto.gov)).
-
-What you can do with the catalogue:
-
-- Query the intellectual-property marketplace dataset by free-text search (for example \`searchText=vehicles\`).
-- Discover other USPTO APIs covering patents and trademarks from a single index.
-- Pull government-sourced IP data for analytics, prior-art tooling, and brand-monitoring use cases.
-
-Operational notes: the catalogue endpoint exposes GET requests over HTTPS and does not document an API-key requirement on the landing page. CORS is disabled, so calls typically need to come from a server. Response times observed by third-party monitors averaged around 800 ms. Rate limits, auth schemes, and field-level licence terms vary per underlying API and should be confirmed in each API's own documentation.`
-      entity_desc: {
-        patent: "U.S. patent records and related intellectual-property marketplace data exposed through USPTO patent APIs reachable from the catalogue."
-        trademark: "U.S. trademark filings and registrations accessible via the USPTO trademark APIs linked from the catalogue."
-      }
-      auth: false
     }
   }
 }
+
