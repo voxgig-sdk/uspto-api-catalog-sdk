@@ -122,7 +122,7 @@ Alias for `UsptoApiCatalogSDK.test()`.
 ## PatentEntity
 
 ```ts
-const patent = client.Patent()
+const patent = client.patent
 ```
 
 ### Fields
@@ -151,7 +151,7 @@ const patent = client.Patent()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Patent().list()
+const results = await client.patent.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -159,7 +159,7 @@ const results = await client.Patent().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Patent().load({ id: 'patent_id' })
+const result = await client.patent.load({ id: 'patent_id' })
 ```
 
 ### Common Methods
@@ -193,7 +193,7 @@ Return a copy of the entity options.
 ## TrademarkEntity
 
 ```ts
-const trademark = client.Trademark()
+const trademark = client.trademark
 ```
 
 ### Fields
@@ -210,7 +210,7 @@ const trademark = client.Trademark()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Trademark().list()
+const results = await client.trademark.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -218,7 +218,7 @@ const results = await client.Trademark().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Trademark().load({ id: 'trademark_id' })
+const result = await client.trademark.load({ id: 'trademark_id' })
 ```
 
 ### Common Methods

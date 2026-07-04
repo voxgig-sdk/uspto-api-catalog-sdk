@@ -85,6 +85,27 @@ func (e *PatentEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Patent; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *PatentEntity) DataTyped(data ...Patent) Patent {
+	if len(data) > 0 {
+		return typedFrom[Patent](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Patent](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Patent (all fields
+// optional at the wire level).
+func (e *PatentEntity) MatchTyped(match ...Patent) Patent {
+	if len(match) > 0 {
+		return typedFrom[Patent](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Patent](e.Match())
+}
+
 
 func (e *PatentEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *PatentEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, 
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// PatentLoadMatch and returns an Patent. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *PatentEntity) LoadTyped(reqmatch PatentLoadMatch, ctrl map[string]any) (Patent, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Patent{}, err
+	}
+	return typedFrom[Patent](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *PatentEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, 
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// PatentListMatch and returns []Patent. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *PatentEntity) ListTyped(reqmatch PatentListMatch, ctrl map[string]any) ([]Patent, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Patent](res), nil
 }
 
 

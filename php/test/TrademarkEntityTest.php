@@ -50,14 +50,12 @@ class TrademarkEntityTest extends TestCase
         $trademark_ref01_ent = $client->Trademark(null);
         $trademark_ref01_match = [];
 
-        [$trademark_ref01_list_result, $err] = $trademark_ref01_ent->list($trademark_ref01_match, null);
-        $this->assertNull($err);
+        $trademark_ref01_list_result = $trademark_ref01_ent->list($trademark_ref01_match, null);
         $this->assertIsArray($trademark_ref01_list_result);
 
         // LOAD
         $trademark_ref01_match_dt0 = [];
-        [$trademark_ref01_data_dt0_loaded, $err] = $trademark_ref01_ent->load($trademark_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $trademark_ref01_data_dt0_loaded = $trademark_ref01_ent->load($trademark_ref01_match_dt0, null);
         $this->assertNotNull($trademark_ref01_data_dt0_loaded);
 
     }

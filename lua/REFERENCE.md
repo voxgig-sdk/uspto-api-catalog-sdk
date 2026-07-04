@@ -88,7 +88,7 @@ same parameters as `direct()`.
 ## PatentEntity
 
 ```lua
-local patent = client:Patent(nil)
+local patent = client:patent(nil)
 ```
 
 ### Fields
@@ -117,7 +117,7 @@ local patent = client:Patent(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Patent():list()
+local results, err = client:patent():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -125,7 +125,7 @@ local results, err = client:Patent():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Patent():load({ id = "patent_id" })
+local result, err = client:patent():load({ id = "patent_id" })
 ```
 
 ### Common Methods
@@ -161,7 +161,7 @@ Return the entity name.
 ## TrademarkEntity
 
 ```lua
-local trademark = client:Trademark(nil)
+local trademark = client:trademark(nil)
 ```
 
 ### Fields
@@ -178,7 +178,7 @@ local trademark = client:Trademark(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Trademark():list()
+local results, err = client:trademark():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -186,7 +186,7 @@ local results, err = client:Trademark():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Trademark():load({ id = "trademark_id" })
+local result, err = client:trademark():load({ id = "trademark_id" })
 ```
 
 ### Common Methods

@@ -9,9 +9,10 @@ The PHP SDK for the UsptoApiCatalog API — an entity-oriented client using PHP 
 
 
 ## Install
-```bash
-composer require voxgig-sdk/uspto-api-catalog
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -26,30 +27,35 @@ loading a specific record.
 require_once 'usptoapicatalog_sdk.php';
 
 $client = new UsptoApiCatalogSDK([
-    "apikey" => getenv("USPTO-API-CATALOG_APIKEY"),
+    "apikey" => getenv("USPTO_API_CATALOG_APIKEY"),
 ]);
 ```
 
 ### 2. List patents
 
 ```php
-[$result, $err] = $client->Patent()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->patent()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
 ### 3. Load a patent
 
 ```php
-[$result, $err] = $client->Patent()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->patent()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -60,28 +66,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -95,7 +104,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = UsptoApiCatalogSDK::test();
 
-[$result, $err] = $client->UsptoApiCatalog()->load(["id" => "test01"]);
+$result = $client->patent()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -129,8 +138,8 @@ $client = new UsptoApiCatalogSDK([
 Create a `.env.local` file at the project root:
 
 ```
-USPTO-API-CATALOG_TEST_LIVE=TRUE
-USPTO-API-CATALOG_APIKEY=<your-key>
+USPTO_API_CATALOG_TEST_LIVE=TRUE
+USPTO_API_CATALOG_APIKEY=<your-key>
 ```
 
 Then run:
@@ -200,8 +209,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -255,7 +268,7 @@ API path: `/trademark-assignment/v1.4`
 
 ### Patent
 
-Create an instance: `const patent = client.Patent()`
+Create an instance: `const patent = client.patent`
 
 #### Operations
 
@@ -286,19 +299,19 @@ Create an instance: `const patent = client.Patent()`
 #### Example: Load
 
 ```ts
-const patent = await client.Patent().load({ id: 'patent_id' })
+const patent = await client.patent.load({ id: 'patent_id' })
 ```
 
 #### Example: List
 
 ```ts
-const patents = await client.Patent().list()
+const patents = await client.patent.list()
 ```
 
 
 ### Trademark
 
-Create an instance: `const trademark = client.Trademark()`
+Create an instance: `const trademark = client.trademark`
 
 #### Operations
 
@@ -317,13 +330,13 @@ Create an instance: `const trademark = client.Trademark()`
 #### Example: Load
 
 ```ts
-const trademark = await client.Trademark().load({ id: 'trademark_id' })
+const trademark = await client.trademark.load({ id: 'trademark_id' })
 ```
 
 #### Example: List
 
 ```ts
-const trademarks = await client.Trademark().list()
+const trademarks = await client.trademark.list()
 ```
 
 
@@ -398,11 +411,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$patent = $client->patent();
+$patent->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $patent->dataGet() now returns the loaded patent data
+// $patent->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

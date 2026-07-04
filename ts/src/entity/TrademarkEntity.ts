@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Trademark,
+  TrademarkLoadMatch,
+  TrademarkListMatch,
+} from '../UsptoApiCatalogTypes'
 
 // TODO: needs Entity superclass
-class TrademarkEntity extends UsptoApiCatalogEntityBase {
+class TrademarkEntity extends UsptoApiCatalogEntityBase<Trademark> {
 
   constructor(client: UsptoApiCatalogSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class TrademarkEntity extends UsptoApiCatalogEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: TrademarkLoadMatch, ctrl?: Control): Promise<Trademark> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class TrademarkEntity extends UsptoApiCatalogEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Trademark> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: TrademarkListMatch, ctrl?: Control): Promise<Trademark[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class TrademarkEntity extends UsptoApiCatalogEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Trademark[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

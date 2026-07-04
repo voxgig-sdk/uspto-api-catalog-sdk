@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch TrademarkLoadMatch
+---@param ctrl? table
+---@return Trademark
+---@return string? err
 function TrademarkEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch TrademarkListMatch
+---@param ctrl? table
+---@return Trademark[]
+---@return string? err
 function TrademarkEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

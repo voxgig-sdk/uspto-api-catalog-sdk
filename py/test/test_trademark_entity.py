@@ -50,14 +50,12 @@ class TestTrademarkEntity:
         trademark_ref01_ent = client.Trademark(None)
         trademark_ref01_match = {}
 
-        trademark_ref01_list_result, err = trademark_ref01_ent.list(trademark_ref01_match, None)
-        assert err is None
+        trademark_ref01_list_result = trademark_ref01_ent.list(trademark_ref01_match, None)
         assert isinstance(trademark_ref01_list_result, list)
 
         # LOAD
         trademark_ref01_match_dt0 = {}
-        trademark_ref01_data_dt0_loaded, err = trademark_ref01_ent.load(trademark_ref01_match_dt0, None)
-        assert err is None
+        trademark_ref01_data_dt0_loaded = trademark_ref01_ent.load(trademark_ref01_match_dt0, None)
         assert trademark_ref01_data_dt0_loaded is not None
 
 

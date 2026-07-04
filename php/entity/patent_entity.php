@@ -55,6 +55,9 @@ class PatentEntity
         return new PatentEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Patent|array $args Patent data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class PatentEntity
         }
     }
 
+    /**
+     * @return Patent|array The current Patent data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Patent fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class PatentEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Patent fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class PatentEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Patent.
+     *
+     * @param PatentLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed PatentLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Patent|array The loaded Patent as an assoc-array at the
+     *   SDK boundary; throws UsptoApiCatalogError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class PatentEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Patent items matching the given filter.
+     *
+     * @param PatentListMatch|array|null $reqmatch Match filter (any subset
+     *   of Patent fields) as an assoc-array; PatentListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Patent[]|array A list of Patent items as assoc-arrays at
+     *   the SDK boundary; throws UsptoApiCatalogError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class PatentEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

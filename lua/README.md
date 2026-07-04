@@ -9,12 +9,9 @@ The Lua SDK for the UsptoApiCatalog API — an entity-oriented client using Lua 
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-uspto-api-catalog
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("uspto-api-catalog_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("USPTO-API-CATALOG_APIKEY"),
+  apikey = os.getenv("USPTO_API_CATALOG_APIKEY"),
 })
 ```
 
 ### 2. List patents
 
 ```lua
-local result, err = client:Patent():list()
+local result, err = client:patent():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +50,7 @@ end
 ### 3. Load a patent
 
 ```lua
-local result, err = client:Patent():load({ id = "example_id" })
+local result, err = client:patent():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +98,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:UsptoApiCatalog():load({ id = "test01" })
+local result, err = client:patent():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -134,8 +131,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-USPTO-API-CATALOG_TEST_LIVE=TRUE
-USPTO-API-CATALOG_APIKEY=<your-key>
+USPTO_API_CATALOG_TEST_LIVE=TRUE
+USPTO_API_CATALOG_APIKEY=<your-key>
 ```
 
 Then run:
@@ -260,7 +257,7 @@ API path: `/trademark-assignment/v1.4`
 
 ### Patent
 
-Create an instance: `const patent = client.Patent()`
+Create an instance: `const patent = client.patent`
 
 #### Operations
 
@@ -291,19 +288,19 @@ Create an instance: `const patent = client.Patent()`
 #### Example: Load
 
 ```ts
-const patent = await client.Patent().load({ id: 'patent_id' })
+const patent = await client.patent.load({ id: 'patent_id' })
 ```
 
 #### Example: List
 
 ```ts
-const patents = await client.Patent().list()
+const patents = await client.patent.list()
 ```
 
 
 ### Trademark
 
-Create an instance: `const trademark = client.Trademark()`
+Create an instance: `const trademark = client.trademark`
 
 #### Operations
 
@@ -322,13 +319,13 @@ Create an instance: `const trademark = client.Trademark()`
 #### Example: Load
 
 ```ts
-const trademark = await client.Trademark().load({ id: 'trademark_id' })
+const trademark = await client.trademark.load({ id: 'trademark_id' })
 ```
 
 #### Example: List
 
 ```ts
-const trademarks = await client.Trademark().list()
+const trademarks = await client.trademark.list()
 ```
 
 
@@ -403,11 +400,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local patent = client:patent()
+patent:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- patent:data_get() now returns the loaded patent data
+-- patent:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -43,14 +43,12 @@ class TrademarkEntityTest < Minitest::Test
     trademark_ref01_ent = client.Trademark(nil)
     trademark_ref01_match = {}
 
-    trademark_ref01_list_result, err = trademark_ref01_ent.list(trademark_ref01_match, nil)
-    assert_nil err
+    trademark_ref01_list_result = trademark_ref01_ent.list(trademark_ref01_match, nil)
     assert trademark_ref01_list_result.is_a?(Array)
 
     # LOAD
     trademark_ref01_match_dt0 = {}
-    trademark_ref01_data_dt0_loaded, err = trademark_ref01_ent.load(trademark_ref01_match_dt0, nil)
-    assert_nil err
+    trademark_ref01_data_dt0_loaded = trademark_ref01_ent.load(trademark_ref01_match_dt0, nil)
     assert !trademark_ref01_data_dt0_loaded.nil?
 
   end

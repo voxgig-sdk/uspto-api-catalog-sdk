@@ -43,14 +43,12 @@ class PatentEntityTest < Minitest::Test
     patent_ref01_ent = client.Patent(nil)
     patent_ref01_match = {}
 
-    patent_ref01_list_result, err = patent_ref01_ent.list(patent_ref01_match, nil)
-    assert_nil err
+    patent_ref01_list_result = patent_ref01_ent.list(patent_ref01_match, nil)
     assert patent_ref01_list_result.is_a?(Array)
 
     # LOAD
     patent_ref01_match_dt0 = {}
-    patent_ref01_data_dt0_loaded, err = patent_ref01_ent.load(patent_ref01_match_dt0, nil)
-    assert_nil err
+    patent_ref01_data_dt0_loaded = patent_ref01_ent.load(patent_ref01_match_dt0, nil)
     assert !patent_ref01_data_dt0_loaded.nil?
 
   end

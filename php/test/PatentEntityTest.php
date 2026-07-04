@@ -50,14 +50,12 @@ class PatentEntityTest extends TestCase
         $patent_ref01_ent = $client->Patent(null);
         $patent_ref01_match = [];
 
-        [$patent_ref01_list_result, $err] = $patent_ref01_ent->list($patent_ref01_match, null);
-        $this->assertNull($err);
+        $patent_ref01_list_result = $patent_ref01_ent->list($patent_ref01_match, null);
         $this->assertIsArray($patent_ref01_list_result);
 
         // LOAD
         $patent_ref01_match_dt0 = [];
-        [$patent_ref01_data_dt0_loaded, $err] = $patent_ref01_ent->load($patent_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $patent_ref01_data_dt0_loaded = $patent_ref01_ent->load($patent_ref01_match_dt0, null);
         $this->assertNotNull($patent_ref01_data_dt0_loaded);
 
     }

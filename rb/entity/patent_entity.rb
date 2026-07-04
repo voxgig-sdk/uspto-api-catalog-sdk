@@ -45,6 +45,7 @@ class PatentEntity
     end
   end
 
+  # @return [Patent, Hash] the current Patent data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class PatentEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Patent fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Patent.
+  #
+  # @param reqmatch [PatentLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Patent, Hash] the loaded Patent; raises UsptoApiCatalogError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class PatentEntity
 
 
   
+  # List Patent items matching the given filter.
+  #
+  # @param reqmatch [PatentListMatch, Hash, nil] match filter (any subset of Patent fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Patent>, Array] the matching Patent items; raises UsptoApiCatalogError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

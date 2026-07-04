@@ -9,9 +9,12 @@ The TypeScript SDK for the UsptoApiCatalog API — a type-safe, entity-oriented 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/uspto-api-catalog
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { UsptoApiCatalogSDK } from 'uspto-api-catalog'
+import { UsptoApiCatalogSDK } from '@voxgig-sdk/uspto-api-catalog'
 
 const client = new UsptoApiCatalogSDK({
-  apikey: process.env.USPTO-API-CATALOG_APIKEY,
+  apikey: process.env.USPTO_API_CATALOG_APIKEY,
 })
 ```
 
 ### 2. List patents
 
 ```ts
-const result = await client.Patent().list()
+const result = await client.patent.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -42,7 +45,7 @@ if (result.ok) {
 ### 3. Load a patent
 
 ```ts
-const result = await client.Patent().load({ id: 'example_id' })
+const result = await client.patent.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -91,7 +94,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = UsptoApiCatalogSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.patent.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -108,7 +111,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.patent
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -145,8 +148,8 @@ const client = new UsptoApiCatalogSDK({
 Create a `.env.local` file at the project root:
 
 ```
-USPTO-API-CATALOG_TEST_LIVE=TRUE
-USPTO-API-CATALOG_APIKEY=<your-key>
+USPTO_API_CATALOG_TEST_LIVE=TRUE
+USPTO_API_CATALOG_APIKEY=<your-key>
 ```
 
 Then run:
@@ -303,7 +306,7 @@ API path: `/trademark-assignment/v1.4`
 
 ### Patent
 
-Create an instance: `const patent = client.Patent()`
+Create an instance: `const patent = client.patent`
 
 #### Operations
 
@@ -334,19 +337,19 @@ Create an instance: `const patent = client.Patent()`
 #### Example: Load
 
 ```ts
-const patent = await client.Patent().load({ id: 'patent_id' })
+const patent = await client.patent.load({ id: 'patent_id' })
 ```
 
 #### Example: List
 
 ```ts
-const patents = await client.Patent().list()
+const patents = await client.patent.list()
 ```
 
 
 ### Trademark
 
-Create an instance: `const trademark = client.Trademark()`
+Create an instance: `const trademark = client.trademark`
 
 #### Operations
 
@@ -365,13 +368,13 @@ Create an instance: `const trademark = client.Trademark()`
 #### Example: Load
 
 ```ts
-const trademark = await client.Trademark().load({ id: 'trademark_id' })
+const trademark = await client.trademark.load({ id: 'trademark_id' })
 ```
 
 #### Example: List
 
 ```ts
-const trademarks = await client.Trademark().list()
+const trademarks = await client.trademark.list()
 ```
 
 
@@ -432,7 +435,7 @@ uspto-api-catalog/
 Import the SDK from the package root:
 
 ```ts
-import { UsptoApiCatalogSDK } from 'uspto-api-catalog'
+import { UsptoApiCatalogSDK } from '@voxgig-sdk/uspto-api-catalog'
 ```
 
 ### Entity state
@@ -442,11 +445,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const patent = client.patent
+await patent.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// patent.data() now returns the loaded patent data
+// patent.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

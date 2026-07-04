@@ -245,11 +245,17 @@ func (sdk *UsptoApiCatalogSDK) Direct(fetchargs map[string]any) (map[string]any,
 }
 
 
+// Patent returns a Patent entity bound to this client.
+// Idiomatic usage: client.Patent(nil).List(nil, nil) or
+// client.Patent(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *UsptoApiCatalogSDK) Patent(data map[string]any) UsptoApiCatalogEntity {
 	return NewPatentEntityFunc(sdk, data)
 }
 
 
+// Trademark returns a Trademark entity bound to this client.
+// Idiomatic usage: client.Trademark(nil).List(nil, nil) or
+// client.Trademark(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *UsptoApiCatalogSDK) Trademark(data map[string]any) UsptoApiCatalogEntity {
 	return NewTrademarkEntityFunc(sdk, data)
 }

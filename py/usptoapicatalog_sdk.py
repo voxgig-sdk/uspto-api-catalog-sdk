@@ -144,16 +144,23 @@ class UsptoApiCatalogSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class UsptoApiCatalogSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,20 +212,42 @@ class UsptoApiCatalogSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def patent(self):
+        """Idiomatic facade: client.patent.list() / client.patent.load({"id": ...})."""
+        from entity.patent_entity import PatentEntity
+        cached = getattr(self, "_patent", None)
+        if cached is None:
+            cached = PatentEntity(self, None)
+            self._patent = cached
+        return cached
 
     def Patent(self, data=None):
+        # Deprecated: use client.patent instead.
         from entity.patent_entity import PatentEntity
         return PatentEntity(self, data)
 
 
+    @property
+    def trademark(self):
+        """Idiomatic facade: client.trademark.list() / client.trademark.load({"id": ...})."""
+        from entity.trademark_entity import TrademarkEntity
+        cached = getattr(self, "_trademark", None)
+        if cached is None:
+            cached = TrademarkEntity(self, None)
+            self._trademark = cached
+        return cached
+
     def Trademark(self, data=None):
+        # Deprecated: use client.trademark instead.
         from entity.trademark_entity import TrademarkEntity
         return TrademarkEntity(self, data)
 

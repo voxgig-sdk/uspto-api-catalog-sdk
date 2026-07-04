@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PatentLoadMatch
+---@param ctrl? table
+---@return Patent
+---@return string? err
 function PatentEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch PatentListMatch
+---@param ctrl? table
+---@return Patent[]
+---@return string? err
 function PatentEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

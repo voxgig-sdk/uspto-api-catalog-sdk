@@ -50,14 +50,12 @@ class TestPatentEntity:
         patent_ref01_ent = client.Patent(None)
         patent_ref01_match = {}
 
-        patent_ref01_list_result, err = patent_ref01_ent.list(patent_ref01_match, None)
-        assert err is None
+        patent_ref01_list_result = patent_ref01_ent.list(patent_ref01_match, None)
         assert isinstance(patent_ref01_list_result, list)
 
         # LOAD
         patent_ref01_match_dt0 = {}
-        patent_ref01_data_dt0_loaded, err = patent_ref01_ent.load(patent_ref01_match_dt0, None)
-        assert err is None
+        patent_ref01_data_dt0_loaded = patent_ref01_ent.load(patent_ref01_match_dt0, None)
         assert patent_ref01_data_dt0_loaded is not None
 
 
