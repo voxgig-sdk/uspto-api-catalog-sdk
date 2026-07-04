@@ -34,24 +34,28 @@ client = UsptoApiCatalogSDK({
 })
 ```
 
-### 2. List patents
+### 2. List patent records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.patent.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    patents = client.Patent().list({})
+    for patent in patents:
+        print(patent)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a patent
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.patent.load({"id": "example_id"})
-    print(result)
+    patent = client.Patent().load({"id": "example_id"})
+    print(patent)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -99,8 +103,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = UsptoApiCatalogSDK.test()
 
-result = client.patent.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+patent = client.Patent().load({"id": "test01"})
+# patent contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -260,7 +265,7 @@ API path: `/trademark-assignment/v1.4`
 
 ### Patent
 
-Create an instance: `const patent = client.patent`
+Create an instance: `patent = client.Patent()`
 
 #### Operations
 
@@ -290,20 +295,20 @@ Create an instance: `const patent = client.patent`
 
 #### Example: Load
 
-```ts
-const patent = await client.patent.load({ id: 'patent_id' })
+```python
+patent = client.Patent().load({"id": "patent_id"})
 ```
 
 #### Example: List
 
-```ts
-const patents = await client.patent.list()
+```python
+patents = client.Patent().list({})
 ```
 
 
 ### Trademark
 
-Create an instance: `const trademark = client.trademark`
+Create an instance: `trademark = client.Trademark()`
 
 #### Operations
 
@@ -321,14 +326,14 @@ Create an instance: `const trademark = client.trademark`
 
 #### Example: Load
 
-```ts
-const trademark = await client.trademark.load({ id: 'trademark_id' })
+```python
+trademark = client.Trademark().load({"id": "trademark_id"})
 ```
 
 #### Example: List
 
-```ts
-const trademarks = await client.trademark.list()
+```python
+trademarks = client.Trademark().list({})
 ```
 
 
@@ -402,7 +407,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-patent = client.patent
+patent = client.Patent()
 patent.load({"id": "example_id"})
 
 # patent.data_get() now returns the loaded patent data

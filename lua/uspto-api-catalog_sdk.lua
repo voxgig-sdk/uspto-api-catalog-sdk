@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:patent():list() / client:patent():load({ id = ... })
-function UsptoApiCatalogSDK:patent(data)
+-- Idiomatic facade: client:Patent():list() / client:Patent():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function UsptoApiCatalogSDK:Patent(data)
   local EntityMod = require("entity.patent_entity")
   if data == nil then
     if self._patent == nil then
@@ -256,15 +257,10 @@ function UsptoApiCatalogSDK:patent(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:patent() instead.
-function UsptoApiCatalogSDK:Patent(data)
-  local EntityMod = require("entity.patent_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:trademark():list() / client:trademark():load({ id = ... })
-function UsptoApiCatalogSDK:trademark(data)
+-- Idiomatic facade: client:Trademark():list() / client:Trademark():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function UsptoApiCatalogSDK:Trademark(data)
   local EntityMod = require("entity.trademark_entity")
   if data == nil then
     if self._trademark == nil then
@@ -272,12 +268,6 @@ function UsptoApiCatalogSDK:trademark(data)
     end
     return self._trademark
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:trademark() instead.
-function UsptoApiCatalogSDK:Trademark(data)
-  local EntityMod = require("entity.trademark_entity")
   return EntityMod.new(self, data)
 end
 

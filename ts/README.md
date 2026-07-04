@@ -30,25 +30,28 @@ const client = new UsptoApiCatalogSDK({
 })
 ```
 
-### 2. List patents
+### 2. List patent records
+
+`list()` resolves to an array of Patent objects — iterate it directly:
 
 ```ts
-const result = await client.patent.list()
+const patents = await client.Patent().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const patent of patents) {
+  console.log(patent)
 }
 ```
 
 ### 3. Load a patent
 
-```ts
-const result = await client.patent.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const patent = await client.Patent().load({ id: 'example_id' })
+  console.log(patent)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -66,6 +69,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -94,9 +100,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = UsptoApiCatalogSDK.test()
 
-const result = await client.patent.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const patent = await client.Patent().load({ id: 'test01' })
+// patent is a bare entity populated with mock response data
+console.log(patent)
 ```
 
 You can also use the instance method:
@@ -111,7 +117,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.patent
+const entity = client.Patent()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -211,29 +217,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): UsptoApiCatalogSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -306,7 +313,7 @@ API path: `/trademark-assignment/v1.4`
 
 ### Patent
 
-Create an instance: `const patent = client.patent`
+Create an instance: `const patent = client.Patent()`
 
 #### Operations
 
@@ -337,19 +344,19 @@ Create an instance: `const patent = client.patent`
 #### Example: Load
 
 ```ts
-const patent = await client.patent.load({ id: 'patent_id' })
+const patent = await client.Patent().load({ id: 'patent_id' })
 ```
 
 #### Example: List
 
 ```ts
-const patents = await client.patent.list()
+const patents = await client.Patent().list()
 ```
 
 
 ### Trademark
 
-Create an instance: `const trademark = client.trademark`
+Create an instance: `const trademark = client.Trademark()`
 
 #### Operations
 
@@ -368,13 +375,13 @@ Create an instance: `const trademark = client.trademark`
 #### Example: Load
 
 ```ts
-const trademark = await client.trademark.load({ id: 'trademark_id' })
+const trademark = await client.Trademark().load({ id: 'trademark_id' })
 ```
 
 #### Example: List
 
 ```ts
-const trademarks = await client.trademark.list()
+const trademarks = await client.Trademark().list()
 ```
 
 
@@ -445,7 +452,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const patent = client.patent
+const patent = client.Patent()
 await patent.load({ id: "example_id" })
 
 // patent.data() now returns the loaded patent data

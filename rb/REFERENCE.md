@@ -91,7 +91,7 @@ same parameters as `direct()`. Raises on error.
 ## PatentEntity
 
 ```ruby
-patent = client.patent
+patent = client.Patent
 ```
 
 ### Fields
@@ -120,7 +120,7 @@ patent = client.patent
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.patent.list(nil)
+results = client.Patent.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -128,7 +128,7 @@ results = client.patent.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.patent.load({ "id" => "patent_id" })
+result = client.Patent.load({ "id" => "patent_id" })
 ```
 
 ### Common Methods
@@ -164,7 +164,7 @@ Return the entity name.
 ## TrademarkEntity
 
 ```ruby
-trademark = client.trademark
+trademark = client.Trademark
 ```
 
 ### Fields
@@ -181,7 +181,7 @@ trademark = client.trademark
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.trademark.list(nil)
+results = client.Trademark.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -189,7 +189,7 @@ results = client.trademark.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.trademark.load({ "id" => "trademark_id" })
+result = client.Trademark.load({ "id" => "trademark_id" })
 ```
 
 ### Common Methods

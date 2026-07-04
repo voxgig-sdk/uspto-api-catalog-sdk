@@ -31,18 +31,16 @@ $client = new UsptoApiCatalogSDK([
 ]);
 ```
 
-### 2. List patents
+### 2. List patent records
 
 ```php
 try {
-    $result = $client->patent()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Patent records — iterate directly.
+    $patents = $client->Patent()->list();
+    foreach ($patents as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -51,9 +49,10 @@ try {
 
 ```php
 try {
-    $result = $client->patent()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Patent record (throws on error).
+    $patent = $client->Patent()->load(["id" => "example_id"]);
+    print_r($patent);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -99,13 +98,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = UsptoApiCatalogSDK::test();
+$client = UsptoApiCatalogSDK::test([
+    "entity" => ["patent" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->patent()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$patent = $client->Patent()->load(["id" => "test01"]);
+print_r($patent);
 ```
 
 ### Use a custom fetch function
@@ -268,7 +271,7 @@ API path: `/trademark-assignment/v1.4`
 
 ### Patent
 
-Create an instance: `const patent = client.patent`
+Create an instance: `$patent = $client->Patent();`
 
 #### Operations
 
@@ -298,20 +301,22 @@ Create an instance: `const patent = client.patent`
 
 #### Example: Load
 
-```ts
-const patent = await client.patent.load({ id: 'patent_id' })
+```php
+// load() returns the bare Patent record (throws on error).
+$patent = $client->Patent()->load(["id" => "patent_id"]);
 ```
 
 #### Example: List
 
-```ts
-const patents = await client.patent.list()
+```php
+// list() returns an array of Patent records (throws on error).
+$patents = $client->Patent()->list();
 ```
 
 
 ### Trademark
 
-Create an instance: `const trademark = client.trademark`
+Create an instance: `$trademark = $client->Trademark();`
 
 #### Operations
 
@@ -329,14 +334,16 @@ Create an instance: `const trademark = client.trademark`
 
 #### Example: Load
 
-```ts
-const trademark = await client.trademark.load({ id: 'trademark_id' })
+```php
+// load() returns the bare Trademark record (throws on error).
+$trademark = $client->Trademark()->load(["id" => "trademark_id"]);
 ```
 
 #### Example: List
 
-```ts
-const trademarks = await client.trademark.list()
+```php
+// list() returns an array of Trademark records (throws on error).
+$trademarks = $client->Trademark()->list();
 ```
 
 
@@ -411,7 +418,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$patent = $client->patent();
+$patent = $client->Patent();
 $patent->load(["id" => "example_id"]);
 
 // $patent->dataGet() now returns the loaded patent data

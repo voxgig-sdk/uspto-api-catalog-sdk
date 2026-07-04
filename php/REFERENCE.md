@@ -90,7 +90,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## PatentEntity
 
 ```php
-$patent = $client->patent();
+$patent = $client->Patent();
 ```
 
 ### Fields
@@ -119,7 +119,7 @@ $patent = $client->patent();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->patent()->list([]);
+$results = $client->Patent()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -127,7 +127,7 @@ $results = $client->patent()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->patent()->load(["id" => "patent_id"]);
+$result = $client->Patent()->load(["id" => "patent_id"]);
 ```
 
 ### Common Methods
@@ -163,7 +163,7 @@ Return the entity name.
 ## TrademarkEntity
 
 ```php
-$trademark = $client->trademark();
+$trademark = $client->Trademark();
 ```
 
 ### Fields
@@ -180,7 +180,7 @@ $trademark = $client->trademark();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->trademark()->list([]);
+$results = $client->Trademark()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -188,7 +188,7 @@ $results = $client->trademark()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->trademark()->load(["id" => "trademark_id"]);
+$result = $client->Trademark()->load(["id" => "trademark_id"]);
 ```
 
 ### Common Methods

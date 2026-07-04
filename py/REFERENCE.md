@@ -85,7 +85,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## PatentEntity
 
 ```python
-patent = client.patent
+patent = client.Patent()
 ```
 
 ### Fields
@@ -114,7 +114,9 @@ patent = client.patent
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.patent.list({})
+results = client.Patent().list({})
+for patent in results:
+    print(patent)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -122,7 +124,7 @@ results = client.patent.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.patent.load({"id": "patent_id"})
+result = client.Patent().load({"id": "patent_id"})
 ```
 
 ### Common Methods
@@ -157,7 +159,7 @@ Return the entity name.
 ## TrademarkEntity
 
 ```python
-trademark = client.trademark
+trademark = client.Trademark()
 ```
 
 ### Fields
@@ -174,7 +176,9 @@ trademark = client.trademark
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.trademark.list({})
+results = client.Trademark().list({})
+for trademark in results:
+    print(trademark)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -182,7 +186,7 @@ results = client.trademark.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.trademark.load({"id": "trademark_id"})
+result = client.Trademark().load({"id": "trademark_id"})
 ```
 
 ### Common Methods

@@ -28,9 +28,11 @@ const client = new UsptoApiCatalogSDK({
   apikey: process.env.USPTO_API_CATALOG_APIKEY,
 })
 
-// List all patents
-const patents = await client.patent.list()
-console.log(patents.data)
+// List all patents (returns Patent[])
+const patents = await client.Patent().list()
+for (const patent of patents) {
+  console.log(patent)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -89,12 +91,13 @@ client = UsptoApiCatalogSDK({
     "apikey": os.environ.get("USPTO_API_CATALOG_APIKEY"),
 })
 
-# List all patents
-patents = client.patent.list()
-print(patents)
+# List all patents (returns a list, raises on error)
+patents = client.Patent().list({})
+for patent in patents:
+    print(patent)
 
-# Load a specific patent
-patent = client.patent.load({"id": "example_id"})
+# Load a specific patent (returns the record, raises on error)
+patent = client.Patent().load({"id": "example_id"})
 print(patent)
 ```
 
@@ -108,12 +111,12 @@ $client = new UsptoApiCatalogSDK([
     "apikey" => getenv("USPTO_API_CATALOG_APIKEY"),
 ]);
 
-// List all patents (throws on error)
-$patents = $client->patent()->list();
+// List all patents (returns an array; throws on error)
+$patents = $client->Patent()->list();
 print_r($patents);
 
-// Load a specific patent
-$patent = $client->patent()->load(["id" => "example_id"]);
+// Load a specific patent (returns the bare record; throws on error)
+$patent = $client->Patent()->load(["id" => "example_id"]);
 print_r($patent);
 ```
 
@@ -140,12 +143,12 @@ client = UsptoApiCatalogSDK.new({
   "apikey" => ENV["USPTO_API_CATALOG_APIKEY"],
 })
 
-# List all patents
-patents = client.patent.list
+# List all patents (returns an Array; raises on error)
+patents = client.Patent.list
 puts patents
 
-# Load a specific patent
-patent = client.patent.load({ "id" => "example_id" })
+# Load a specific patent (returns the bare record; raises on error)
+patent = client.Patent.load({ "id" => "example_id" })
 puts patent
 ```
 
@@ -159,11 +162,11 @@ local client = sdk.new({
 })
 
 -- List all patents
-local patents, err = client:patent():list()
+local patents, err = client:Patent():list()
 print(patents)
 
 -- Load a specific patent
-local patent, err = client:patent():load({ id = "example_id" })
+local patent, err = client:Patent():load({ id = "example_id" })
 print(patent)
 ```
 
@@ -176,22 +179,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = UsptoApiCatalogSDK.test()
-const result = await client.patent.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const patent = await client.Patent().load({ id: 'test01' })
+// patent is a bare Patent populated with mock data
+console.log(patent)
 ```
 
 ### Python
 
 ```python
 client = UsptoApiCatalogSDK.test()
-result = client.patent.load({"id": "test01"})
+patent = client.Patent().load({"id": "test01"})
+print(patent)
 ```
 
 ### PHP
 
 ```php
-$client = UsptoApiCatalogSDK::test();
-$result = $client->patent()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = UsptoApiCatalogSDK::test([
+    "entity" => ["patent" => ["test01" => ["id" => "test01"]]],
+]);
+$patent = $client->Patent()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -206,15 +214,18 @@ result, err := client.Patent(nil).Load(
 ### Ruby
 
 ```ruby
-client = UsptoApiCatalogSDK.test
-result = client.patent.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = UsptoApiCatalogSDK.test({
+  "entity" => { "patent" => { "test01" => { "id" => "test01" } } },
+})
+patent = client.Patent.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:patent():load({ id = "test01" })
+local result, err = client:Patent():load({ id = "test01" })
 ```
 
 ## How it works
@@ -262,6 +273,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

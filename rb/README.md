@@ -30,16 +30,14 @@ client = UsptoApiCatalogSDK.new({
 })
 ```
 
-### 2. List patents
+### 2. List patent records
 
 ```ruby
 begin
-  result = client.patent.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Patent records — iterate directly.
+  patents = client.Patent.list
+  patents.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -50,8 +48,9 @@ end
 
 ```ruby
 begin
-  result = client.patent.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Patent record (raises on error).
+  patent = client.Patent.load({ "id" => "example_id" })
+  puts patent
 rescue => err
   warn "load failed: #{err}"
 end
@@ -98,13 +97,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = UsptoApiCatalogSDK.test
+client = UsptoApiCatalogSDK.test({
+  "entity" => { "patent" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.patent.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+patent = client.Patent.load({ "id" => "test01" })
+puts patent
 ```
 
 ### Use a custom fetch function
@@ -263,7 +266,7 @@ API path: `/trademark-assignment/v1.4`
 
 ### Patent
 
-Create an instance: `const patent = client.patent`
+Create an instance: `patent = client.Patent`
 
 #### Operations
 
@@ -293,20 +296,22 @@ Create an instance: `const patent = client.patent`
 
 #### Example: Load
 
-```ts
-const patent = await client.patent.load({ id: 'patent_id' })
+```ruby
+# load returns the bare Patent record (raises on error).
+patent = client.Patent.load({ "id" => "patent_id" })
 ```
 
 #### Example: List
 
-```ts
-const patents = await client.patent.list()
+```ruby
+# list returns an Array of Patent records (raises on error).
+patents = client.Patent.list
 ```
 
 
 ### Trademark
 
-Create an instance: `const trademark = client.trademark`
+Create an instance: `trademark = client.Trademark`
 
 #### Operations
 
@@ -324,14 +329,16 @@ Create an instance: `const trademark = client.trademark`
 
 #### Example: Load
 
-```ts
-const trademark = await client.trademark.load({ id: 'trademark_id' })
+```ruby
+# load returns the bare Trademark record (raises on error).
+trademark = client.Trademark.load({ "id" => "trademark_id" })
 ```
 
 #### Example: List
 
-```ts
-const trademarks = await client.trademark.list()
+```ruby
+# list returns an Array of Trademark records (raises on error).
+trademarks = client.Trademark.list
 ```
 
 
@@ -406,7 +413,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-patent = client.patent
+patent = client.Patent
 patent.load({ "id" => "example_id" })
 
 # patent.data_get now returns the loaded patent data

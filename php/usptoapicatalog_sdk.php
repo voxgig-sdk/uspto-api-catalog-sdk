@@ -233,10 +233,10 @@ class UsptoApiCatalogSDK
 
     private $_patent = null;
 
-    // Idiomatic facade: $client->patent()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Patent() (PHP method
-    // names are case-insensitive).
-    public function patent($data = null)
+    // Canonical facade: $client->Patent()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->patent()
+    // resolves here too.
+    public function Patent($data = null)
     {
         require_once __DIR__ . '/entity/patent_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class UsptoApiCatalogSDK
 
     private $_trademark = null;
 
-    // Idiomatic facade: $client->trademark()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Trademark() (PHP method
-    // names are case-insensitive).
-    public function trademark($data = null)
+    // Canonical facade: $client->Trademark()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->trademark()
+    // resolves here too.
+    public function Trademark($data = null)
     {
         require_once __DIR__ . '/entity/trademark_entity.php';
         if ($data === null) {

@@ -205,28 +205,14 @@ class UsptoApiCatalogSDK {
 
 
 
-  _patent?: PatentEntity
-
-  // Idiomatic facade: `client.patent.list()` / `client.patent.load({ id })`.
-  get patent(): PatentEntity {
-    return (this._patent ??= new PatentEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.patent` instead. */
+  // Entity access: `client.Patent().list()` / `client.Patent().load({ id })`.
   Patent(data?: any) {
     const self = this
     return new PatentEntity(self,data)
   }
 
 
-  _trademark?: TrademarkEntity
-
-  // Idiomatic facade: `client.trademark.list()` / `client.trademark.load({ id })`.
-  get trademark(): TrademarkEntity {
-    return (this._trademark ??= new TrademarkEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.trademark` instead. */
+  // Entity access: `client.Trademark().list()` / `client.Trademark().load({ id })`.
   Trademark(data?: any) {
     const self = this
     return new TrademarkEntity(self,data)

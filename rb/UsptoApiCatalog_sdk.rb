@@ -208,26 +208,14 @@ class UsptoApiCatalogSDK
   end
 
 
-  # Idiomatic facade: client.patent.list / client.patent.load({ "id" => ... })
-  def patent
-    require_relative 'entity/patent_entity'
-    @patent ||= PatentEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.patent instead.
+  # Canonical facade: client.Patent.list / client.Patent.load({ "id" => ... })
   def Patent(data = nil)
     require_relative 'entity/patent_entity'
     PatentEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.trademark.list / client.trademark.load({ "id" => ... })
-  def trademark
-    require_relative 'entity/trademark_entity'
-    @trademark ||= TrademarkEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.trademark instead.
+  # Canonical facade: client.Trademark.list / client.Trademark.load({ "id" => ... })
   def Trademark(data = nil)
     require_relative 'entity/trademark_entity'
     TrademarkEntity.new(self, data)

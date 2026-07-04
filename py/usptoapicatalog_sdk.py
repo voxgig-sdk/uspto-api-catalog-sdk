@@ -220,41 +220,21 @@ class UsptoApiCatalogSDK:
         }
 
 
-    @property
-    def patent(self):
-        """Idiomatic facade: client.patent.list() / client.patent.load({"id": ...})."""
-        from entity.patent_entity import PatentEntity
-        cached = getattr(self, "_patent", None)
-        if cached is None:
-            cached = PatentEntity(self, None)
-            self._patent = cached
-        return cached
-
-    def Patent(self, data=None):
-        # Deprecated: use client.patent instead.
+    def Patent(self, data=None) -> "PatentEntity":
+        """Entity factory: client.Patent().list({}) / client.Patent().load({"id": ...})."""
         from entity.patent_entity import PatentEntity
         return PatentEntity(self, data)
 
 
-    @property
-    def trademark(self):
-        """Idiomatic facade: client.trademark.list() / client.trademark.load({"id": ...})."""
-        from entity.trademark_entity import TrademarkEntity
-        cached = getattr(self, "_trademark", None)
-        if cached is None:
-            cached = TrademarkEntity(self, None)
-            self._trademark = cached
-        return cached
-
-    def Trademark(self, data=None):
-        # Deprecated: use client.trademark instead.
+    def Trademark(self, data=None) -> "TrademarkEntity":
+        """Entity factory: client.Trademark().list({}) / client.Trademark().load({"id": ...})."""
         from entity.trademark_entity import TrademarkEntity
         return TrademarkEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "UsptoApiCatalogSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class UsptoApiCatalogSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.patent_entity import PatentEntity
+    from entity.trademark_entity import TrademarkEntity
