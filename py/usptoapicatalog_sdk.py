@@ -221,13 +221,13 @@ class UsptoApiCatalogSDK:
 
 
     def Patent(self, data=None) -> "PatentEntity":
-        """Entity factory: client.Patent().list({}) / client.Patent().load({"id": ...})."""
+        """Entity factory: client.Patent().list() / client.Patent().load({"id": ...})."""
         from entity.patent_entity import PatentEntity
         return PatentEntity(self, data)
 
 
     def Trademark(self, data=None) -> "TrademarkEntity":
-        """Entity factory: client.Trademark().list({}) / client.Trademark().load({"id": ...})."""
+        """Entity factory: client.Trademark().list() / client.Trademark().load({"id": ...})."""
         from entity.trademark_entity import TrademarkEntity
         return TrademarkEntity(self, data)
 

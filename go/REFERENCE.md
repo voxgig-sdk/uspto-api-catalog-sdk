@@ -102,20 +102,20 @@ patent := client.Patent(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignee` | ``$STRING`` | No |  |
-| `assignment_date` | ``$STRING`` | No |  |
-| `assignment_id` | ``$STRING`` | No |  |
-| `assignor` | ``$STRING`` | No |  |
-| `citation` | ``$ARRAY`` | No |  |
-| `citation_number` | ``$STRING`` | No |  |
-| `citation_type` | ``$STRING`` | No |  |
-| `data` | ``$ARRAY`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `office_action` | ``$OBJECT`` | No |  |
-| `patent_number` | ``$STRING`` | No |  |
-| `rejection_text` | ``$STRING`` | No |  |
-| `rejection_type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `assignee` | `string` | No |  |
+| `assignment_date` | `string` | No |  |
+| `assignment_id` | `string` | No |  |
+| `assignor` | `string` | No |  |
+| `citation` | `[]any` | No |  |
+| `citation_number` | `string` | No |  |
+| `citation_type` | `string` | No |  |
+| `data` | `[]any` | No |  |
+| `date` | `string` | No |  |
+| `office_action` | `map[string]any` | No |  |
+| `patent_number` | `string` | No |  |
+| `rejection_text` | `string` | No |  |
+| `rejection_type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -132,7 +132,7 @@ results, err := client.Patent(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Patent(nil).Load(map[string]any{"id": "patent_id"}, nil)
+result, err := client.Patent(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -169,8 +169,8 @@ trademark := client.Trademark(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignment` | ``$ARRAY`` | No |  |
-| `trademark_status` | ``$OBJECT`` | No |  |
+| `assignment` | `[]any` | No |  |
+| `trademark_status` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -187,7 +187,7 @@ results, err := client.Trademark(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Trademark(nil).Load(map[string]any{"id": "trademark_id"}, nil)
+result, err := client.Trademark(nil).Load(nil, nil)
 ```
 
 ### Common Methods

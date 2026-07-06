@@ -31,7 +31,7 @@ class Patent
     public ?string $url = null;
 }
 
-/** Match filter for Patent#load (any subset of Patent fields). */
+/** Request payload for Patent#load. */
 class PatentLoadMatch
 {
     public ?string $assignee = null;
@@ -50,7 +50,7 @@ class PatentLoadMatch
     public ?string $url = null;
 }
 
-/** Match filter for Patent#list (any subset of Patent fields). */
+/** Request payload for Patent#list. */
 class PatentListMatch
 {
     public ?string $assignee = null;
@@ -76,14 +76,14 @@ class Trademark
     public ?array $trademark_status = null;
 }
 
-/** Match filter for Trademark#load (any subset of Trademark fields). */
+/** Request payload for Trademark#load. */
 class TrademarkLoadMatch
 {
     public ?array $assignment = null;
     public ?array $trademark_status = null;
 }
 
-/** Match filter for Trademark#list (any subset of Trademark fields). */
+/** Request payload for Trademark#list. */
 class TrademarkListMatch
 {
     public ?array $assignment = null;

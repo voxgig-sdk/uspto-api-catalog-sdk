@@ -95,20 +95,20 @@ local patent = client:Patent(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignee` | ``$STRING`` | No |  |
-| `assignment_date` | ``$STRING`` | No |  |
-| `assignment_id` | ``$STRING`` | No |  |
-| `assignor` | ``$STRING`` | No |  |
-| `citation` | ``$ARRAY`` | No |  |
-| `citation_number` | ``$STRING`` | No |  |
-| `citation_type` | ``$STRING`` | No |  |
-| `data` | ``$ARRAY`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `office_action` | ``$OBJECT`` | No |  |
-| `patent_number` | ``$STRING`` | No |  |
-| `rejection_text` | ``$STRING`` | No |  |
-| `rejection_type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `assignee` | `string` | No |  |
+| `assignment_date` | `string` | No |  |
+| `assignment_id` | `string` | No |  |
+| `assignor` | `string` | No |  |
+| `citation` | `table` | No |  |
+| `citation_number` | `string` | No |  |
+| `citation_type` | `string` | No |  |
+| `data` | `table` | No |  |
+| `date` | `string` | No |  |
+| `office_action` | `table` | No |  |
+| `patent_number` | `string` | No |  |
+| `rejection_text` | `string` | No |  |
+| `rejection_type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -125,7 +125,7 @@ local results, err = client:Patent():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Patent():load({ id = "patent_id" })
+local result, err = client:Patent():load()
 ```
 
 ### Common Methods
@@ -168,8 +168,8 @@ local trademark = client:Trademark(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignment` | ``$ARRAY`` | No |  |
-| `trademark_status` | ``$OBJECT`` | No |  |
+| `assignment` | `table` | No |  |
+| `trademark_status` | `table` | No |  |
 
 ### Operations
 
@@ -186,7 +186,7 @@ local results, err = client:Trademark():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Trademark():load({ id = "trademark_id" })
+local result, err = client:Trademark():load()
 ```
 
 ### Common Methods

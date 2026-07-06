@@ -26,8 +26,7 @@ type Patent struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// PatentLoadMatch mirrors the patent fields as an all-optional match
-// filter (Go analog of Partial<Patent>).
+// PatentLoadMatch is the typed request payload for Patent.LoadTyped.
 type PatentLoadMatch struct {
 	Assignee *string `json:"assignee,omitempty"`
 	AssignmentDate *string `json:"assignment_date,omitempty"`
@@ -45,8 +44,7 @@ type PatentLoadMatch struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// PatentListMatch mirrors the patent fields as an all-optional match
-// filter (Go analog of Partial<Patent>).
+// PatentListMatch is the typed request payload for Patent.ListTyped.
 type PatentListMatch struct {
 	Assignee *string `json:"assignee,omitempty"`
 	AssignmentDate *string `json:"assignment_date,omitempty"`
@@ -70,15 +68,13 @@ type Trademark struct {
 	TrademarkStatus *map[string]any `json:"trademark_status,omitempty"`
 }
 
-// TrademarkLoadMatch mirrors the trademark fields as an all-optional match
-// filter (Go analog of Partial<Trademark>).
+// TrademarkLoadMatch is the typed request payload for Trademark.LoadTyped.
 type TrademarkLoadMatch struct {
 	Assignment *[]any `json:"assignment,omitempty"`
 	TrademarkStatus *map[string]any `json:"trademark_status,omitempty"`
 }
 
-// TrademarkListMatch mirrors the trademark fields as an all-optional match
-// filter (Go analog of Partial<Trademark>).
+// TrademarkListMatch is the typed request payload for Trademark.ListTyped.
 type TrademarkListMatch struct {
 	Assignment *[]any `json:"assignment,omitempty"`
 	TrademarkStatus *map[string]any `json:"trademark_status,omitempty"`

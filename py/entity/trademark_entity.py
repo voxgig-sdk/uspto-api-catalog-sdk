@@ -65,8 +65,13 @@ class TrademarkEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: TrademarkLoadMatch, ctrl=None) -> Trademark:
+    def load(self, reqmatch=None, ctrl=None) -> Trademark:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Trademark().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class TrademarkEntity:
 
 
     
-    def list(self, reqmatch: TrademarkListMatch, ctrl=None) -> list[Trademark]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Trademark]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Trademark().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

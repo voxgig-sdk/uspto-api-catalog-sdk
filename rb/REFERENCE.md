@@ -8,7 +8,7 @@ Complete API reference for the UsptoApiCatalog Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'uspto-api-catalog_sdk'
+require_relative 'UsptoApiCatalog_sdk'
 
 client = UsptoApiCatalogSDK.new(options)
 ```
@@ -98,29 +98,29 @@ patent = client.Patent
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignee` | ``$STRING`` | No |  |
-| `assignment_date` | ``$STRING`` | No |  |
-| `assignment_id` | ``$STRING`` | No |  |
-| `assignor` | ``$STRING`` | No |  |
-| `citation` | ``$ARRAY`` | No |  |
-| `citation_number` | ``$STRING`` | No |  |
-| `citation_type` | ``$STRING`` | No |  |
-| `data` | ``$ARRAY`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `office_action` | ``$OBJECT`` | No |  |
-| `patent_number` | ``$STRING`` | No |  |
-| `rejection_text` | ``$STRING`` | No |  |
-| `rejection_type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `assignee` | `String` | No |  |
+| `assignment_date` | `String` | No |  |
+| `assignment_id` | `String` | No |  |
+| `assignor` | `String` | No |  |
+| `citation` | `Array` | No |  |
+| `citation_number` | `String` | No |  |
+| `citation_type` | `String` | No |  |
+| `data` | `Array` | No |  |
+| `date` | `String` | No |  |
+| `office_action` | `Hash` | No |  |
+| `patent_number` | `String` | No |  |
+| `rejection_text` | `String` | No |  |
+| `rejection_type` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Patent.list(nil)
+results = client.Patent.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -128,7 +128,7 @@ results = client.Patent.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Patent.load({ "id" => "patent_id" })
+result = client.Patent.load()
 ```
 
 ### Common Methods
@@ -171,17 +171,17 @@ trademark = client.Trademark
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignment` | ``$ARRAY`` | No |  |
-| `trademark_status` | ``$OBJECT`` | No |  |
+| `assignment` | `Array` | No |  |
+| `trademark_status` | `Hash` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Trademark.list(nil)
+results = client.Trademark.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -189,7 +189,7 @@ results = client.Trademark.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Trademark.load({ "id" => "trademark_id" })
+result = client.Trademark.load()
 ```
 
 ### Common Methods

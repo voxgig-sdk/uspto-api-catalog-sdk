@@ -8,7 +8,7 @@ Complete API reference for the UsptoApiCatalog Python SDK.
 ### Constructor
 
 ```python
-from uspto-api-catalog_sdk import UsptoApiCatalogSDK
+from usptoapicatalog_sdk import UsptoApiCatalogSDK
 
 client = UsptoApiCatalogSDK(options)
 ```
@@ -92,29 +92,29 @@ patent = client.Patent()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignee` | ``$STRING`` | No |  |
-| `assignment_date` | ``$STRING`` | No |  |
-| `assignment_id` | ``$STRING`` | No |  |
-| `assignor` | ``$STRING`` | No |  |
-| `citation` | ``$ARRAY`` | No |  |
-| `citation_number` | ``$STRING`` | No |  |
-| `citation_type` | ``$STRING`` | No |  |
-| `data` | ``$ARRAY`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `office_action` | ``$OBJECT`` | No |  |
-| `patent_number` | ``$STRING`` | No |  |
-| `rejection_text` | ``$STRING`` | No |  |
-| `rejection_type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `assignee` | `str` | No |  |
+| `assignment_date` | `str` | No |  |
+| `assignment_id` | `str` | No |  |
+| `assignor` | `str` | No |  |
+| `citation` | `list` | No |  |
+| `citation_number` | `str` | No |  |
+| `citation_type` | `str` | No |  |
+| `data` | `list` | No |  |
+| `date` | `str` | No |  |
+| `office_action` | `dict` | No |  |
+| `patent_number` | `str` | No |  |
+| `rejection_text` | `str` | No |  |
+| `rejection_type` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Patent().list({})
+results = client.Patent().list()
 for patent in results:
     print(patent)
 ```
@@ -124,7 +124,7 @@ for patent in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Patent().load({"id": "patent_id"})
+result = client.Patent().load()
 ```
 
 ### Common Methods
@@ -166,17 +166,17 @@ trademark = client.Trademark()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignment` | ``$ARRAY`` | No |  |
-| `trademark_status` | ``$OBJECT`` | No |  |
+| `assignment` | `list` | No |  |
+| `trademark_status` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Trademark().list({})
+results = client.Trademark().list()
 for trademark in results:
     print(trademark)
 ```
@@ -186,7 +186,7 @@ for trademark in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Trademark().load({"id": "trademark_id"})
+result = client.Trademark().load()
 ```
 
 ### Common Methods

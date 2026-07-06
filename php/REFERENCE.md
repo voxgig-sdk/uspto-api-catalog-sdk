@@ -8,7 +8,7 @@ Complete API reference for the UsptoApiCatalog PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/uspto-api-catalog_sdk.php';
+require_once __DIR__ . '/usptoapicatalog_sdk.php';
 
 $client = new UsptoApiCatalogSDK($options);
 ```
@@ -50,11 +50,11 @@ Create a new `PatentEntity` instance. Pass `null` for no initial data.
 
 Create a new `TrademarkEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): UsptoApiCatalogUtility`
 
 Return a copy of the SDK utility object.
 
@@ -97,29 +97,29 @@ $patent = $client->Patent();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignee` | ``$STRING`` | No |  |
-| `assignment_date` | ``$STRING`` | No |  |
-| `assignment_id` | ``$STRING`` | No |  |
-| `assignor` | ``$STRING`` | No |  |
-| `citation` | ``$ARRAY`` | No |  |
-| `citation_number` | ``$STRING`` | No |  |
-| `citation_type` | ``$STRING`` | No |  |
-| `data` | ``$ARRAY`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `office_action` | ``$OBJECT`` | No |  |
-| `patent_number` | ``$STRING`` | No |  |
-| `rejection_text` | ``$STRING`` | No |  |
-| `rejection_type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `assignee` | `string` | No |  |
+| `assignment_date` | `string` | No |  |
+| `assignment_id` | `string` | No |  |
+| `assignor` | `string` | No |  |
+| `citation` | `array` | No |  |
+| `citation_number` | `string` | No |  |
+| `citation_type` | `string` | No |  |
+| `data` | `array` | No |  |
+| `date` | `string` | No |  |
+| `office_action` | `array` | No |  |
+| `patent_number` | `string` | No |  |
+| `rejection_text` | `string` | No |  |
+| `rejection_type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Patent()->list([]);
+$results = $client->Patent()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -127,24 +127,24 @@ $results = $client->Patent()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Patent()->load(["id" => "patent_id"]);
+$result = $client->Patent()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -153,7 +153,7 @@ Set the entity match criteria.
 Create a new `PatentEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -170,17 +170,17 @@ $trademark = $client->Trademark();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignment` | ``$ARRAY`` | No |  |
-| `trademark_status` | ``$OBJECT`` | No |  |
+| `assignment` | `array` | No |  |
+| `trademark_status` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Trademark()->list([]);
+$results = $client->Trademark()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -188,24 +188,24 @@ $results = $client->Trademark()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Trademark()->load(["id" => "trademark_id"]);
+$result = $client->Trademark()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -214,7 +214,7 @@ Set the entity match criteria.
 Create a new `TrademarkEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

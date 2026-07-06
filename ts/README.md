@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the UsptoApiCatalog API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.Patent()` — each with a small set of operations (`list`, `load`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -48,10 +53,39 @@ for (const patent of patents) {
 
 ```ts
 try {
-  const patent = await client.Patent().load({ id: 'example_id' })
+  const patent = await client.Patent().load()
   console.log(patent)
 } catch (err) {
   console.error('load failed:', err)
+}
+```
+
+
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const patents = await client.Patent().list()
+  console.log(patents)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
 }
 ```
 
@@ -100,7 +134,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = UsptoApiCatalogSDK.test()
 
-const patent = await client.Patent().load({ id: 'test01' })
+const patent = await client.Patent().list()
 // patent is a bare entity populated with mock response data
 console.log(patent)
 ```
@@ -119,12 +153,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.Patent()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -219,11 +253,8 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): UsptoApiCatalogSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -233,10 +264,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` resolves to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -326,25 +356,25 @@ Create an instance: `const patent = client.Patent()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assignee` | ``$STRING`` |  |
-| `assignment_date` | ``$STRING`` |  |
-| `assignment_id` | ``$STRING`` |  |
-| `assignor` | ``$STRING`` |  |
-| `citation` | ``$ARRAY`` |  |
-| `citation_number` | ``$STRING`` |  |
-| `citation_type` | ``$STRING`` |  |
-| `data` | ``$ARRAY`` |  |
-| `date` | ``$STRING`` |  |
-| `office_action` | ``$OBJECT`` |  |
-| `patent_number` | ``$STRING`` |  |
-| `rejection_text` | ``$STRING`` |  |
-| `rejection_type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `assignee` | `string` |  |
+| `assignment_date` | `string` |  |
+| `assignment_id` | `string` |  |
+| `assignor` | `string` |  |
+| `citation` | `any[]` |  |
+| `citation_number` | `string` |  |
+| `citation_type` | `string` |  |
+| `data` | `any[]` |  |
+| `date` | `string` |  |
+| `office_action` | `Record<string, any>` |  |
+| `patent_number` | `string` |  |
+| `rejection_text` | `string` |  |
+| `rejection_type` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const patent = await client.Patent().load({ id: 'patent_id' })
+const patent = await client.Patent().load()
 ```
 
 #### Example: List
@@ -369,13 +399,13 @@ Create an instance: `const trademark = client.Trademark()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assignment` | ``$ARRAY`` |  |
-| `trademark_status` | ``$OBJECT`` |  |
+| `assignment` | `any[]` |  |
+| `trademark_status` | `Record<string, any>` |  |
 
 #### Example: Load
 
 ```ts
-const trademark = await client.Trademark().load({ id: 'trademark_id' })
+const trademark = await client.Trademark().load()
 ```
 
 #### Example: List
@@ -385,12 +415,16 @@ const trademarks = await client.Trademark().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -407,11 +441,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -447,16 +479,16 @@ import { UsptoApiCatalogSDK } from '@voxgig-sdk/uspto-api-catalog'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const patent = client.Patent()
-await patent.load({ id: "example_id" })
+await patent.list()
 
-// patent.data() now returns the loaded patent data
-// patent.match() returns { id: "example_id" }
+// patent.data() now returns the patent data from the last `list`
+// patent.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

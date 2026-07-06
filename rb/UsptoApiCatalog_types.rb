@@ -69,7 +69,7 @@ Patent = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Patent#load (any subset of Patent fields).
+# Request payload for Patent#load.
 #
 # @!attribute [rw] assignee
 #   @return [String, nil]
@@ -130,7 +130,7 @@ PatentLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Patent#list (any subset of Patent fields).
+# Request payload for Patent#list.
 #
 # @!attribute [rw] assignee
 #   @return [String, nil]
@@ -204,7 +204,7 @@ Trademark = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Trademark#load (any subset of Trademark fields).
+# Request payload for Trademark#load.
 #
 # @!attribute [rw] assignment
 #   @return [Array, nil]
@@ -217,7 +217,7 @@ TrademarkLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Trademark#list (any subset of Trademark fields).
+# Request payload for Trademark#list.
 #
 # @!attribute [rw] assignment
 #   @return [Array, nil]

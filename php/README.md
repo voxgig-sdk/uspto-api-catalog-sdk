@@ -4,6 +4,8 @@
 
 The PHP SDK for the UsptoApiCatalog API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Patent()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,7 +40,7 @@ try {
     // list() returns an array of Patent records — iterate directly.
     $patents = $client->Patent()->list();
     foreach ($patents as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["assignee"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -50,10 +52,41 @@ try {
 ```php
 try {
     // load() returns the bare Patent record (throws on error).
-    $patent = $client->Patent()->load(["id" => "example_id"]);
+    $patent = $client->Patent()->load();
     print_r($patent);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $patents = $client->Patent()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -77,7 +110,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -98,16 +134,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = UsptoApiCatalogSDK::test([
-    "entity" => ["patent" => ["test01" => ["id" => "test01"]]],
-]);
+$client = UsptoApiCatalogSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$patent = $client->Patent()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$patent = $client->Patent()->list();
 print_r($patent);
 ```
 
@@ -199,10 +232,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -284,26 +314,26 @@ Create an instance: `$patent = $client->Patent();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assignee` | ``$STRING`` |  |
-| `assignment_date` | ``$STRING`` |  |
-| `assignment_id` | ``$STRING`` |  |
-| `assignor` | ``$STRING`` |  |
-| `citation` | ``$ARRAY`` |  |
-| `citation_number` | ``$STRING`` |  |
-| `citation_type` | ``$STRING`` |  |
-| `data` | ``$ARRAY`` |  |
-| `date` | ``$STRING`` |  |
-| `office_action` | ``$OBJECT`` |  |
-| `patent_number` | ``$STRING`` |  |
-| `rejection_text` | ``$STRING`` |  |
-| `rejection_type` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `assignee` | `string` |  |
+| `assignment_date` | `string` |  |
+| `assignment_id` | `string` |  |
+| `assignor` | `string` |  |
+| `citation` | `array` |  |
+| `citation_number` | `string` |  |
+| `citation_type` | `string` |  |
+| `data` | `array` |  |
+| `date` | `string` |  |
+| `office_action` | `array` |  |
+| `patent_number` | `string` |  |
+| `rejection_text` | `string` |  |
+| `rejection_type` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Patent record (throws on error).
-$patent = $client->Patent()->load(["id" => "patent_id"]);
+$patent = $client->Patent()->load();
 ```
 
 #### Example: List
@@ -329,14 +359,14 @@ Create an instance: `$trademark = $client->Trademark();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assignment` | ``$ARRAY`` |  |
-| `trademark_status` | ``$OBJECT`` |  |
+| `assignment` | `array` |  |
+| `trademark_status` | `array` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Trademark record (throws on error).
-$trademark = $client->Trademark()->load(["id" => "trademark_id"]);
+$trademark = $client->Trademark()->load();
 ```
 
 #### Example: List
@@ -347,12 +377,16 @@ $trademarks = $client->Trademark()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -369,8 +403,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -414,15 +449,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $patent = $client->Patent();
-$patent->load(["id" => "example_id"]);
+$patent->list();
 
-// $patent->dataGet() now returns the loaded patent data
-// $patent->matchGet() returns the last match criteria
+// $patent->data_get() now returns the patent data from the last list
+// $patent->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
