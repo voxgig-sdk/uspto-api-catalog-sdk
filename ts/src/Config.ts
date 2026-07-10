@@ -39,7 +39,7 @@ class Config {
     base: 'https://developer.uspto.gov',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

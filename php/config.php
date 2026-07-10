@@ -21,7 +21,7 @@ class UsptoApiCatalogConfig
             "options" => [
                 "base" => "https://developer.uspto.gov",
                 "auth" => [
-                    "prefix" => "Bearer",
+                    "prefix" => "",
                 ],
                 "headers" => [
           'content-type' => 'application/json',

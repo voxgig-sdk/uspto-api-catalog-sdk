@@ -96,6 +96,7 @@ same parameters as `Direct()`.
 
 ```go
 patent := client.Patent(nil)
+fmt.Println(patent.GetName()) // "patent"
 ```
 
 ### Fields
@@ -125,6 +126,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Patent(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -133,6 +138,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Patent(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -163,6 +172,7 @@ Return the entity name.
 
 ```go
 trademark := client.Trademark(nil)
+fmt.Println(trademark.GetName()) // "trademark"
 ```
 
 ### Fields
@@ -180,6 +190,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Trademark(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -188,6 +202,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Trademark(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

@@ -9,16 +9,23 @@ main: {
         url: "https://developer.uspto.gov/api-catalog"
       }
       description: "The USPTO API Catalog provides developers with access to various APIs related to intellectual property. It includes information about registering, searching, and managing patents and trademarks, allowing for easy integration of government data into applications."
+      security: {
+        in: "header"
+        name: "X-API-KEY"
+        prefix: ""
+        scheme: "apiKeyAuth"
+        type: "apiKey"
+      }
       servers: [
         {
           description: "USPTO Production Server"
           url: "https://developer.uspto.gov"
         }
       ]
+      summary: "The USPTO API Catalog provides developers with access to various APIs related to intellectual property."
       termsOfService: "https://www.uspto.gov/terms-use"
       title: "USPTO API Catalog"
       version: "1.0.0"
+      website: "https://developer.uspto.gov/api-catalog"
     }
   }
-}
-
