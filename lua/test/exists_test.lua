@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- UsptoApiCatalog SDK exists test
 
 local sdk = require("uspto-api-catalog_sdk")
 
