@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'UsptoApiCatalog',
   }
 
 
@@ -63,101 +63,108 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "assignee",
+          "name": "applicationNumber",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "assignment_date",
+          "name": "assignee",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "assignment_id",
+          "name": "assignmentDate",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "assignor",
+          "name": "assignmentId",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "citation",
+          "name": "assignor",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "citation_number",
+          "name": "citationNumber",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "citation_type",
+          "name": "citationType",
           "req": false,
           "type": "`$STRING`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "data",
+          "name": "citations",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "date",
+          "name": "data",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$ARRAY`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "office_action",
+          "name": "date",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 9
         },
         {
           "active": true,
-          "name": "patent_number",
+          "name": "patentNumber",
           "req": false,
           "type": "`$STRING`",
           "index$": 10
         },
         {
           "active": true,
-          "name": "rejection_text",
+          "name": "rejectionText",
           "req": false,
           "type": "`$STRING`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "rejection_type",
+          "name": "rejectionType",
           "req": false,
           "type": "`$STRING`",
           "index$": 12
         },
         {
           "active": true,
-          "name": "url",
+          "name": "text",
           "req": false,
           "type": "`$STRING`",
           "index$": 13
+        },
+        {
+          "active": true,
+          "name": "url",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 14
         }
       ],
       "name": "patent",
@@ -189,6 +196,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/patent-assignment/v1.4",
               "parts": [
@@ -203,7 +211,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.assignments`"
               },
               "index$": 0
             },
@@ -221,6 +229,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/office-action-citations/v2",
               "parts": [
@@ -234,7 +243,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.citations`"
               },
               "index$": 1
             },
@@ -252,6 +261,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/office-action-rejections/v2",
               "parts": [
@@ -265,7 +275,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.rejections`"
               },
               "index$": 2
             },
@@ -283,6 +293,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/office-action-weekly-zips/v1",
               "parts": [
@@ -296,7 +307,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.files`"
               },
               "index$": 3
             },
@@ -314,6 +325,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/enriched-citation/v3",
               "parts": [
@@ -327,7 +339,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.citations`"
               },
               "index$": 4
             },
@@ -345,6 +357,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/ptab/v3",
               "parts": [
@@ -358,7 +371,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 5
             }
@@ -383,6 +396,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/office-action-text/v1",
               "parts": [
@@ -396,7 +410,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.officeAction`"
               },
               "index$": 0
             }
@@ -412,17 +426,31 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "assignment",
+          "name": "assignments",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "trademark_status",
+          "name": "documents",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$ARRAY`",
           "index$": 1
+        },
+        {
+          "active": true,
+          "name": "serialNumber",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "status",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 3
         }
       ],
       "name": "trademark",
@@ -454,6 +482,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/trademark-assignment/v1.4",
               "parts": [
@@ -468,7 +497,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.assignments`"
               },
               "index$": 0
             }
@@ -501,6 +530,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/tsdr/v1.0",
               "parts": [
@@ -515,7 +545,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.trademarkStatus`"
               },
               "index$": 0
             }

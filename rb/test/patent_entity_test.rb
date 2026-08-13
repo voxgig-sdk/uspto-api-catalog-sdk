@@ -62,7 +62,7 @@ class PatentEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set USPTOAPICATALOG_TEST_PATENT_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set USPTO_API_CATALOG_TEST_PATENT_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -116,39 +116,39 @@ def patent_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["USPTOAPICATALOG_TEST_PATENT_ENTID"]
+  entid_env_raw = ENV["USPTO_API_CATALOG_TEST_PATENT_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "USPTOAPICATALOG_TEST_PATENT_ENTID" => idmap,
-    "USPTOAPICATALOG_TEST_LIVE" => "FALSE",
-    "USPTOAPICATALOG_TEST_EXPLAIN" => "FALSE",
-    "USPTOAPICATALOG_APIKEY" => "NONE",
+    "USPTO_API_CATALOG_TEST_PATENT_ENTID" => idmap,
+    "USPTO_API_CATALOG_TEST_LIVE" => "FALSE",
+    "USPTO_API_CATALOG_TEST_EXPLAIN" => "FALSE",
+    "USPTO_API_CATALOG_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["USPTOAPICATALOG_TEST_PATENT_ENTID"])
+    env["USPTO_API_CATALOG_TEST_PATENT_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["USPTOAPICATALOG_TEST_LIVE"] == "TRUE"
+  if env["USPTO_API_CATALOG_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["USPTOAPICATALOG_APIKEY"],
+        "apikey" => env["USPTO_API_CATALOG_APIKEY"],
       },
       extra || {},
     ])
     client = UsptoApiCatalogSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["USPTOAPICATALOG_TEST_LIVE"] == "TRUE"
+  live = env["USPTO_API_CATALOG_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["USPTOAPICATALOG_TEST_EXPLAIN"] == "TRUE",
+    explain: env["USPTO_API_CATALOG_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

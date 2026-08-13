@@ -43,8 +43,8 @@ class UsptoApiCatalogTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('USPTOAPICATALOG_TEST_LIVE');
-        $override = self::getenv('USPTOAPICATALOG_TEST_OVERRIDE');
+        $live = self::getenv('USPTO_API_CATALOG_TEST_LIVE');
+        $override = self::getenv('USPTO_API_CATALOG_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class UsptoApiCatalogTestRunner
             }
         }
 
-        $explain = self::getenv('USPTOAPICATALOG_TEST_EXPLAIN');
+        $explain = self::getenv('USPTO_API_CATALOG_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['USPTOAPICATALOG_TEST_EXPLAIN'] = $explain;
+            $m['USPTO_API_CATALOG_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

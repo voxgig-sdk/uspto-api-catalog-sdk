@@ -70,7 +70,7 @@ describe("TrademarkEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set USPTOAPICATALOG_TEST_TRADEMARK_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set USPTO_API_CATALOG_TEST_TRADEMARK_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -132,39 +132,39 @@ function trademark_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("USPTOAPICATALOG_TEST_TRADEMARK_ENTID")
+  local entid_env_raw = os.getenv("USPTO_API_CATALOG_TEST_TRADEMARK_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["USPTOAPICATALOG_TEST_TRADEMARK_ENTID"] = idmap,
-    ["USPTOAPICATALOG_TEST_LIVE"] = "FALSE",
-    ["USPTOAPICATALOG_TEST_EXPLAIN"] = "FALSE",
-    ["USPTOAPICATALOG_APIKEY"] = "NONE",
+    ["USPTO_API_CATALOG_TEST_TRADEMARK_ENTID"] = idmap,
+    ["USPTO_API_CATALOG_TEST_LIVE"] = "FALSE",
+    ["USPTO_API_CATALOG_TEST_EXPLAIN"] = "FALSE",
+    ["USPTO_API_CATALOG_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["USPTOAPICATALOG_TEST_TRADEMARK_ENTID"])
+    env["USPTO_API_CATALOG_TEST_TRADEMARK_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["USPTOAPICATALOG_TEST_LIVE"] == "TRUE" then
+  if env["USPTO_API_CATALOG_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["USPTOAPICATALOG_APIKEY"],
+        apikey = env["USPTO_API_CATALOG_APIKEY"],
       },
       extra or {},
     })
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["USPTOAPICATALOG_TEST_LIVE"] == "TRUE"
+  local live = env["USPTO_API_CATALOG_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["USPTOAPICATALOG_TEST_EXPLAIN"] == "TRUE",
+    explain = env["USPTO_API_CATALOG_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

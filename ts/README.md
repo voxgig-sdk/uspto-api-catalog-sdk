@@ -37,7 +37,9 @@ const client = new UsptoApiCatalogSDK({
 
 ### 2. List patent records
 
-`list()` resolves to an array of Patent objects — iterate it directly:
+`list()` resolves to an array of Patent ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const patents = await client.Patent().list()
@@ -135,7 +137,8 @@ Create a mock client for unit testing — no server required:
 const client = UsptoApiCatalogSDK.test()
 
 const patent = await client.Patent().list()
-// patent is a bare entity populated with mock response data
+// patent is the entity, populated with mock response data
+// — call patent.data() for the record itself
 console.log(patent)
 ```
 
@@ -306,19 +309,20 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
+| `applicationNumber` |  |
 | `assignee` |  |
-| `assignment_date` |  |
-| `assignment_id` |  |
+| `assignmentDate` |  |
+| `assignmentId` |  |
 | `assignor` |  |
-| `citation` |  |
-| `citation_number` |  |
-| `citation_type` |  |
+| `citationNumber` |  |
+| `citationType` |  |
+| `citations` |  |
 | `data` |  |
 | `date` |  |
-| `office_action` |  |
-| `patent_number` |  |
-| `rejection_text` |  |
-| `rejection_type` |  |
+| `patentNumber` |  |
+| `rejectionText` |  |
+| `rejectionType` |  |
+| `text` |  |
 | `url` |  |
 
 Operations: list, load.
@@ -329,8 +333,10 @@ API path: `/patent-assignment/v1.4`
 
 | Field | Description |
 | --- | --- |
-| `assignment` |  |
-| `trademark_status` |  |
+| `assignments` |  |
+| `documents` |  |
+| `serialNumber` |  |
+| `status` |  |
 
 Operations: list, load.
 
@@ -356,19 +362,20 @@ Create an instance: `const patent = client.Patent()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `applicationNumber` | `string` |  |
 | `assignee` | `string` |  |
-| `assignment_date` | `string` |  |
-| `assignment_id` | `string` |  |
+| `assignmentDate` | `string` |  |
+| `assignmentId` | `string` |  |
 | `assignor` | `string` |  |
-| `citation` | `any[]` |  |
-| `citation_number` | `string` |  |
-| `citation_type` | `string` |  |
+| `citationNumber` | `string` |  |
+| `citationType` | `string` |  |
+| `citations` | `any[]` |  |
 | `data` | `any[]` |  |
 | `date` | `string` |  |
-| `office_action` | `Record<string, any>` |  |
-| `patent_number` | `string` |  |
-| `rejection_text` | `string` |  |
-| `rejection_type` | `string` |  |
+| `patentNumber` | `string` |  |
+| `rejectionText` | `string` |  |
+| `rejectionType` | `string` |  |
+| `text` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -399,8 +406,10 @@ Create an instance: `const trademark = client.Trademark()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assignment` | `any[]` |  |
-| `trademark_status` | `Record<string, any>` |  |
+| `assignments` | `any[]` |  |
+| `documents` | `any[]` |  |
+| `serialNumber` | `string` |  |
+| `status` | `string` |  |
 
 #### Example: Load
 

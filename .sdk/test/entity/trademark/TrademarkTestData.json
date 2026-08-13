@@ -2,18 +2,24 @@
   "existing": {
     "trademark": {
       "TRADEMARK00": {
-        "assignment": [],
-        "trademark_status": {},
+        "assignments": [],
+        "documents": [],
+        "serialNumber": "s2a",
+        "status": "s2b",
         "id": "TRADEMARK00"
       },
       "TRADEMARK01": {
-        "assignment": [],
-        "trademark_status": {},
+        "assignments": [],
+        "documents": [],
+        "serialNumber": "s52",
+        "status": "s53",
         "id": "TRADEMARK01"
       },
       "TRADEMARK02": {
-        "assignment": [],
-        "trademark_status": {},
+        "assignments": [],
+        "documents": [],
+        "serialNumber": "s7a",
+        "status": "s7b",
         "id": "TRADEMARK02"
       }
     }
@@ -21,8 +27,10 @@
   "new": {
     "trademark": {
       "trademark_ref01": {
-        "assignment": [],
-        "trademark_status": {}
+        "assignments": [],
+        "documents": [],
+        "serialNumber": "sa2",
+        "status": "sa3"
       }
     }
   }

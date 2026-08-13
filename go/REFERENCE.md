@@ -103,19 +103,20 @@ fmt.Println(patent.GetName()) // "patent"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `applicationNumber` | `string` | No |  |
 | `assignee` | `string` | No |  |
-| `assignment_date` | `string` | No |  |
-| `assignment_id` | `string` | No |  |
+| `assignmentDate` | `string` | No |  |
+| `assignmentId` | `string` | No |  |
 | `assignor` | `string` | No |  |
-| `citation` | `[]any` | No |  |
-| `citation_number` | `string` | No |  |
-| `citation_type` | `string` | No |  |
+| `citationNumber` | `string` | No |  |
+| `citationType` | `string` | No |  |
+| `citations` | `[]any` | No |  |
 | `data` | `[]any` | No |  |
 | `date` | `string` | No |  |
-| `office_action` | `map[string]any` | No |  |
-| `patent_number` | `string` | No |  |
-| `rejection_text` | `string` | No |  |
-| `rejection_type` | `string` | No |  |
+| `patentNumber` | `string` | No |  |
+| `rejectionText` | `string` | No |  |
+| `rejectionType` | `string` | No |  |
+| `text` | `string` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -179,8 +180,10 @@ fmt.Println(trademark.GetName()) // "trademark"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignment` | `[]any` | No |  |
-| `trademark_status` | `map[string]any` | No |  |
+| `assignments` | `[]any` | No |  |
+| `documents` | `[]any` | No |  |
+| `serialNumber` | `string` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 

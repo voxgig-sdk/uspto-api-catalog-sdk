@@ -55,7 +55,7 @@ except Exception as err:
 
 ### 3. Load a patent
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -139,7 +139,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = UsptoApiCatalogSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 patent = client.Patent().list()
 # patent contains the mock response record
 ```
@@ -239,7 +240,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -261,19 +262,20 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
+| `applicationNumber` |  |
 | `assignee` |  |
-| `assignment_date` |  |
-| `assignment_id` |  |
+| `assignmentDate` |  |
+| `assignmentId` |  |
 | `assignor` |  |
-| `citation` |  |
-| `citation_number` |  |
-| `citation_type` |  |
+| `citationNumber` |  |
+| `citationType` |  |
+| `citations` |  |
 | `data` |  |
 | `date` |  |
-| `office_action` |  |
-| `patent_number` |  |
-| `rejection_text` |  |
-| `rejection_type` |  |
+| `patentNumber` |  |
+| `rejectionText` |  |
+| `rejectionType` |  |
+| `text` |  |
 | `url` |  |
 
 Operations: List, Load.
@@ -284,8 +286,10 @@ API path: `/patent-assignment/v1.4`
 
 | Field | Description |
 | --- | --- |
-| `assignment` |  |
-| `trademark_status` |  |
+| `assignments` |  |
+| `documents` |  |
+| `serialNumber` |  |
+| `status` |  |
 
 Operations: List, Load.
 
@@ -311,19 +315,20 @@ Create an instance: `patent = client.Patent()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `applicationNumber` | `str` |  |
 | `assignee` | `str` |  |
-| `assignment_date` | `str` |  |
-| `assignment_id` | `str` |  |
+| `assignmentDate` | `str` |  |
+| `assignmentId` | `str` |  |
 | `assignor` | `str` |  |
-| `citation` | `list` |  |
-| `citation_number` | `str` |  |
-| `citation_type` | `str` |  |
+| `citationNumber` | `str` |  |
+| `citationType` | `str` |  |
+| `citations` | `list` |  |
 | `data` | `list` |  |
 | `date` | `str` |  |
-| `office_action` | `dict` |  |
-| `patent_number` | `str` |  |
-| `rejection_text` | `str` |  |
-| `rejection_type` | `str` |  |
+| `patentNumber` | `str` |  |
+| `rejectionText` | `str` |  |
+| `rejectionType` | `str` |  |
+| `text` | `str` |  |
 | `url` | `str` |  |
 
 #### Example: Load
@@ -354,8 +359,10 @@ Create an instance: `trademark = client.Trademark()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assignment` | `list` |  |
-| `trademark_status` | `dict` |  |
+| `assignments` | `list` |  |
+| `documents` | `list` |  |
+| `serialNumber` | `str` |  |
+| `status` | `str` |  |
 
 #### Example: Load
 

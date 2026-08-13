@@ -95,19 +95,20 @@ local patent = client:Patent(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `applicationNumber` | `string` | No |  |
 | `assignee` | `string` | No |  |
-| `assignment_date` | `string` | No |  |
-| `assignment_id` | `string` | No |  |
+| `assignmentDate` | `string` | No |  |
+| `assignmentId` | `string` | No |  |
 | `assignor` | `string` | No |  |
-| `citation` | `table` | No |  |
-| `citation_number` | `string` | No |  |
-| `citation_type` | `string` | No |  |
+| `citationNumber` | `string` | No |  |
+| `citationType` | `string` | No |  |
+| `citations` | `table` | No |  |
 | `data` | `table` | No |  |
 | `date` | `string` | No |  |
-| `office_action` | `table` | No |  |
-| `patent_number` | `string` | No |  |
-| `rejection_text` | `string` | No |  |
-| `rejection_type` | `string` | No |  |
+| `patentNumber` | `string` | No |  |
+| `rejectionText` | `string` | No |  |
+| `rejectionType` | `string` | No |  |
+| `text` | `string` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -168,8 +169,10 @@ local trademark = client:Trademark(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignment` | `table` | No |  |
-| `trademark_status` | `table` | No |  |
+| `assignments` | `table` | No |  |
+| `documents` | `table` | No |  |
+| `serialNumber` | `string` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 

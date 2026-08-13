@@ -15,78 +15,87 @@ declare(strict_types=1);
 /** Patent entity data model. */
 class Patent
 {
+    public ?string $applicationNumber = null;
     public ?string $assignee = null;
-    public ?string $assignment_date = null;
-    public ?string $assignment_id = null;
+    public ?string $assignmentDate = null;
+    public ?string $assignmentId = null;
     public ?string $assignor = null;
-    public ?array $citation = null;
-    public ?string $citation_number = null;
-    public ?string $citation_type = null;
+    public ?string $citationNumber = null;
+    public ?string $citationType = null;
+    public ?array $citations = null;
     public ?array $data = null;
     public ?string $date = null;
-    public ?array $office_action = null;
-    public ?string $patent_number = null;
-    public ?string $rejection_text = null;
-    public ?string $rejection_type = null;
+    public ?string $patentNumber = null;
+    public ?string $rejectionText = null;
+    public ?string $rejectionType = null;
+    public ?string $text = null;
     public ?string $url = null;
 }
 
 /** Request payload for Patent#load. */
 class PatentLoadMatch
 {
+    public ?string $applicationNumber = null;
     public ?string $assignee = null;
-    public ?string $assignment_date = null;
-    public ?string $assignment_id = null;
+    public ?string $assignmentDate = null;
+    public ?string $assignmentId = null;
     public ?string $assignor = null;
-    public ?array $citation = null;
-    public ?string $citation_number = null;
-    public ?string $citation_type = null;
+    public ?string $citationNumber = null;
+    public ?string $citationType = null;
+    public ?array $citations = null;
     public ?array $data = null;
     public ?string $date = null;
-    public ?array $office_action = null;
-    public ?string $patent_number = null;
-    public ?string $rejection_text = null;
-    public ?string $rejection_type = null;
+    public ?string $patentNumber = null;
+    public ?string $rejectionText = null;
+    public ?string $rejectionType = null;
+    public ?string $text = null;
     public ?string $url = null;
 }
 
 /** Request payload for Patent#list. */
 class PatentListMatch
 {
+    public ?string $applicationNumber = null;
     public ?string $assignee = null;
-    public ?string $assignment_date = null;
-    public ?string $assignment_id = null;
+    public ?string $assignmentDate = null;
+    public ?string $assignmentId = null;
     public ?string $assignor = null;
-    public ?array $citation = null;
-    public ?string $citation_number = null;
-    public ?string $citation_type = null;
+    public ?string $citationNumber = null;
+    public ?string $citationType = null;
+    public ?array $citations = null;
     public ?array $data = null;
     public ?string $date = null;
-    public ?array $office_action = null;
-    public ?string $patent_number = null;
-    public ?string $rejection_text = null;
-    public ?string $rejection_type = null;
+    public ?string $patentNumber = null;
+    public ?string $rejectionText = null;
+    public ?string $rejectionType = null;
+    public ?string $text = null;
     public ?string $url = null;
 }
 
 /** Trademark entity data model. */
 class Trademark
 {
-    public ?array $assignment = null;
-    public ?array $trademark_status = null;
+    public ?array $assignments = null;
+    public ?array $documents = null;
+    public ?string $serialNumber = null;
+    public ?string $status = null;
 }
 
 /** Request payload for Trademark#load. */
 class TrademarkLoadMatch
 {
-    public ?array $assignment = null;
-    public ?array $trademark_status = null;
+    public ?array $assignments = null;
+    public ?array $documents = null;
+    public ?string $serialNumber = null;
+    public ?string $status = null;
 }
 
 /** Request payload for Trademark#list. */
 class TrademarkListMatch
 {
-    public ?array $assignment = null;
-    public ?array $trademark_status = null;
+    public ?array $assignments = null;
+    public ?array $documents = null;
+    public ?string $serialNumber = null;
+    public ?string $status = null;
 }
 

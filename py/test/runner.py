@@ -4,7 +4,7 @@ from __future__ import annotations
 import os
 import json
 
-from utility.voxgig_struct import voxgig_struct as vs
+from usptoapicatalog_sdk.utility.voxgig_struct import voxgig_struct as vs
 
 
 class UsptoApiCatalogTestRunner:
@@ -38,8 +38,8 @@ class UsptoApiCatalogTestRunner:
 
     @staticmethod
     def env_override(m):
-        live = UsptoApiCatalogTestRunner.getenv("USPTOAPICATALOG_TEST_LIVE")
-        override = UsptoApiCatalogTestRunner.getenv("USPTOAPICATALOG_TEST_OVERRIDE")
+        live = UsptoApiCatalogTestRunner.getenv("USPTO_API_CATALOG_TEST_LIVE")
+        override = UsptoApiCatalogTestRunner.getenv("USPTO_API_CATALOG_TEST_OVERRIDE")
 
         if live == "TRUE" or override == "TRUE":
             for key in list(m.keys()):
@@ -56,9 +56,9 @@ class UsptoApiCatalogTestRunner:
                             pass
                     m[key] = envval
 
-        explain = UsptoApiCatalogTestRunner.getenv("USPTOAPICATALOG_TEST_EXPLAIN")
+        explain = UsptoApiCatalogTestRunner.getenv("USPTO_API_CATALOG_TEST_EXPLAIN")
         if explain is not None and explain != "":
-            m["USPTOAPICATALOG_TEST_EXPLAIN"] = explain
+            m["USPTO_API_CATALOG_TEST_EXPLAIN"] = explain
 
         return m
 
@@ -111,6 +111,17 @@ class UsptoApiCatalogTestRunner:
         return 500
 
     @staticmethod
+    def entity_data(v):
+        """Extract the data map from an op result.
+
+        Every entity operation resolves to the ENTITY (see AGENTS.md), so a
+        flow test that wants the record takes this hop. A plain dict passes
+        through unchanged.
+        """
+        if hasattr(v, "data_get") and callable(v.data_get):
+            return v.data_get()
+        return v
+
     def entity_list_to_data(lst):
         out = []
         for item in lst:
@@ -132,6 +143,10 @@ def load_env_local():
 
 def env_override(m):
     return UsptoApiCatalogTestRunner.env_override(m)
+
+
+def entity_data(v):
+    return UsptoApiCatalogTestRunner.entity_data(v)
 
 
 def entity_list_to_data(lst):

@@ -105,16 +105,16 @@ function trademark_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["USPTOAPICATALOG_TEST_TRADEMARK_ENTID"] = {},
-    ["USPTOAPICATALOG_TEST_LIVE"] = "FALSE",
-    ["USPTOAPICATALOG_APIKEY"] = "NONE",
+    ["USPTO_API_CATALOG_TEST_TRADEMARK_ENTID"] = {},
+    ["USPTO_API_CATALOG_TEST_LIVE"] = "FALSE",
+    ["USPTO_API_CATALOG_APIKEY"] = "NONE",
   })
 
-  local live = env["USPTOAPICATALOG_TEST_LIVE"] == "TRUE"
+  local live = env["USPTO_API_CATALOG_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["USPTOAPICATALOG_APIKEY"],
+      apikey = env["USPTO_API_CATALOG_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

@@ -6,68 +6,77 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Patent {
+  applicationNumber?: string
   assignee?: string
-  assignment_date?: string
-  assignment_id?: string
+  assignmentDate?: string
+  assignmentId?: string
   assignor?: string
-  citation?: any[]
-  citation_number?: string
-  citation_type?: string
+  citationNumber?: string
+  citationType?: string
+  citations?: any[]
   data?: any[]
   date?: string
-  office_action?: Record<string, any>
-  patent_number?: string
-  rejection_text?: string
-  rejection_type?: string
+  patentNumber?: string
+  rejectionText?: string
+  rejectionType?: string
+  text?: string
   url?: string
 }
 
 export interface PatentLoadMatch {
+  applicationNumber?: string
   assignee?: string
-  assignment_date?: string
-  assignment_id?: string
+  assignmentDate?: string
+  assignmentId?: string
   assignor?: string
-  citation?: any[]
-  citation_number?: string
-  citation_type?: string
+  citationNumber?: string
+  citationType?: string
+  citations?: any[]
   data?: any[]
   date?: string
-  office_action?: Record<string, any>
-  patent_number?: string
-  rejection_text?: string
-  rejection_type?: string
+  patentNumber?: string
+  rejectionText?: string
+  rejectionType?: string
+  text?: string
   url?: string
 }
 
 export interface PatentListMatch {
+  applicationNumber?: string
   assignee?: string
-  assignment_date?: string
-  assignment_id?: string
+  assignmentDate?: string
+  assignmentId?: string
   assignor?: string
-  citation?: any[]
-  citation_number?: string
-  citation_type?: string
+  citationNumber?: string
+  citationType?: string
+  citations?: any[]
   data?: any[]
   date?: string
-  office_action?: Record<string, any>
-  patent_number?: string
-  rejection_text?: string
-  rejection_type?: string
+  patentNumber?: string
+  rejectionText?: string
+  rejectionType?: string
+  text?: string
   url?: string
 }
 
 export interface Trademark {
-  assignment?: any[]
-  trademark_status?: Record<string, any>
+  assignments?: any[]
+  documents?: any[]
+  serialNumber?: string
+  status?: string
 }
 
 export interface TrademarkLoadMatch {
-  assignment?: any[]
-  trademark_status?: Record<string, any>
+  assignments?: any[]
+  documents?: any[]
+  serialNumber?: string
+  status?: string
 }
 
 export interface TrademarkListMatch {
-  assignment?: any[]
-  trademark_status?: Record<string, any>
+  assignments?: any[]
+  documents?: any[]
+  serialNumber?: string
+  status?: string
 }
 

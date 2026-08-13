@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "patent": {
           "active": true,
@@ -27,19 +32,25 @@
           "fields": [
             {
               "active": true,
+              "name": "applicationNumber",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "assignee",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "assignment_date",
+              "name": "assignmentDate",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "assignment_id",
+              "name": "assignmentId",
               "req": false,
               "type": "`$STRING`"
             },
@@ -51,21 +62,21 @@
             },
             {
               "active": true,
-              "name": "citation",
+              "name": "citationNumber",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "citationType",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "citations",
               "req": false,
               "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "citation_number",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "citation_type",
-              "req": false,
-              "type": "`$STRING`"
             },
             {
               "active": true,
@@ -81,25 +92,25 @@
             },
             {
               "active": true,
-              "name": "office_action",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "patent_number",
+              "name": "patentNumber",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "rejection_text",
+              "name": "rejectionText",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "rejection_type",
+              "name": "rejectionType",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "text",
               "req": false,
               "type": "`$STRING`"
             },
@@ -139,6 +150,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/patent-assignment/v1.4",
                   "parts": [
@@ -153,7 +165,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.assignments`"
                   }
                 },
                 {
@@ -170,6 +182,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/office-action-citations/v2",
                   "parts": [
@@ -183,7 +196,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.citations`"
                   }
                 },
                 {
@@ -200,6 +213,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/office-action-rejections/v2",
                   "parts": [
@@ -213,7 +227,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.rejections`"
                   }
                 },
                 {
@@ -230,6 +244,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/office-action-weekly-zips/v1",
                   "parts": [
@@ -243,7 +258,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.files`"
                   }
                 },
                 {
@@ -260,6 +275,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/enriched-citation/v3",
                   "parts": [
@@ -273,7 +289,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.citations`"
                   }
                 },
                 {
@@ -290,6 +306,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/ptab/v3",
                   "parts": [
@@ -303,7 +320,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -326,6 +343,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/office-action-text/v1",
                   "parts": [
@@ -339,7 +357,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.officeAction`"
                   }
                 }
               ]
@@ -357,15 +375,27 @@
           "fields": [
             {
               "active": true,
-              "name": "assignment",
+              "name": "assignments",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "trademark_status",
+              "name": "documents",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "serialNumber",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "status",
+              "req": false,
+              "type": "`$STRING`"
             }
           ],
           "name": "trademark",
@@ -397,6 +427,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/trademark-assignment/v1.4",
                   "parts": [
@@ -411,7 +442,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.assignments`"
                   }
                 }
               ]
@@ -442,6 +473,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/tsdr/v1.0",
                   "parts": [
@@ -456,7 +488,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.trademarkStatus`"
                   }
                 }
               ]
@@ -681,18 +713,41 @@
         "website": "https://developer.uspto.gov/api-catalog"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "uspto-api-catalog"
+            "goversion": "",
+            "name": "uspto-api-catalog",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -714,22 +769,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "uspto-api-catalog"
+            "goversion": "",
+            "name": "uspto-api-catalog",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -768,21 +841,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "uspto-api-catalog"
+            "goversion": "",
+            "name": "uspto-api-catalog",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -821,12 +912,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -838,10 +934,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "uspto-api-catalog"
+            "goversion": "",
+            "name": "uspto-api-catalog",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -863,22 +972,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "uspto-api-catalog"
+            "goversion": "",
+            "name": "uspto-api-catalog",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -900,13 +1027,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -918,10 +1050,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "uspto-api-catalog"
+            "goversion": "",
+            "name": "uspto-api-catalog",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -943,13 +1088,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -966,10 +1116,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "uspto-api-catalog"
+            "goversion": "",
+            "name": "uspto-api-catalog",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -991,13 +1154,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -1020,10 +1188,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "uspto-api-catalog"
+            "goversion": "",
+            "name": "uspto-api-catalog",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1045,9 +1226,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

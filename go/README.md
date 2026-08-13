@@ -275,19 +275,20 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
+| `"applicationNumber"` |  |
 | `"assignee"` |  |
-| `"assignment_date"` |  |
-| `"assignment_id"` |  |
+| `"assignmentDate"` |  |
+| `"assignmentId"` |  |
 | `"assignor"` |  |
-| `"citation"` |  |
-| `"citation_number"` |  |
-| `"citation_type"` |  |
+| `"citationNumber"` |  |
+| `"citationType"` |  |
+| `"citations"` |  |
 | `"data"` |  |
 | `"date"` |  |
-| `"office_action"` |  |
-| `"patent_number"` |  |
-| `"rejection_text"` |  |
-| `"rejection_type"` |  |
+| `"patentNumber"` |  |
+| `"rejectionText"` |  |
+| `"rejectionType"` |  |
+| `"text"` |  |
 | `"url"` |  |
 
 Operations: List, Load.
@@ -298,8 +299,10 @@ API path: `/patent-assignment/v1.4`
 
 | Field | Description |
 | --- | --- |
-| `"assignment"` |  |
-| `"trademark_status"` |  |
+| `"assignments"` |  |
+| `"documents"` |  |
+| `"serialNumber"` |  |
+| `"status"` |  |
 
 Operations: List, Load.
 
@@ -325,19 +328,20 @@ Create an instance: `patent := client.Patent(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `applicationNumber` | `string` |  |
 | `assignee` | `string` |  |
-| `assignment_date` | `string` |  |
-| `assignment_id` | `string` |  |
+| `assignmentDate` | `string` |  |
+| `assignmentId` | `string` |  |
 | `assignor` | `string` |  |
-| `citation` | `[]any` |  |
-| `citation_number` | `string` |  |
-| `citation_type` | `string` |  |
+| `citationNumber` | `string` |  |
+| `citationType` | `string` |  |
+| `citations` | `[]any` |  |
 | `data` | `[]any` |  |
 | `date` | `string` |  |
-| `office_action` | `map[string]any` |  |
-| `patent_number` | `string` |  |
-| `rejection_text` | `string` |  |
-| `rejection_type` | `string` |  |
+| `patentNumber` | `string` |  |
+| `rejectionText` | `string` |  |
+| `rejectionType` | `string` |  |
+| `text` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -376,8 +380,10 @@ Create an instance: `trademark := client.Trademark(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assignment` | `[]any` |  |
-| `trademark_status` | `map[string]any` |  |
+| `assignments` | `[]any` |  |
+| `documents` | `[]any` |  |
+| `serialNumber` | `string` |  |
+| `status` | `string` |  |
 
 #### Example: Load
 

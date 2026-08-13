@@ -6,17 +6,22 @@ main: kit: entity: patent: {
 
   fields: [
     {
+      name: "applicationNumber"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "assignee"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "assignment_date"
+      name: "assignmentDate"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "assignment_id"
+      name: "assignmentId"
       req: false
       type: "`$STRING`"
     }
@@ -26,19 +31,19 @@ main: kit: entity: patent: {
       type: "`$STRING`"
     }
     {
-      name: "citation"
+      name: "citationNumber"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "citationType"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "citations"
       req: false
       type: "`$ARRAY`"
-    }
-    {
-      name: "citation_number"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "citation_type"
-      req: false
-      type: "`$STRING`"
     }
     {
       name: "data"
@@ -51,22 +56,22 @@ main: kit: entity: patent: {
       type: "`$STRING`"
     }
     {
-      name: "office_action"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "patent_number"
+      name: "patentNumber"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "rejection_text"
+      name: "rejectionText"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "rejection_type"
+      name: "rejectionType"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "text"
       req: false
       type: "`$STRING`"
     }
@@ -116,7 +121,7 @@ main: kit: entity: patent: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.assignments`"
           }
         }
         {
@@ -144,7 +149,7 @@ main: kit: entity: patent: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.citations`"
           }
         }
         {
@@ -172,7 +177,7 @@ main: kit: entity: patent: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.rejections`"
           }
         }
         {
@@ -200,7 +205,7 @@ main: kit: entity: patent: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.files`"
           }
         }
         {
@@ -228,7 +233,7 @@ main: kit: entity: patent: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.citations`"
           }
         }
         {
@@ -256,7 +261,7 @@ main: kit: entity: patent: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -289,7 +294,7 @@ main: kit: entity: patent: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.officeAction`"
           }
         }
       ]

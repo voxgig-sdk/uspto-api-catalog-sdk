@@ -97,19 +97,20 @@ $patent = $client->Patent();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `applicationNumber` | `string` | No |  |
 | `assignee` | `string` | No |  |
-| `assignment_date` | `string` | No |  |
-| `assignment_id` | `string` | No |  |
+| `assignmentDate` | `string` | No |  |
+| `assignmentId` | `string` | No |  |
 | `assignor` | `string` | No |  |
-| `citation` | `array` | No |  |
-| `citation_number` | `string` | No |  |
-| `citation_type` | `string` | No |  |
+| `citationNumber` | `string` | No |  |
+| `citationType` | `string` | No |  |
+| `citations` | `array` | No |  |
 | `data` | `array` | No |  |
 | `date` | `string` | No |  |
-| `office_action` | `array` | No |  |
-| `patent_number` | `string` | No |  |
-| `rejection_text` | `string` | No |  |
-| `rejection_type` | `string` | No |  |
+| `patentNumber` | `string` | No |  |
+| `rejectionText` | `string` | No |  |
+| `rejectionType` | `string` | No |  |
+| `text` | `string` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -170,8 +171,10 @@ $trademark = $client->Trademark();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignment` | `array` | No |  |
-| `trademark_status` | `array` | No |  |
+| `assignments` | `array` | No |  |
+| `documents` | `array` | No |  |
+| `serialNumber` | `string` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 

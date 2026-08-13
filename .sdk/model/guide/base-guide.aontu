@@ -8,33 +8,42 @@ guide: {
   entity: patent: {
     path: "/enriched-citation/v3": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.citations`")|top
     }
     path: "/office-action-citations/v2": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.citations`")|top
     }
     path: "/office-action-rejections/v2": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.rejections`")|top
     }
     path: "/office-action-text/v1": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.officeAction`")|top
     }
     path: "/office-action-weekly-zips/v1": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.files`")|top
     }
     path: "/patent-assignment/v1.4": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.assignments`")|top
     }
     path: "/ptab/v3": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: trademark: {
     path: "/trademark-assignment/v1.4": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.assignments`")|top
     }
     path: "/tsdr/v1.0": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.trademarkStatus`")|top
     }
   }
 

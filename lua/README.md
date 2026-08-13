@@ -45,7 +45,7 @@ local patents, err = client:Patent():list()
 if err then error(err) end
 
 for _, item in ipairs(patents) do
-  print(item["assignee"])
+  print(item["applicationNumber"])
 end
 ```
 
@@ -246,19 +246,20 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
+| `applicationNumber` |  |
 | `assignee` |  |
-| `assignment_date` |  |
-| `assignment_id` |  |
+| `assignmentDate` |  |
+| `assignmentId` |  |
 | `assignor` |  |
-| `citation` |  |
-| `citation_number` |  |
-| `citation_type` |  |
+| `citationNumber` |  |
+| `citationType` |  |
+| `citations` |  |
 | `data` |  |
 | `date` |  |
-| `office_action` |  |
-| `patent_number` |  |
-| `rejection_text` |  |
-| `rejection_type` |  |
+| `patentNumber` |  |
+| `rejectionText` |  |
+| `rejectionType` |  |
+| `text` |  |
 | `url` |  |
 
 Operations: List, Load.
@@ -269,8 +270,10 @@ API path: `/patent-assignment/v1.4`
 
 | Field | Description |
 | --- | --- |
-| `assignment` |  |
-| `trademark_status` |  |
+| `assignments` |  |
+| `documents` |  |
+| `serialNumber` |  |
+| `status` |  |
 
 Operations: List, Load.
 
@@ -296,19 +299,20 @@ Create an instance: `local patent = client:Patent(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `applicationNumber` | `string` |  |
 | `assignee` | `string` |  |
-| `assignment_date` | `string` |  |
-| `assignment_id` | `string` |  |
+| `assignmentDate` | `string` |  |
+| `assignmentId` | `string` |  |
 | `assignor` | `string` |  |
-| `citation` | `table` |  |
-| `citation_number` | `string` |  |
-| `citation_type` | `string` |  |
+| `citationNumber` | `string` |  |
+| `citationType` | `string` |  |
+| `citations` | `table` |  |
 | `data` | `table` |  |
 | `date` | `string` |  |
-| `office_action` | `table` |  |
-| `patent_number` | `string` |  |
-| `rejection_text` | `string` |  |
-| `rejection_type` | `string` |  |
+| `patentNumber` | `string` |  |
+| `rejectionText` | `string` |  |
+| `rejectionType` | `string` |  |
+| `text` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Load
@@ -339,8 +343,10 @@ Create an instance: `local trademark = client:Trademark(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assignment` | `table` |  |
-| `trademark_status` | `table` |  |
+| `assignments` | `table` |  |
+| `documents` | `table` |  |
+| `serialNumber` | `string` |  |
+| `status` | `string` |  |
 
 #### Example: Load
 

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# UsptoApiCatalog SDK exists test
 
 import pytest
 from usptoapicatalog_sdk import UsptoApiCatalogSDK

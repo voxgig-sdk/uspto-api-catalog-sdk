@@ -35,8 +35,8 @@ end
 
 
 function runner.env_override(m)
-  local live = runner.getenv("USPTOAPICATALOG_TEST_LIVE")
-  local override = runner.getenv("USPTOAPICATALOG_TEST_OVERRIDE")
+  local live = runner.getenv("USPTO_API_CATALOG_TEST_LIVE")
+  local override = runner.getenv("USPTO_API_CATALOG_TEST_OVERRIDE")
 
   if live == "TRUE" or override == "TRUE" then
     for key, _ in pairs(m) do
@@ -56,9 +56,9 @@ function runner.env_override(m)
     end
   end
 
-  local explain = runner.getenv("USPTOAPICATALOG_TEST_EXPLAIN")
+  local explain = runner.getenv("USPTO_API_CATALOG_TEST_EXPLAIN")
   if explain ~= nil and explain ~= "" then
-    m["USPTOAPICATALOG_TEST_EXPLAIN"] = explain
+    m["USPTO_API_CATALOG_TEST_EXPLAIN"] = explain
   end
 
   return m

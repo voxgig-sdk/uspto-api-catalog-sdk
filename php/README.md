@@ -40,7 +40,7 @@ try {
     // list() returns an array of Patent records — iterate directly.
     $patents = $client->Patent()->list();
     foreach ($patents as $item) {
-        echo $item["assignee"] . "\n";
+        echo $item["applicationNumber"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -51,7 +51,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Patent record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Patent record (throws on error).
     $patent = $client->Patent()->load();
     print_r($patent);
 } catch (\Throwable $err) {
@@ -139,7 +139,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = UsptoApiCatalogSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $patent = $client->Patent()->list();
 print_r($patent);
 ```
@@ -242,7 +243,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -264,19 +265,20 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
+| `applicationNumber` |  |
 | `assignee` |  |
-| `assignment_date` |  |
-| `assignment_id` |  |
+| `assignmentDate` |  |
+| `assignmentId` |  |
 | `assignor` |  |
-| `citation` |  |
-| `citation_number` |  |
-| `citation_type` |  |
+| `citationNumber` |  |
+| `citationType` |  |
+| `citations` |  |
 | `data` |  |
 | `date` |  |
-| `office_action` |  |
-| `patent_number` |  |
-| `rejection_text` |  |
-| `rejection_type` |  |
+| `patentNumber` |  |
+| `rejectionText` |  |
+| `rejectionType` |  |
+| `text` |  |
 | `url` |  |
 
 Operations: List, Load.
@@ -287,8 +289,10 @@ API path: `/patent-assignment/v1.4`
 
 | Field | Description |
 | --- | --- |
-| `assignment` |  |
-| `trademark_status` |  |
+| `assignments` |  |
+| `documents` |  |
+| `serialNumber` |  |
+| `status` |  |
 
 Operations: List, Load.
 
@@ -314,25 +318,26 @@ Create an instance: `$patent = $client->Patent();`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `applicationNumber` | `string` |  |
 | `assignee` | `string` |  |
-| `assignment_date` | `string` |  |
-| `assignment_id` | `string` |  |
+| `assignmentDate` | `string` |  |
+| `assignmentId` | `string` |  |
 | `assignor` | `string` |  |
-| `citation` | `array` |  |
-| `citation_number` | `string` |  |
-| `citation_type` | `string` |  |
+| `citationNumber` | `string` |  |
+| `citationType` | `string` |  |
+| `citations` | `array` |  |
 | `data` | `array` |  |
 | `date` | `string` |  |
-| `office_action` | `array` |  |
-| `patent_number` | `string` |  |
-| `rejection_text` | `string` |  |
-| `rejection_type` | `string` |  |
+| `patentNumber` | `string` |  |
+| `rejectionText` | `string` |  |
+| `rejectionType` | `string` |  |
+| `text` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Patent record (throws on error).
+// load() returns the ENTITY — call data_get() for the Patent record (throws on error).
 $patent = $client->Patent()->load();
 ```
 
@@ -359,13 +364,15 @@ Create an instance: `$trademark = $client->Trademark();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assignment` | `array` |  |
-| `trademark_status` | `array` |  |
+| `assignments` | `array` |  |
+| `documents` | `array` |  |
+| `serialNumber` | `string` |  |
+| `status` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Trademark record (throws on error).
+// load() returns the ENTITY — call data_get() for the Trademark record (throws on error).
 $trademark = $client->Trademark()->load();
 ```
 

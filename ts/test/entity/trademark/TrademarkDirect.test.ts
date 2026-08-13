@@ -19,11 +19,15 @@ import {
 describe('TrademarkDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when USPTOAPICATALOG_TEST_LIVE=TRUE.
-  afterEach(liveDelay('USPTOAPICATALOG_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when USPTO_API_CATALOG_TEST_LIVE=TRUE.
+  afterEach(liveDelay('USPTO_API_CATALOG_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new UsptoApiCatalogSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -133,19 +137,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'USPTOAPICATALOG_TEST_TRADEMARK_ENTID': {},
-    'USPTOAPICATALOG_TEST_LIVE': 'FALSE',
-    'USPTOAPICATALOG_APIKEY': 'NONE',
+    'USPTO_API_CATALOG_TEST_TRADEMARK_ENTID': {},
+    'USPTO_API_CATALOG_TEST_LIVE': 'FALSE',
+    'USPTO_API_CATALOG_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.USPTOAPICATALOG_TEST_LIVE
+  const live = 'TRUE' === env.USPTO_API_CATALOG_TEST_LIVE
 
   if (live) {
     const client = new UsptoApiCatalogSDK({
-      apikey: env.USPTOAPICATALOG_APIKEY,
+      apikey: env.USPTO_API_CATALOG_APIKEY,
     })
 
-    let idmap: any = env['USPTOAPICATALOG_TEST_TRADEMARK_ENTID']
+    let idmap: any = env['USPTO_API_CATALOG_TEST_TRADEMARK_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

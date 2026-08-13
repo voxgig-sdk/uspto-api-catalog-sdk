@@ -26,8 +26,8 @@ import {
 describe('TrademarkEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when USPTOAPICATALOG_TEST_LIVE=TRUE.
-  afterEach(liveDelay('USPTOAPICATALOG_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when USPTO_API_CATALOG_TEST_LIVE=TRUE.
+  afterEach(liveDelay('USPTO_API_CATALOG_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = UsptoApiCatalogSDK.test()
@@ -63,12 +63,12 @@ describe('TrademarkEntity', async () => {
     const trademark_ref01_ent = client.Trademark()
     const trademark_ref01_match: any = {}
 
-    const trademark_ref01_list = await trademark_ref01_ent.list(trademark_ref01_match)
+    const trademark_ref01_list = (await trademark_ref01_ent.list(trademark_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const trademark_ref01_match_dt0: any = {}
-    const trademark_ref01_data_dt0 = await trademark_ref01_ent.load(trademark_ref01_match_dt0)
+    const trademark_ref01_data_dt0 = (await trademark_ref01_ent.load(trademark_ref01_match_dt0)).data()
     assert(null != trademark_ref01_data_dt0)
 
 

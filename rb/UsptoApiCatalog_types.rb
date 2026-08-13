@@ -10,26 +10,29 @@
 
 # Patent entity data model.
 #
+# @!attribute [rw] applicationNumber
+#   @return [String, nil]
+#
 # @!attribute [rw] assignee
 #   @return [String, nil]
 #
-# @!attribute [rw] assignment_date
+# @!attribute [rw] assignmentDate
 #   @return [String, nil]
 #
-# @!attribute [rw] assignment_id
+# @!attribute [rw] assignmentId
 #   @return [String, nil]
 #
 # @!attribute [rw] assignor
 #   @return [String, nil]
 #
-# @!attribute [rw] citation
+# @!attribute [rw] citationNumber
+#   @return [String, nil]
+#
+# @!attribute [rw] citationType
+#   @return [String, nil]
+#
+# @!attribute [rw] citations
 #   @return [Array, nil]
-#
-# @!attribute [rw] citation_number
-#   @return [String, nil]
-#
-# @!attribute [rw] citation_type
-#   @return [String, nil]
 #
 # @!attribute [rw] data
 #   @return [Array, nil]
@@ -37,60 +40,64 @@
 # @!attribute [rw] date
 #   @return [String, nil]
 #
-# @!attribute [rw] office_action
-#   @return [Hash, nil]
-#
-# @!attribute [rw] patent_number
+# @!attribute [rw] patentNumber
 #   @return [String, nil]
 #
-# @!attribute [rw] rejection_text
+# @!attribute [rw] rejectionText
 #   @return [String, nil]
 #
-# @!attribute [rw] rejection_type
+# @!attribute [rw] rejectionType
+#   @return [String, nil]
+#
+# @!attribute [rw] text
 #   @return [String, nil]
 #
 # @!attribute [rw] url
 #   @return [String, nil]
 Patent = Struct.new(
+  :applicationNumber,
   :assignee,
-  :assignment_date,
-  :assignment_id,
+  :assignmentDate,
+  :assignmentId,
   :assignor,
-  :citation,
-  :citation_number,
-  :citation_type,
+  :citationNumber,
+  :citationType,
+  :citations,
   :data,
   :date,
-  :office_action,
-  :patent_number,
-  :rejection_text,
-  :rejection_type,
+  :patentNumber,
+  :rejectionText,
+  :rejectionType,
+  :text,
   :url,
   keyword_init: true
 )
 
 # Request payload for Patent#load.
 #
+# @!attribute [rw] applicationNumber
+#   @return [String, nil]
+#
 # @!attribute [rw] assignee
 #   @return [String, nil]
 #
-# @!attribute [rw] assignment_date
+# @!attribute [rw] assignmentDate
 #   @return [String, nil]
 #
-# @!attribute [rw] assignment_id
+# @!attribute [rw] assignmentId
 #   @return [String, nil]
 #
 # @!attribute [rw] assignor
 #   @return [String, nil]
 #
-# @!attribute [rw] citation
+# @!attribute [rw] citationNumber
+#   @return [String, nil]
+#
+# @!attribute [rw] citationType
+#   @return [String, nil]
+#
+# @!attribute [rw] citations
 #   @return [Array, nil]
-#
-# @!attribute [rw] citation_number
-#   @return [String, nil]
-#
-# @!attribute [rw] citation_type
-#   @return [String, nil]
 #
 # @!attribute [rw] data
 #   @return [Array, nil]
@@ -98,60 +105,64 @@ Patent = Struct.new(
 # @!attribute [rw] date
 #   @return [String, nil]
 #
-# @!attribute [rw] office_action
-#   @return [Hash, nil]
-#
-# @!attribute [rw] patent_number
+# @!attribute [rw] patentNumber
 #   @return [String, nil]
 #
-# @!attribute [rw] rejection_text
+# @!attribute [rw] rejectionText
 #   @return [String, nil]
 #
-# @!attribute [rw] rejection_type
+# @!attribute [rw] rejectionType
+#   @return [String, nil]
+#
+# @!attribute [rw] text
 #   @return [String, nil]
 #
 # @!attribute [rw] url
 #   @return [String, nil]
 PatentLoadMatch = Struct.new(
+  :applicationNumber,
   :assignee,
-  :assignment_date,
-  :assignment_id,
+  :assignmentDate,
+  :assignmentId,
   :assignor,
-  :citation,
-  :citation_number,
-  :citation_type,
+  :citationNumber,
+  :citationType,
+  :citations,
   :data,
   :date,
-  :office_action,
-  :patent_number,
-  :rejection_text,
-  :rejection_type,
+  :patentNumber,
+  :rejectionText,
+  :rejectionType,
+  :text,
   :url,
   keyword_init: true
 )
 
 # Request payload for Patent#list.
 #
+# @!attribute [rw] applicationNumber
+#   @return [String, nil]
+#
 # @!attribute [rw] assignee
 #   @return [String, nil]
 #
-# @!attribute [rw] assignment_date
+# @!attribute [rw] assignmentDate
 #   @return [String, nil]
 #
-# @!attribute [rw] assignment_id
+# @!attribute [rw] assignmentId
 #   @return [String, nil]
 #
 # @!attribute [rw] assignor
 #   @return [String, nil]
 #
-# @!attribute [rw] citation
+# @!attribute [rw] citationNumber
+#   @return [String, nil]
+#
+# @!attribute [rw] citationType
+#   @return [String, nil]
+#
+# @!attribute [rw] citations
 #   @return [Array, nil]
-#
-# @!attribute [rw] citation_number
-#   @return [String, nil]
-#
-# @!attribute [rw] citation_type
-#   @return [String, nil]
 #
 # @!attribute [rw] data
 #   @return [Array, nil]
@@ -159,74 +170,99 @@ PatentLoadMatch = Struct.new(
 # @!attribute [rw] date
 #   @return [String, nil]
 #
-# @!attribute [rw] office_action
-#   @return [Hash, nil]
-#
-# @!attribute [rw] patent_number
+# @!attribute [rw] patentNumber
 #   @return [String, nil]
 #
-# @!attribute [rw] rejection_text
+# @!attribute [rw] rejectionText
 #   @return [String, nil]
 #
-# @!attribute [rw] rejection_type
+# @!attribute [rw] rejectionType
+#   @return [String, nil]
+#
+# @!attribute [rw] text
 #   @return [String, nil]
 #
 # @!attribute [rw] url
 #   @return [String, nil]
 PatentListMatch = Struct.new(
+  :applicationNumber,
   :assignee,
-  :assignment_date,
-  :assignment_id,
+  :assignmentDate,
+  :assignmentId,
   :assignor,
-  :citation,
-  :citation_number,
-  :citation_type,
+  :citationNumber,
+  :citationType,
+  :citations,
   :data,
   :date,
-  :office_action,
-  :patent_number,
-  :rejection_text,
-  :rejection_type,
+  :patentNumber,
+  :rejectionText,
+  :rejectionType,
+  :text,
   :url,
   keyword_init: true
 )
 
 # Trademark entity data model.
 #
-# @!attribute [rw] assignment
+# @!attribute [rw] assignments
 #   @return [Array, nil]
 #
-# @!attribute [rw] trademark_status
-#   @return [Hash, nil]
+# @!attribute [rw] documents
+#   @return [Array, nil]
+#
+# @!attribute [rw] serialNumber
+#   @return [String, nil]
+#
+# @!attribute [rw] status
+#   @return [String, nil]
 Trademark = Struct.new(
-  :assignment,
-  :trademark_status,
+  :assignments,
+  :documents,
+  :serialNumber,
+  :status,
   keyword_init: true
 )
 
 # Request payload for Trademark#load.
 #
-# @!attribute [rw] assignment
+# @!attribute [rw] assignments
 #   @return [Array, nil]
 #
-# @!attribute [rw] trademark_status
-#   @return [Hash, nil]
+# @!attribute [rw] documents
+#   @return [Array, nil]
+#
+# @!attribute [rw] serialNumber
+#   @return [String, nil]
+#
+# @!attribute [rw] status
+#   @return [String, nil]
 TrademarkLoadMatch = Struct.new(
-  :assignment,
-  :trademark_status,
+  :assignments,
+  :documents,
+  :serialNumber,
+  :status,
   keyword_init: true
 )
 
 # Request payload for Trademark#list.
 #
-# @!attribute [rw] assignment
+# @!attribute [rw] assignments
 #   @return [Array, nil]
 #
-# @!attribute [rw] trademark_status
-#   @return [Hash, nil]
+# @!attribute [rw] documents
+#   @return [Array, nil]
+#
+# @!attribute [rw] serialNumber
+#   @return [String, nil]
+#
+# @!attribute [rw] status
+#   @return [String, nil]
 TrademarkListMatch = Struct.new(
-  :assignment,
-  :trademark_status,
+  :assignments,
+  :documents,
+  :serialNumber,
+  :status,
   keyword_init: true
 )
 

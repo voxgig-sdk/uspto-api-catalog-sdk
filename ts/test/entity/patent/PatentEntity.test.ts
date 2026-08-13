@@ -26,8 +26,8 @@ import {
 describe('PatentEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when USPTOAPICATALOG_TEST_LIVE=TRUE.
-  afterEach(liveDelay('USPTOAPICATALOG_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when USPTO_API_CATALOG_TEST_LIVE=TRUE.
+  afterEach(liveDelay('USPTO_API_CATALOG_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = UsptoApiCatalogSDK.test()
@@ -63,12 +63,12 @@ describe('PatentEntity', async () => {
     const patent_ref01_ent = client.Patent()
     const patent_ref01_match: any = {}
 
-    const patent_ref01_list = await patent_ref01_ent.list(patent_ref01_match)
+    const patent_ref01_list = (await patent_ref01_ent.list(patent_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const patent_ref01_match_dt0: any = {}
-    const patent_ref01_data_dt0 = await patent_ref01_ent.load(patent_ref01_match_dt0)
+    const patent_ref01_data_dt0 = (await patent_ref01_ent.load(patent_ref01_match_dt0)).data()
     assert(null != patent_ref01_data_dt0)
 
 

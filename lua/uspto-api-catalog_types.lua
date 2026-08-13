@@ -7,64 +7,73 @@
 -- edit by hand.
 
 ---@class Patent
+---@field applicationNumber? string
 ---@field assignee? string
----@field assignment_date? string
----@field assignment_id? string
+---@field assignmentDate? string
+---@field assignmentId? string
 ---@field assignor? string
----@field citation? table
----@field citation_number? string
----@field citation_type? string
+---@field citationNumber? string
+---@field citationType? string
+---@field citations? table
 ---@field data? table
 ---@field date? string
----@field office_action? table
----@field patent_number? string
----@field rejection_text? string
----@field rejection_type? string
+---@field patentNumber? string
+---@field rejectionText? string
+---@field rejectionType? string
+---@field text? string
 ---@field url? string
 
 ---@class PatentLoadMatch
+---@field applicationNumber? string
 ---@field assignee? string
----@field assignment_date? string
----@field assignment_id? string
+---@field assignmentDate? string
+---@field assignmentId? string
 ---@field assignor? string
----@field citation? table
----@field citation_number? string
----@field citation_type? string
+---@field citationNumber? string
+---@field citationType? string
+---@field citations? table
 ---@field data? table
 ---@field date? string
----@field office_action? table
----@field patent_number? string
----@field rejection_text? string
----@field rejection_type? string
+---@field patentNumber? string
+---@field rejectionText? string
+---@field rejectionType? string
+---@field text? string
 ---@field url? string
 
 ---@class PatentListMatch
+---@field applicationNumber? string
 ---@field assignee? string
----@field assignment_date? string
----@field assignment_id? string
+---@field assignmentDate? string
+---@field assignmentId? string
 ---@field assignor? string
----@field citation? table
----@field citation_number? string
----@field citation_type? string
+---@field citationNumber? string
+---@field citationType? string
+---@field citations? table
 ---@field data? table
 ---@field date? string
----@field office_action? table
----@field patent_number? string
----@field rejection_text? string
----@field rejection_type? string
+---@field patentNumber? string
+---@field rejectionText? string
+---@field rejectionType? string
+---@field text? string
 ---@field url? string
 
 ---@class Trademark
----@field assignment? table
----@field trademark_status? table
+---@field assignments? table
+---@field documents? table
+---@field serialNumber? string
+---@field status? string
 
 ---@class TrademarkLoadMatch
----@field assignment? table
----@field trademark_status? table
+---@field assignments? table
+---@field documents? table
+---@field serialNumber? string
+---@field status? string
 
 ---@class TrademarkListMatch
----@field assignment? table
----@field trademark_status? table
+---@field assignments? table
+---@field documents? table
+---@field serialNumber? string
+---@field status? string
 
 local M = {}
 

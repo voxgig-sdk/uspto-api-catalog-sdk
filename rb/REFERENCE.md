@@ -98,19 +98,20 @@ patent = client.Patent
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `applicationNumber` | `String` | No |  |
 | `assignee` | `String` | No |  |
-| `assignment_date` | `String` | No |  |
-| `assignment_id` | `String` | No |  |
+| `assignmentDate` | `String` | No |  |
+| `assignmentId` | `String` | No |  |
 | `assignor` | `String` | No |  |
-| `citation` | `Array` | No |  |
-| `citation_number` | `String` | No |  |
-| `citation_type` | `String` | No |  |
+| `citationNumber` | `String` | No |  |
+| `citationType` | `String` | No |  |
+| `citations` | `Array` | No |  |
 | `data` | `Array` | No |  |
 | `date` | `String` | No |  |
-| `office_action` | `Hash` | No |  |
-| `patent_number` | `String` | No |  |
-| `rejection_text` | `String` | No |  |
-| `rejection_type` | `String` | No |  |
+| `patentNumber` | `String` | No |  |
+| `rejectionText` | `String` | No |  |
+| `rejectionType` | `String` | No |  |
+| `text` | `String` | No |  |
 | `url` | `String` | No |  |
 
 ### Operations
@@ -171,8 +172,10 @@ trademark = client.Trademark
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignment` | `Array` | No |  |
-| `trademark_status` | `Hash` | No |  |
+| `assignments` | `Array` | No |  |
+| `documents` | `Array` | No |  |
+| `serialNumber` | `String` | No |  |
+| `status` | `String` | No |  |
 
 ### Operations
 

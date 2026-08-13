@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import UsptoApiCatalogControl
-from core.error import UsptoApiCatalogError
-from core.result import UsptoApiCatalogResult
-from core.spec import UsptoApiCatalogSpec
+from usptoapicatalog_sdk.config import make_config
+from usptoapicatalog_sdk.features import _make_feature
+from usptoapicatalog_sdk.core.control import UsptoApiCatalogControl
+from usptoapicatalog_sdk.core.error import UsptoApiCatalogError
+from usptoapicatalog_sdk.core.result import UsptoApiCatalogResult
+from usptoapicatalog_sdk.core.spec import UsptoApiCatalogSpec
 
 
 # True when this SDK was generated with the named feature.

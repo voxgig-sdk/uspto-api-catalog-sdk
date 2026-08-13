@@ -39,7 +39,7 @@ begin
   # list returns an Array of Patent records — iterate directly.
   patents = client.Patent.list
   patents.each do |item|
-    puts "#{item["assignee"]}"
+    puts "#{item["applicationNumber"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -50,7 +50,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Patent record (raises on error).
+  # load returns the ENTITY — call data_get for the Patent record (raises on error).
   patent = client.Patent.load()
   puts patent
 rescue => err
@@ -133,7 +133,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = UsptoApiCatalogSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 patent = client.Patent.list()
 puts patent
 ```
@@ -254,19 +255,20 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
+| `applicationNumber` |  |
 | `assignee` |  |
-| `assignment_date` |  |
-| `assignment_id` |  |
+| `assignmentDate` |  |
+| `assignmentId` |  |
 | `assignor` |  |
-| `citation` |  |
-| `citation_number` |  |
-| `citation_type` |  |
+| `citationNumber` |  |
+| `citationType` |  |
+| `citations` |  |
 | `data` |  |
 | `date` |  |
-| `office_action` |  |
-| `patent_number` |  |
-| `rejection_text` |  |
-| `rejection_type` |  |
+| `patentNumber` |  |
+| `rejectionText` |  |
+| `rejectionType` |  |
+| `text` |  |
 | `url` |  |
 
 Operations: List, Load.
@@ -277,8 +279,10 @@ API path: `/patent-assignment/v1.4`
 
 | Field | Description |
 | --- | --- |
-| `assignment` |  |
-| `trademark_status` |  |
+| `assignments` |  |
+| `documents` |  |
+| `serialNumber` |  |
+| `status` |  |
 
 Operations: List, Load.
 
@@ -304,25 +308,26 @@ Create an instance: `patent = client.Patent`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `applicationNumber` | `String` |  |
 | `assignee` | `String` |  |
-| `assignment_date` | `String` |  |
-| `assignment_id` | `String` |  |
+| `assignmentDate` | `String` |  |
+| `assignmentId` | `String` |  |
 | `assignor` | `String` |  |
-| `citation` | `Array` |  |
-| `citation_number` | `String` |  |
-| `citation_type` | `String` |  |
+| `citationNumber` | `String` |  |
+| `citationType` | `String` |  |
+| `citations` | `Array` |  |
 | `data` | `Array` |  |
 | `date` | `String` |  |
-| `office_action` | `Hash` |  |
-| `patent_number` | `String` |  |
-| `rejection_text` | `String` |  |
-| `rejection_type` | `String` |  |
+| `patentNumber` | `String` |  |
+| `rejectionText` | `String` |  |
+| `rejectionType` | `String` |  |
+| `text` | `String` |  |
 | `url` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Patent record (raises on error).
+# load returns the ENTITY — call data_get for the Patent record (raises on error).
 patent = client.Patent.load()
 ```
 
@@ -349,13 +354,15 @@ Create an instance: `trademark = client.Trademark`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `assignment` | `Array` |  |
-| `trademark_status` | `Hash` |  |
+| `assignments` | `Array` |  |
+| `documents` | `Array` |  |
+| `serialNumber` | `String` |  |
+| `status` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Trademark record (raises on error).
+# load returns the ENTITY — call data_get for the Trademark record (raises on error).
 trademark = client.Trademark.load()
 ```
 

@@ -92,19 +92,20 @@ patent = client.Patent()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `applicationNumber` | `str` | No |  |
 | `assignee` | `str` | No |  |
-| `assignment_date` | `str` | No |  |
-| `assignment_id` | `str` | No |  |
+| `assignmentDate` | `str` | No |  |
+| `assignmentId` | `str` | No |  |
 | `assignor` | `str` | No |  |
-| `citation` | `list` | No |  |
-| `citation_number` | `str` | No |  |
-| `citation_type` | `str` | No |  |
+| `citationNumber` | `str` | No |  |
+| `citationType` | `str` | No |  |
+| `citations` | `list` | No |  |
 | `data` | `list` | No |  |
 | `date` | `str` | No |  |
-| `office_action` | `dict` | No |  |
-| `patent_number` | `str` | No |  |
-| `rejection_text` | `str` | No |  |
-| `rejection_type` | `str` | No |  |
+| `patentNumber` | `str` | No |  |
+| `rejectionText` | `str` | No |  |
+| `rejectionType` | `str` | No |  |
+| `text` | `str` | No |  |
 | `url` | `str` | No |  |
 
 ### Operations
@@ -166,8 +167,10 @@ trademark = client.Trademark()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `assignment` | `list` | No |  |
-| `trademark_status` | `dict` | No |  |
+| `assignments` | `list` | No |  |
+| `documents` | `list` | No |  |
+| `serialNumber` | `str` | No |  |
+| `status` | `str` | No |  |
 
 ### Operations
 

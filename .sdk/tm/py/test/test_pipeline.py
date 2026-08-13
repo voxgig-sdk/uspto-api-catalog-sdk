@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import UsptoApiCatalogSDK
-from core.error import UsptoApiCatalogError
-from core.result import UsptoApiCatalogResult
-from core.response import UsptoApiCatalogResponse
-from core.spec import UsptoApiCatalogSpec
-from feature.base_feature import UsptoApiCatalogBaseFeature
+from projectname_sdk.core.error import UsptoApiCatalogError
+from projectname_sdk.core.result import UsptoApiCatalogResult
+from projectname_sdk.core.response import UsptoApiCatalogResponse
+from projectname_sdk.core.spec import UsptoApiCatalogSpec
+from projectname_sdk.feature.base_feature import UsptoApiCatalogBaseFeature
 
 
 def _client():

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from usptoapicatalog_sdk.utility.voxgig_struct import voxgig_struct as vs
 from usptoapicatalog_sdk import UsptoApiCatalogSDK
-from core import helpers
+from usptoapicatalog_sdk.core import helpers
 from test import runner
 
 
@@ -95,16 +95,16 @@ def _patent_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "USPTOAPICATALOG_TEST_PATENT_ENTID": {},
-        "USPTOAPICATALOG_TEST_LIVE": "FALSE",
-        "USPTOAPICATALOG_APIKEY": "NONE",
+        "USPTO_API_CATALOG_TEST_PATENT_ENTID": {},
+        "USPTO_API_CATALOG_TEST_LIVE": "FALSE",
+        "USPTO_API_CATALOG_APIKEY": "NONE",
     })
 
-    live = env.get("USPTOAPICATALOG_TEST_LIVE") == "TRUE"
+    live = env.get("USPTO_API_CATALOG_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("USPTOAPICATALOG_APIKEY"),
+            "apikey": env.get("USPTO_API_CATALOG_APIKEY"),
         }
         client = UsptoApiCatalogSDK(merged_opts)
         return {

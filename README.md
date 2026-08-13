@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = UsptoApiCatalogSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = UsptoApiCatalogSDK.test({
+  entity: {
+    patent: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const patents = await client.Patent().list()
-// patents is an array of bare Patent records populated with mock data
+// patents is an array of Patent entities, populated with mock data
+// — call patents[0].data() for the record itself
 console.log(patents)
 ```
 
@@ -112,7 +121,7 @@ const client = new UsptoApiCatalogSDK({
   apikey: process.env.USPTO_API_CATALOG_APIKEY,
 })
 
-// List all patents (returns Patent[])
+// List all patents (returns PatentEntity[] — .data() for the record)
 const patents = await client.Patent().list()
 for (const patent of patents) {
   console.log(patent)
@@ -199,7 +208,7 @@ $client = new UsptoApiCatalogSDK([
 $patents = $client->Patent()->list();
 print_r($patents);
 
-// Load a specific patent (returns the bare record; throws on error)
+// Load a specific patent (returns the ENTITY; call data_get() for the record; throws on error)
 $patent = $client->Patent()->load();
 print_r($patent);
 ```
@@ -234,7 +243,7 @@ client = UsptoApiCatalogSDK.new({
 patents = client.Patent.list
 puts patents
 
-# Load a specific patent (returns the bare record; raises on error)
+# Load a specific patent (returns the ENTITY; call data_get for the record)
 patent = client.Patent.load()
 puts patent
 ```
@@ -373,6 +382,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://developer.uspto.gov/api-catalog](https://developer.uspto.gov/api-catalog)
 
