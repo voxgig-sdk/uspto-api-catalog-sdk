@@ -28,7 +28,7 @@ class UsptoApiCatalogSDK
     utility = UsptoApiCatalogUtility.new
     @_utility = utility
 
-    config = UsptoApiCatalogConfig.make_config
+    config = UsptoApiCatalogConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

@@ -15,7 +15,7 @@ require_relative "../UsptoApiCatalog_sdk"
 module UsptoApiCatalogFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = UsptoApiCatalogConfig.make_config["feature"]
+    f = UsptoApiCatalogConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

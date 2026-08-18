@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from usptoapicatalog_sdk.config import make_config
+from usptoapicatalog_sdk.config import shared_config
 from usptoapicatalog_sdk.features import _make_feature
 from usptoapicatalog_sdk.core.control import UsptoApiCatalogControl
 from usptoapicatalog_sdk.core.error import UsptoApiCatalogError
@@ -24,7 +24,7 @@ from usptoapicatalog_sdk.core.spec import UsptoApiCatalogSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

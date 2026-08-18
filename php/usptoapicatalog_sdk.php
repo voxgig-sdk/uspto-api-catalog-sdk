@@ -40,7 +40,7 @@ class UsptoApiCatalogSDK
         $utility = new UsptoApiCatalogUtility();
         $this->_utility = $utility;
 
-        $config = UsptoApiCatalogConfig::make_config();
+        $config = UsptoApiCatalogConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

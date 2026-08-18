@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://developer.uspto.gov',
+    base: "https://developer.uspto.gov",
 
     auth: {
       prefix: '',
@@ -62,109 +62,64 @@ class Config {
     "patent": {
       "fields": [
         {
-          "active": true,
           "name": "applicationNumber",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "assignee",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "assignmentDate",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "assignmentId",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "assignor",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "citationNumber",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "citationType",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "citations",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 7
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "data",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 8
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "date",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "patentNumber",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "rejectionText",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "rejectionType",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 12
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "text",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 13
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "url",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         }
       ],
       "name": "patent",
@@ -174,24 +129,19 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "xml",
                     "kind": "query",
                     "name": "format",
                     "orig": "format",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "search_query",
                     "orig": "search_query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -212,19 +162,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.assignments`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "application_number",
                     "orig": "application_number",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -244,19 +190,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.citations`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "application_number",
                     "orig": "application_number",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -276,19 +218,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.rejections`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "date",
                     "orig": "date",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -308,19 +246,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.files`"
-              },
-              "index$": 3
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "patent_number",
                     "orig": "patent_number",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -340,19 +274,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.citations`"
-              },
-              "index$": 4
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "query",
                     "orig": "query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -372,26 +302,21 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              },
-              "index$": 5
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "application_number",
                     "orig": "application_number",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -411,11 +336,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.officeAction`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -425,32 +348,20 @@ class Config {
     "trademark": {
       "fields": [
         {
-          "active": true,
           "name": "assignments",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "documents",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "serialNumber",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "status",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         }
       ],
       "name": "trademark",
@@ -460,24 +371,19 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "xml",
                     "kind": "query",
                     "name": "format",
                     "orig": "format",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "search_query",
                     "orig": "search_query",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -498,34 +404,27 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.assignments`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "registration_number",
                     "orig": "registration_number",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "serial_number",
                     "orig": "serial_number",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -546,11 +445,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.trademarkStatus`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
