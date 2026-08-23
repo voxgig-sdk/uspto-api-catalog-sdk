@@ -33,6 +33,9 @@ class UsptoApiCatalogConfig
         return [
             "main" => [
                 "name" => "UsptoApiCatalog",
+                "slug" => "uspto-api-catalog",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [

@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "UsptoApiCatalog",
+      slug = "uspto-api-catalog",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
