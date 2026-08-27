@@ -28,6 +28,7 @@ module UsptoApiCatalogConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
