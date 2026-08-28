@@ -35,39 +35,12 @@ class Patent(TypedDict, total=False):
 
 
 class PatentLoadMatch(TypedDict, total=False):
-    applicationNumber: str
-    assignee: str
-    assignmentDate: str
-    assignmentId: str
-    assignor: str
-    citationNumber: str
-    citationType: str
-    citations: list
-    data: list
-    date: str
-    patentNumber: str
-    rejectionText: str
-    rejectionType: str
-    text: str
-    url: str
+    application_number: str
 
 
 class PatentListMatch(TypedDict, total=False):
-    applicationNumber: str
-    assignee: str
-    assignmentDate: str
-    assignmentId: str
-    assignor: str
-    citationNumber: str
-    citationType: str
-    citations: list
-    data: list
-    date: str
-    patentNumber: str
-    rejectionText: str
-    rejectionType: str
-    text: str
-    url: str
+    format: str
+    search_query: str
 
 
 class Trademark(TypedDict, total=False):
@@ -78,14 +51,10 @@ class Trademark(TypedDict, total=False):
 
 
 class TrademarkLoadMatch(TypedDict, total=False):
-    assignments: list
-    documents: list
-    serialNumber: str
-    status: str
+    registration_number: str
+    serial_number: str
 
 
 class TrademarkListMatch(TypedDict, total=False):
-    assignments: list
-    documents: list
-    serialNumber: str
-    status: str
+    format: str
+    search_query: str

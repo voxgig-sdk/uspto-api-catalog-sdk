@@ -75,131 +75,23 @@ Patent = Struct.new(
 
 # Request payload for Patent#load.
 #
-# @!attribute [rw] applicationNumber
-#   @return [String, nil]
-#
-# @!attribute [rw] assignee
-#   @return [String, nil]
-#
-# @!attribute [rw] assignmentDate
-#   @return [String, nil]
-#
-# @!attribute [rw] assignmentId
-#   @return [String, nil]
-#
-# @!attribute [rw] assignor
-#   @return [String, nil]
-#
-# @!attribute [rw] citationNumber
-#   @return [String, nil]
-#
-# @!attribute [rw] citationType
-#   @return [String, nil]
-#
-# @!attribute [rw] citations
-#   @return [Array, nil]
-#
-# @!attribute [rw] data
-#   @return [Array, nil]
-#
-# @!attribute [rw] date
-#   @return [String, nil]
-#
-# @!attribute [rw] patentNumber
-#   @return [String, nil]
-#
-# @!attribute [rw] rejectionText
-#   @return [String, nil]
-#
-# @!attribute [rw] rejectionType
-#   @return [String, nil]
-#
-# @!attribute [rw] text
-#   @return [String, nil]
-#
-# @!attribute [rw] url
+# @!attribute [rw] application_number
 #   @return [String, nil]
 PatentLoadMatch = Struct.new(
-  :applicationNumber,
-  :assignee,
-  :assignmentDate,
-  :assignmentId,
-  :assignor,
-  :citationNumber,
-  :citationType,
-  :citations,
-  :data,
-  :date,
-  :patentNumber,
-  :rejectionText,
-  :rejectionType,
-  :text,
-  :url,
+  :application_number,
   keyword_init: true
 )
 
 # Request payload for Patent#list.
 #
-# @!attribute [rw] applicationNumber
+# @!attribute [rw] format
 #   @return [String, nil]
 #
-# @!attribute [rw] assignee
-#   @return [String, nil]
-#
-# @!attribute [rw] assignmentDate
-#   @return [String, nil]
-#
-# @!attribute [rw] assignmentId
-#   @return [String, nil]
-#
-# @!attribute [rw] assignor
-#   @return [String, nil]
-#
-# @!attribute [rw] citationNumber
-#   @return [String, nil]
-#
-# @!attribute [rw] citationType
-#   @return [String, nil]
-#
-# @!attribute [rw] citations
-#   @return [Array, nil]
-#
-# @!attribute [rw] data
-#   @return [Array, nil]
-#
-# @!attribute [rw] date
-#   @return [String, nil]
-#
-# @!attribute [rw] patentNumber
-#   @return [String, nil]
-#
-# @!attribute [rw] rejectionText
-#   @return [String, nil]
-#
-# @!attribute [rw] rejectionType
-#   @return [String, nil]
-#
-# @!attribute [rw] text
-#   @return [String, nil]
-#
-# @!attribute [rw] url
+# @!attribute [rw] search_query
 #   @return [String, nil]
 PatentListMatch = Struct.new(
-  :applicationNumber,
-  :assignee,
-  :assignmentDate,
-  :assignmentId,
-  :assignor,
-  :citationNumber,
-  :citationType,
-  :citations,
-  :data,
-  :date,
-  :patentNumber,
-  :rejectionText,
-  :rejectionType,
-  :text,
-  :url,
+  :format,
+  :search_query,
   keyword_init: true
 )
 
@@ -226,43 +118,27 @@ Trademark = Struct.new(
 
 # Request payload for Trademark#load.
 #
-# @!attribute [rw] assignments
-#   @return [Array, nil]
-#
-# @!attribute [rw] documents
-#   @return [Array, nil]
-#
-# @!attribute [rw] serialNumber
+# @!attribute [rw] registration_number
 #   @return [String, nil]
 #
-# @!attribute [rw] status
+# @!attribute [rw] serial_number
 #   @return [String, nil]
 TrademarkLoadMatch = Struct.new(
-  :assignments,
-  :documents,
-  :serialNumber,
-  :status,
+  :registration_number,
+  :serial_number,
   keyword_init: true
 )
 
 # Request payload for Trademark#list.
 #
-# @!attribute [rw] assignments
-#   @return [Array, nil]
-#
-# @!attribute [rw] documents
-#   @return [Array, nil]
-#
-# @!attribute [rw] serialNumber
+# @!attribute [rw] format
 #   @return [String, nil]
 #
-# @!attribute [rw] status
+# @!attribute [rw] search_query
 #   @return [String, nil]
 TrademarkListMatch = Struct.new(
-  :assignments,
-  :documents,
-  :serialNumber,
-  :status,
+  :format,
+  :search_query,
   keyword_init: true
 )
 

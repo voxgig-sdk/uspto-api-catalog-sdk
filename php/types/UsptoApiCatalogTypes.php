@@ -35,41 +35,14 @@ class Patent
 /** Request payload for Patent#load. */
 class PatentLoadMatch
 {
-    public ?string $applicationNumber = null;
-    public ?string $assignee = null;
-    public ?string $assignmentDate = null;
-    public ?string $assignmentId = null;
-    public ?string $assignor = null;
-    public ?string $citationNumber = null;
-    public ?string $citationType = null;
-    public ?array $citations = null;
-    public ?array $data = null;
-    public ?string $date = null;
-    public ?string $patentNumber = null;
-    public ?string $rejectionText = null;
-    public ?string $rejectionType = null;
-    public ?string $text = null;
-    public ?string $url = null;
+    public ?string $application_number = null;
 }
 
 /** Request payload for Patent#list. */
 class PatentListMatch
 {
-    public ?string $applicationNumber = null;
-    public ?string $assignee = null;
-    public ?string $assignmentDate = null;
-    public ?string $assignmentId = null;
-    public ?string $assignor = null;
-    public ?string $citationNumber = null;
-    public ?string $citationType = null;
-    public ?array $citations = null;
-    public ?array $data = null;
-    public ?string $date = null;
-    public ?string $patentNumber = null;
-    public ?string $rejectionText = null;
-    public ?string $rejectionType = null;
-    public ?string $text = null;
-    public ?string $url = null;
+    public ?string $format = null;
+    public ?string $search_query = null;
 }
 
 /** Trademark entity data model. */
@@ -84,18 +57,14 @@ class Trademark
 /** Request payload for Trademark#load. */
 class TrademarkLoadMatch
 {
-    public ?array $assignments = null;
-    public ?array $documents = null;
-    public ?string $serialNumber = null;
-    public ?string $status = null;
+    public ?string $registration_number = null;
+    public ?string $serial_number = null;
 }
 
 /** Request payload for Trademark#list. */
 class TrademarkListMatch
 {
-    public ?array $assignments = null;
-    public ?array $documents = null;
-    public ?string $serialNumber = null;
-    public ?string $status = null;
+    public ?string $format = null;
+    public ?string $search_query = null;
 }
 

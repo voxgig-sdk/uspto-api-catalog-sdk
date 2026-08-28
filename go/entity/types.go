@@ -33,40 +33,13 @@ type Patent struct {
 
 // PatentLoadMatch is the typed request payload for Patent.LoadTyped.
 type PatentLoadMatch struct {
-	ApplicationNumber *string `json:"applicationNumber,omitempty"`
-	Assignee *string `json:"assignee,omitempty"`
-	AssignmentDate *string `json:"assignmentDate,omitempty"`
-	AssignmentId *string `json:"assignmentId,omitempty"`
-	Assignor *string `json:"assignor,omitempty"`
-	CitationNumber *string `json:"citationNumber,omitempty"`
-	CitationType *string `json:"citationType,omitempty"`
-	Citations *[]any `json:"citations,omitempty"`
-	Data *[]any `json:"data,omitempty"`
-	Date *string `json:"date,omitempty"`
-	PatentNumber *string `json:"patentNumber,omitempty"`
-	RejectionText *string `json:"rejectionText,omitempty"`
-	RejectionType *string `json:"rejectionType,omitempty"`
-	Text *string `json:"text,omitempty"`
-	Url *string `json:"url,omitempty"`
+	ApplicationNumber *string `json:"application_number,omitempty"`
 }
 
 // PatentListMatch is the typed request payload for Patent.ListTyped.
 type PatentListMatch struct {
-	ApplicationNumber *string `json:"applicationNumber,omitempty"`
-	Assignee *string `json:"assignee,omitempty"`
-	AssignmentDate *string `json:"assignmentDate,omitempty"`
-	AssignmentId *string `json:"assignmentId,omitempty"`
-	Assignor *string `json:"assignor,omitempty"`
-	CitationNumber *string `json:"citationNumber,omitempty"`
-	CitationType *string `json:"citationType,omitempty"`
-	Citations *[]any `json:"citations,omitempty"`
-	Data *[]any `json:"data,omitempty"`
-	Date *string `json:"date,omitempty"`
-	PatentNumber *string `json:"patentNumber,omitempty"`
-	RejectionText *string `json:"rejectionText,omitempty"`
-	RejectionType *string `json:"rejectionType,omitempty"`
-	Text *string `json:"text,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Format *string `json:"format,omitempty"`
+	SearchQuery *string `json:"search_query,omitempty"`
 }
 
 // Trademark is the typed data model for the trademark entity.
@@ -79,18 +52,14 @@ type Trademark struct {
 
 // TrademarkLoadMatch is the typed request payload for Trademark.LoadTyped.
 type TrademarkLoadMatch struct {
-	Assignments *[]any `json:"assignments,omitempty"`
-	Documents *[]any `json:"documents,omitempty"`
-	SerialNumber *string `json:"serialNumber,omitempty"`
-	Status *string `json:"status,omitempty"`
+	RegistrationNumber *string `json:"registration_number,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
 }
 
 // TrademarkListMatch is the typed request payload for Trademark.ListTyped.
 type TrademarkListMatch struct {
-	Assignments *[]any `json:"assignments,omitempty"`
-	Documents *[]any `json:"documents,omitempty"`
-	SerialNumber *string `json:"serialNumber,omitempty"`
-	Status *string `json:"status,omitempty"`
+	Format *string `json:"format,omitempty"`
+	SearchQuery *string `json:"search_query,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

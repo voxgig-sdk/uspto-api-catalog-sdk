@@ -24,39 +24,12 @@ export interface Patent {
 }
 
 export interface PatentLoadMatch {
-  applicationNumber?: string
-  assignee?: string
-  assignmentDate?: string
-  assignmentId?: string
-  assignor?: string
-  citationNumber?: string
-  citationType?: string
-  citations?: any[]
-  data?: any[]
-  date?: string
-  patentNumber?: string
-  rejectionText?: string
-  rejectionType?: string
-  text?: string
-  url?: string
+  application_number?: string
 }
 
 export interface PatentListMatch {
-  applicationNumber?: string
-  assignee?: string
-  assignmentDate?: string
-  assignmentId?: string
-  assignor?: string
-  citationNumber?: string
-  citationType?: string
-  citations?: any[]
-  data?: any[]
-  date?: string
-  patentNumber?: string
-  rejectionText?: string
-  rejectionType?: string
-  text?: string
-  url?: string
+  format?: string
+  search_query?: string
 }
 
 export interface Trademark {
@@ -67,16 +40,12 @@ export interface Trademark {
 }
 
 export interface TrademarkLoadMatch {
-  assignments?: any[]
-  documents?: any[]
-  serialNumber?: string
-  status?: string
+  registration_number?: string
+  serial_number?: string
 }
 
 export interface TrademarkListMatch {
-  assignments?: any[]
-  documents?: any[]
-  serialNumber?: string
-  status?: string
+  format?: string
+  search_query?: string
 }
 
