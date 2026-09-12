@@ -98,7 +98,7 @@ func TestPatentEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		patentRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.patent", setup.data)))
+		patentRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.patent")))
 		var patentRef01Data map[string]any
 		if len(patentRef01DataRaw) > 0 {
 			patentRef01Data = core.ToMapAny(patentRef01DataRaw[0][1])
@@ -157,7 +157,7 @@ func patentBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"patent01", "patent02", "patent03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -177,7 +177,7 @@ func patentBasicSetup(extra map[string]any) *entityTestSetup {
 		"USPTO_API_CATALOG_TEST_PATENT_ENTID": idmap,
 		"USPTO_API_CATALOG_TEST_LIVE":      "FALSE",
 		"USPTO_API_CATALOG_TEST_EXPLAIN":   "FALSE",
-		"USPTO_API_CATALOG_APIKEY":         "NONE",
+		"USPTO_API_CATALOG_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["USPTO_API_CATALOG_TEST_PATENT_ENTID"])
@@ -186,11 +186,23 @@ func patentBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["USPTO_API_CATALOG_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["USPTO_API_CATALOG_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewUsptoApiCatalogSDK(core.ToMapAny(mergedOpts))
 	}

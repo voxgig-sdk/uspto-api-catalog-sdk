@@ -139,7 +139,7 @@ function patent_basic_setup(extra)
     ["USPTO_API_CATALOG_TEST_PATENT_ENTID"] = idmap,
     ["USPTO_API_CATALOG_TEST_LIVE"] = "FALSE",
     ["USPTO_API_CATALOG_TEST_EXPLAIN"] = "FALSE",
-    ["USPTO_API_CATALOG_APIKEY"] = "NONE",
+    ["USPTO_API_CATALOG_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -150,6 +150,9 @@ function patent_basic_setup(extra)
 
   if env["USPTO_API_CATALOG_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["USPTO_API_CATALOG_APIKEY"],
       },

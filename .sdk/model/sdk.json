@@ -46,6 +46,7 @@
             },
             {
               "active": true,
+              "format": "date",
               "name": "assignmentDate",
               "req": false,
               "type": "`$STRING`"
@@ -88,6 +89,7 @@
             },
             {
               "active": true,
+              "format": "date",
               "name": "date",
               "req": false,
               "type": "`$STRING`"
@@ -118,6 +120,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "url",
               "req": false,
               "type": "`$STRING`"
@@ -155,9 +158,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/patent-assignment/v1.4",
-                  "parts": [
-                    "patent-assignment",
-                    "v1.4"
+                  "segments": [
+                    {
+                      "lit": "patent-assignment"
+                    },
+                    {
+                      "lit": "v1.4"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -187,9 +194,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/office-action-citations/v2",
-                  "parts": [
-                    "office-action-citations",
-                    "v2"
+                  "segments": [
+                    {
+                      "lit": "office-action-citations"
+                    },
+                    {
+                      "lit": "v2"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -218,9 +229,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/office-action-rejections/v2",
-                  "parts": [
-                    "office-action-rejections",
-                    "v2"
+                  "segments": [
+                    {
+                      "lit": "office-action-rejections"
+                    },
+                    {
+                      "lit": "v2"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -249,9 +264,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/office-action-weekly-zips/v1",
-                  "parts": [
-                    "office-action-weekly-zips",
-                    "v1"
+                  "segments": [
+                    {
+                      "lit": "office-action-weekly-zips"
+                    },
+                    {
+                      "lit": "v1"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -280,9 +299,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/enriched-citation/v3",
-                  "parts": [
-                    "enriched-citation",
-                    "v3"
+                  "segments": [
+                    {
+                      "lit": "enriched-citation"
+                    },
+                    {
+                      "lit": "v3"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -311,9 +334,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/ptab/v3",
-                  "parts": [
-                    "ptab",
-                    "v3"
+                  "segments": [
+                    {
+                      "lit": "ptab"
+                    },
+                    {
+                      "lit": "v3"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -348,9 +375,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/office-action-text/v1",
-                  "parts": [
-                    "office-action-text",
-                    "v1"
+                  "segments": [
+                    {
+                      "lit": "office-action-text"
+                    },
+                    {
+                      "lit": "v1"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -432,9 +463,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/trademark-assignment/v1.4",
-                  "parts": [
-                    "trademark-assignment",
-                    "v1.4"
+                  "segments": [
+                    {
+                      "lit": "trademark-assignment"
+                    },
+                    {
+                      "lit": "v1.4"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -478,9 +513,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/tsdr/v1.0",
-                  "parts": [
-                    "tsdr",
-                    "v1.0"
+                  "segments": [
+                    {
+                      "lit": "tsdr"
+                    },
+                    {
+                      "lit": "v1.0"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -565,8 +604,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -758,6 +800,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -783,6 +828,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -834,6 +883,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -858,6 +908,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -909,6 +960,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -933,6 +985,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -973,6 +1026,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -998,6 +1054,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -1032,6 +1091,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1057,6 +1119,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -1097,6 +1162,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1122,6 +1190,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1167,6 +1238,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1192,6 +1266,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1209,11 +1286,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -1242,6 +1314,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1266,6 +1341,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

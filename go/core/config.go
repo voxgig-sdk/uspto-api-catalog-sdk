@@ -48,6 +48,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date",
 						"name": "assignmentDate",
 						"type": "`$STRING`",
 					},
@@ -76,6 +77,7 @@ func MakeConfig() map[string]any {
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
+						"format": "date",
 						"name": "date",
 						"type": "`$STRING`",
 					},
@@ -96,6 +98,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "url",
 						"type": "`$STRING`",
 					},
@@ -127,9 +130,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/patent-assignment/v1.4",
-								"parts": []any{
-									"patent-assignment",
-									"v1.4",
+								"segments": []any{
+									map[string]any{
+										"lit": "patent-assignment",
+									},
+									map[string]any{
+										"lit": "v1.4",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -140,6 +147,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.assignments`",
+								},
+								"parts": []any{
+									"patent-assignment",
+									"v1.4",
 								},
 							},
 							map[string]any{
@@ -156,9 +167,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/office-action-citations/v2",
-								"parts": []any{
-									"office-action-citations",
-									"v2",
+								"segments": []any{
+									map[string]any{
+										"lit": "office-action-citations",
+									},
+									map[string]any{
+										"lit": "v2",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -168,6 +183,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.citations`",
+								},
+								"parts": []any{
+									"office-action-citations",
+									"v2",
 								},
 							},
 							map[string]any{
@@ -184,9 +203,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/office-action-rejections/v2",
-								"parts": []any{
-									"office-action-rejections",
-									"v2",
+								"segments": []any{
+									map[string]any{
+										"lit": "office-action-rejections",
+									},
+									map[string]any{
+										"lit": "v2",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -196,6 +219,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.rejections`",
+								},
+								"parts": []any{
+									"office-action-rejections",
+									"v2",
 								},
 							},
 							map[string]any{
@@ -212,9 +239,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/office-action-weekly-zips/v1",
-								"parts": []any{
-									"office-action-weekly-zips",
-									"v1",
+								"segments": []any{
+									map[string]any{
+										"lit": "office-action-weekly-zips",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -224,6 +255,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.files`",
+								},
+								"parts": []any{
+									"office-action-weekly-zips",
+									"v1",
 								},
 							},
 							map[string]any{
@@ -240,9 +275,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/enriched-citation/v3",
-								"parts": []any{
-									"enriched-citation",
-									"v3",
+								"segments": []any{
+									map[string]any{
+										"lit": "enriched-citation",
+									},
+									map[string]any{
+										"lit": "v3",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -252,6 +291,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.citations`",
+								},
+								"parts": []any{
+									"enriched-citation",
+									"v3",
 								},
 							},
 							map[string]any{
@@ -268,9 +311,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/ptab/v3",
-								"parts": []any{
-									"ptab",
-									"v3",
+								"segments": []any{
+									map[string]any{
+										"lit": "ptab",
+									},
+									map[string]any{
+										"lit": "v3",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -280,6 +327,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"ptab",
+									"v3",
 								},
 							},
 						},
@@ -302,9 +353,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/office-action-text/v1",
-								"parts": []any{
-									"office-action-text",
-									"v1",
+								"segments": []any{
+									map[string]any{
+										"lit": "office-action-text",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -314,6 +369,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.officeAction`",
+								},
+								"parts": []any{
+									"office-action-text",
+									"v1",
 								},
 							},
 						},
@@ -369,9 +428,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/trademark-assignment/v1.4",
-								"parts": []any{
-									"trademark-assignment",
-									"v1.4",
+								"segments": []any{
+									map[string]any{
+										"lit": "trademark-assignment",
+									},
+									map[string]any{
+										"lit": "v1.4",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -382,6 +445,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.assignments`",
+								},
+								"parts": []any{
+									"trademark-assignment",
+									"v1.4",
 								},
 							},
 						},
@@ -410,9 +477,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/tsdr/v1.0",
-								"parts": []any{
-									"tsdr",
-									"v1.0",
+								"segments": []any{
+									map[string]any{
+										"lit": "tsdr",
+									},
+									map[string]any{
+										"lit": "v1.0",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -424,6 +495,10 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.trademarkStatus`",
 								},
+								"parts": []any{
+									"tsdr",
+									"v1.0",
+								},
 							},
 						},
 					},
@@ -434,6 +509,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

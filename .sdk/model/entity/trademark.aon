@@ -54,9 +54,13 @@ main: kit: entity: trademark: {
           }
           method: "GET"
           orig: "/trademark-assignment/v1.4"
-          parts: [
-            "trademark-assignment"
-            "v1.4"
+          segments: [
+            {
+              lit: "trademark-assignment"
+            }
+            {
+              lit: "v1.4"
+            }
           ]
           select: {
             exist: [
@@ -95,9 +99,13 @@ main: kit: entity: trademark: {
           }
           method: "GET"
           orig: "/tsdr/v1.0"
-          parts: [
-            "tsdr"
-            "v1.0"
+          segments: [
+            {
+              lit: "tsdr"
+            }
+            {
+              lit: "v1.0"
+            }
           ]
           select: {
             exist: [

@@ -44,6 +44,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "assignmentDate",
             ["type"] = "`$STRING`",
           },
@@ -72,6 +73,7 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "date",
             ["name"] = "date",
             ["type"] = "`$STRING`",
           },
@@ -92,6 +94,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "url",
             ["type"] = "`$STRING`",
           },
@@ -123,9 +126,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/patent-assignment/v1.4",
-                ["parts"] = {
-                  "patent-assignment",
-                  "v1.4",
+                ["segments"] = {
+                  {
+                    ["lit"] = "patent-assignment",
+                  },
+                  {
+                    ["lit"] = "v1.4",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -136,6 +143,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.assignments`",
+                },
+                ["parts"] = {
+                  "patent-assignment",
+                  "v1.4",
                 },
               },
               {
@@ -152,9 +163,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/office-action-citations/v2",
-                ["parts"] = {
-                  "office-action-citations",
-                  "v2",
+                ["segments"] = {
+                  {
+                    ["lit"] = "office-action-citations",
+                  },
+                  {
+                    ["lit"] = "v2",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -164,6 +179,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.citations`",
+                },
+                ["parts"] = {
+                  "office-action-citations",
+                  "v2",
                 },
               },
               {
@@ -180,9 +199,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/office-action-rejections/v2",
-                ["parts"] = {
-                  "office-action-rejections",
-                  "v2",
+                ["segments"] = {
+                  {
+                    ["lit"] = "office-action-rejections",
+                  },
+                  {
+                    ["lit"] = "v2",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -192,6 +215,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.rejections`",
+                },
+                ["parts"] = {
+                  "office-action-rejections",
+                  "v2",
                 },
               },
               {
@@ -208,9 +235,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/office-action-weekly-zips/v1",
-                ["parts"] = {
-                  "office-action-weekly-zips",
-                  "v1",
+                ["segments"] = {
+                  {
+                    ["lit"] = "office-action-weekly-zips",
+                  },
+                  {
+                    ["lit"] = "v1",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -220,6 +251,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.files`",
+                },
+                ["parts"] = {
+                  "office-action-weekly-zips",
+                  "v1",
                 },
               },
               {
@@ -236,9 +271,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/enriched-citation/v3",
-                ["parts"] = {
-                  "enriched-citation",
-                  "v3",
+                ["segments"] = {
+                  {
+                    ["lit"] = "enriched-citation",
+                  },
+                  {
+                    ["lit"] = "v3",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -248,6 +287,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.citations`",
+                },
+                ["parts"] = {
+                  "enriched-citation",
+                  "v3",
                 },
               },
               {
@@ -264,9 +307,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/ptab/v3",
-                ["parts"] = {
-                  "ptab",
-                  "v3",
+                ["segments"] = {
+                  {
+                    ["lit"] = "ptab",
+                  },
+                  {
+                    ["lit"] = "v3",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -276,6 +323,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "ptab",
+                  "v3",
                 },
               },
             },
@@ -298,9 +349,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/office-action-text/v1",
-                ["parts"] = {
-                  "office-action-text",
-                  "v1",
+                ["segments"] = {
+                  {
+                    ["lit"] = "office-action-text",
+                  },
+                  {
+                    ["lit"] = "v1",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -310,6 +365,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.officeAction`",
+                },
+                ["parts"] = {
+                  "office-action-text",
+                  "v1",
                 },
               },
             },
@@ -365,9 +424,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/trademark-assignment/v1.4",
-                ["parts"] = {
-                  "trademark-assignment",
-                  "v1.4",
+                ["segments"] = {
+                  {
+                    ["lit"] = "trademark-assignment",
+                  },
+                  {
+                    ["lit"] = "v1.4",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -378,6 +441,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.assignments`",
+                },
+                ["parts"] = {
+                  "trademark-assignment",
+                  "v1.4",
                 },
               },
             },
@@ -406,9 +473,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tsdr/v1.0",
-                ["parts"] = {
-                  "tsdr",
-                  "v1.0",
+                ["segments"] = {
+                  {
+                    ["lit"] = "tsdr",
+                  },
+                  {
+                    ["lit"] = "v1.0",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -419,6 +490,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.trademarkStatus`",
+                },
+                ["parts"] = {
+                  "tsdr",
+                  "v1.0",
                 },
               },
             },

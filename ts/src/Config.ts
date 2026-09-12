@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -82,6 +93,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date",
           "name": "assignmentDate",
           "type": "`$STRING`"
         },
@@ -110,6 +122,7 @@ class Config {
           "type": "`$ARRAY`"
         },
         {
+          "format": "date",
           "name": "date",
           "type": "`$STRING`"
         },
@@ -130,6 +143,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "url",
           "type": "`$STRING`"
         }
@@ -161,9 +175,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/patent-assignment/v1.4",
-              "parts": [
-                "patent-assignment",
-                "v1.4"
+              "segments": [
+                {
+                  "lit": "patent-assignment"
+                },
+                {
+                  "lit": "v1.4"
+                }
               ],
               "select": {
                 "exist": [
@@ -174,7 +192,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.assignments`"
-              }
+              },
+              "parts": [
+                "patent-assignment",
+                "v1.4"
+              ]
             },
             {
               "args": {
@@ -190,9 +212,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/office-action-citations/v2",
-              "parts": [
-                "office-action-citations",
-                "v2"
+              "segments": [
+                {
+                  "lit": "office-action-citations"
+                },
+                {
+                  "lit": "v2"
+                }
               ],
               "select": {
                 "exist": [
@@ -202,7 +228,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.citations`"
-              }
+              },
+              "parts": [
+                "office-action-citations",
+                "v2"
+              ]
             },
             {
               "args": {
@@ -218,9 +248,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/office-action-rejections/v2",
-              "parts": [
-                "office-action-rejections",
-                "v2"
+              "segments": [
+                {
+                  "lit": "office-action-rejections"
+                },
+                {
+                  "lit": "v2"
+                }
               ],
               "select": {
                 "exist": [
@@ -230,7 +264,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.rejections`"
-              }
+              },
+              "parts": [
+                "office-action-rejections",
+                "v2"
+              ]
             },
             {
               "args": {
@@ -246,9 +284,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/office-action-weekly-zips/v1",
-              "parts": [
-                "office-action-weekly-zips",
-                "v1"
+              "segments": [
+                {
+                  "lit": "office-action-weekly-zips"
+                },
+                {
+                  "lit": "v1"
+                }
               ],
               "select": {
                 "exist": [
@@ -258,7 +300,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.files`"
-              }
+              },
+              "parts": [
+                "office-action-weekly-zips",
+                "v1"
+              ]
             },
             {
               "args": {
@@ -274,9 +320,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/enriched-citation/v3",
-              "parts": [
-                "enriched-citation",
-                "v3"
+              "segments": [
+                {
+                  "lit": "enriched-citation"
+                },
+                {
+                  "lit": "v3"
+                }
               ],
               "select": {
                 "exist": [
@@ -286,7 +336,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.citations`"
-              }
+              },
+              "parts": [
+                "enriched-citation",
+                "v3"
+              ]
             },
             {
               "args": {
@@ -302,9 +356,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/ptab/v3",
-              "parts": [
-                "ptab",
-                "v3"
+              "segments": [
+                {
+                  "lit": "ptab"
+                },
+                {
+                  "lit": "v3"
+                }
               ],
               "select": {
                 "exist": [
@@ -314,7 +372,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "ptab",
+                "v3"
+              ]
             }
           ]
         },
@@ -336,9 +398,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/office-action-text/v1",
-              "parts": [
-                "office-action-text",
-                "v1"
+              "segments": [
+                {
+                  "lit": "office-action-text"
+                },
+                {
+                  "lit": "v1"
+                }
               ],
               "select": {
                 "exist": [
@@ -348,7 +414,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.officeAction`"
-              }
+              },
+              "parts": [
+                "office-action-text",
+                "v1"
+              ]
             }
           ]
         }
@@ -403,9 +473,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/trademark-assignment/v1.4",
-              "parts": [
-                "trademark-assignment",
-                "v1.4"
+              "segments": [
+                {
+                  "lit": "trademark-assignment"
+                },
+                {
+                  "lit": "v1.4"
+                }
               ],
               "select": {
                 "exist": [
@@ -416,7 +490,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.assignments`"
-              }
+              },
+              "parts": [
+                "trademark-assignment",
+                "v1.4"
+              ]
             }
           ]
         },
@@ -444,9 +522,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/tsdr/v1.0",
-              "parts": [
-                "tsdr",
-                "v1.0"
+              "segments": [
+                {
+                  "lit": "tsdr"
+                },
+                {
+                  "lit": "v1.0"
+                }
               ],
               "select": {
                 "exist": [
@@ -457,7 +539,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.trademarkStatus`"
-              }
+              },
+              "parts": [
+                "tsdr",
+                "v1.0"
+              ]
             }
           ]
         }
@@ -473,6 +559,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

@@ -97,15 +97,18 @@ def _trademark_direct_setup(mockres):
     env = runner.env_override({
         "USPTO_API_CATALOG_TEST_TRADEMARK_ENTID": {},
         "USPTO_API_CATALOG_TEST_LIVE": "FALSE",
-        "USPTO_API_CATALOG_APIKEY": "NONE",
+        "USPTO_API_CATALOG_APIKEY": "",
     })
 
     live = env.get("USPTO_API_CATALOG_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("USPTO_API_CATALOG_APIKEY"),
-        }
+        })
         client = UsptoApiCatalogSDK(merged_opts)
         return {
             "client": client,
