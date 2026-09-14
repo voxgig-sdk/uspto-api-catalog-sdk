@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { UsptoApiCatalogSDK } from '@voxgig-sdk/uspto-api-catalog'
+import { UsptoApiCatalogSDK } from '@voxgig-sdk/uspto-api-catalog-sdk'
 
 const client = new UsptoApiCatalogSDK({
   apikey: process.env.USPTO_API_CATALOG_APIKEY,
@@ -506,7 +506,7 @@ uspto-api-catalog/
 Import the SDK from the package root:
 
 ```ts
-import { UsptoApiCatalogSDK } from '@voxgig-sdk/uspto-api-catalog'
+import { UsptoApiCatalogSDK } from '@voxgig-sdk/uspto-api-catalog-sdk'
 ```
 
 ### Entity state

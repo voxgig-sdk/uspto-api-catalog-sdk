@@ -105,7 +105,7 @@ local results, err = client:Patent():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/uspto-api-catalog` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases) |
+| TypeScript | `@voxgig-sdk/uspto-api-catalog-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases) |
 | Python | `voxgig-sdk-uspto-api-catalog` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases) |
 | PHP | `voxgig-sdk/uspto-api-catalog` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/uspto-api-catalog-sdk/go` | `go get github.com/voxgig-sdk/uspto-api-catalog-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Patent():list()
 ### TypeScript
 
 ```ts
-import { UsptoApiCatalogSDK } from '@voxgig-sdk/uspto-api-catalog'
+import { UsptoApiCatalogSDK } from '@voxgig-sdk/uspto-api-catalog-sdk'
 
 const client = new UsptoApiCatalogSDK({
   apikey: process.env.USPTO_API_CATALOG_APIKEY,
