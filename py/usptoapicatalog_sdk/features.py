@@ -1,12 +1,18 @@
 # UsptoApiCatalog SDK feature factory
 
 from usptoapicatalog_sdk.feature.base_feature import UsptoApiCatalogBaseFeature
+from usptoapicatalog_sdk.feature.ratelimit_feature import UsptoApiCatalogRatelimitFeature
+from usptoapicatalog_sdk.feature.retry_feature import UsptoApiCatalogRetryFeature
 from usptoapicatalog_sdk.feature.test_feature import UsptoApiCatalogTestFeature
+from usptoapicatalog_sdk.feature.timeout_feature import UsptoApiCatalogTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: UsptoApiCatalogBaseFeature(),
+    "ratelimit": lambda: UsptoApiCatalogRatelimitFeature(),
+    "retry": lambda: UsptoApiCatalogRetryFeature(),
     "test": lambda: UsptoApiCatalogTestFeature(),
+    "timeout": lambda: UsptoApiCatalogTimeoutFeature(),
 }
 
 

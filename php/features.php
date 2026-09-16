@@ -4,7 +4,10 @@ declare(strict_types=1);
 // UsptoApiCatalog SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class UsptoApiCatalogFeatures
@@ -14,8 +17,14 @@ class UsptoApiCatalogFeatures
         switch ($name) {
             case "base":
                 return new UsptoApiCatalogBaseFeature();
+            case "ratelimit":
+                return new UsptoApiCatalogRatelimitFeature();
+            case "retry":
+                return new UsptoApiCatalogRetryFeature();
             case "test":
                 return new UsptoApiCatalogTestFeature();
+            case "timeout":
+                return new UsptoApiCatalogTimeoutFeature();
             default:
                 return new UsptoApiCatalogBaseFeature();
         }
@@ -31,7 +40,10 @@ class UsptoApiCatalogFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

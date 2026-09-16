@@ -110,6 +110,12 @@ main: kit: entity: patent: {
               }
             ]
           }
+          contract: {
+            id: "GET /patent-assignment/v1.4"
+            json: "{\"operationId\":\"getPatentAssignments\",\"parameters\":[{\"description\":\"Search query for patent assignments\",\"in\":\"query\",\"name\":\"searchQuery\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format (xml or json)\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"xml\",\"enum\":[\"xml\",\"json\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"assignments\":{\"items\":{\"properties\":{\"assignee\":{\"type\":\"string\"},\"assignmentDate\":{\"format\":\"date\",\"type\":\"string\"},\"assignmentId\":{\"type\":\"string\"},\"assignor\":{\"type\":\"string\"},\"patentNumber\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Successful response with patent assignment data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/patent-assignment/v1.4"
           segments: [
@@ -143,6 +149,12 @@ main: kit: entity: patent: {
               }
             ]
           }
+          contract: {
+            id: "GET /office-action-citations/v2"
+            json: "{\"operationId\":\"getOfficeActionCitations\",\"parameters\":[{\"description\":\"Patent application number\",\"in\":\"query\",\"name\":\"applicationNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"citations\":{\"items\":{\"properties\":{\"citationNumber\":{\"type\":\"string\"},\"citationType\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with office action citations\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"404\":{\"description\":\"Citations not found\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/office-action-citations/v2"
           segments: [
@@ -174,6 +186,12 @@ main: kit: entity: patent: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /office-action-rejections/v2"
+            json: "{\"operationId\":\"getOfficeActionRejections\",\"parameters\":[{\"description\":\"Patent application number\",\"in\":\"query\",\"name\":\"applicationNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"rejections\":{\"items\":{\"properties\":{\"rejectionText\":{\"type\":\"string\"},\"rejectionType\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with office action rejections\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"404\":{\"description\":\"Rejections not found\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/office-action-rejections/v2"
@@ -207,6 +225,12 @@ main: kit: entity: patent: {
               }
             ]
           }
+          contract: {
+            id: "GET /office-action-weekly-zips/v1"
+            json: "{\"operationId\":\"getOfficeActionWeeklyZips\",\"parameters\":[{\"description\":\"Date for the weekly zip file (YYYY-MM-DD format)\",\"in\":\"query\",\"name\":\"date\",\"required\":false,\"schema\":{\"format\":\"date\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"files\":{\"items\":{\"properties\":{\"date\":{\"format\":\"date\",\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with office action weekly zip data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/office-action-weekly-zips/v1"
           segments: [
@@ -239,6 +263,12 @@ main: kit: entity: patent: {
               }
             ]
           }
+          contract: {
+            id: "GET /enriched-citation/v3"
+            json: "{\"operationId\":\"getEnrichedCitations\",\"parameters\":[{\"description\":\"Patent number to retrieve citation data for\",\"in\":\"query\",\"name\":\"patentNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"citations\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with enriched citation data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"404\":{\"description\":\"Patent not found\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/enriched-citation/v3"
           segments: [
@@ -270,6 +300,12 @@ main: kit: entity: patent: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /ptab/v3"
+            json: "{\"operationId\":\"getPTABData\",\"parameters\":[{\"description\":\"Search query for PTAB data\",\"in\":\"query\",\"name\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with PTAB data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/ptab/v3"
@@ -307,6 +343,12 @@ main: kit: entity: patent: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /office-action-text/v1"
+            json: "{\"operationId\":\"getOfficeActionText\",\"parameters\":[{\"description\":\"Patent application number\",\"in\":\"query\",\"name\":\"applicationNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"officeAction\":{\"properties\":{\"applicationNumber\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with office action text\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"404\":{\"description\":\"Office action not found\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/office-action-text/v1"

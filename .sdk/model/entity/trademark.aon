@@ -52,6 +52,12 @@ main: kit: entity: trademark: {
               }
             ]
           }
+          contract: {
+            id: "GET /trademark-assignment/v1.4"
+            json: "{\"operationId\":\"getTrademarkAssignments\",\"parameters\":[{\"description\":\"Search query for trademark assignments\",\"in\":\"query\",\"name\":\"searchQuery\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format (xml or json)\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"xml\",\"enum\":[\"xml\",\"json\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"assignments\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Successful response with trademark assignment data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/trademark-assignment/v1.4"
           segments: [
@@ -96,6 +102,12 @@ main: kit: entity: trademark: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /tsdr/v1.0"
+            json: "{\"operationId\":\"getTSDRData\",\"parameters\":[{\"description\":\"Trademark serial number\",\"in\":\"query\",\"name\":\"serialNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Trademark registration number\",\"in\":\"query\",\"name\":\"registrationNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"trademarkStatus\":{\"properties\":{\"documents\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"serialNumber\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with trademark status data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"404\":{\"description\":\"Trademark not found\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/tsdr/v1.0"
