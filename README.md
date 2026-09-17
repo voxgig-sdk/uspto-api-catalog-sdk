@@ -105,12 +105,12 @@ local results, err = client:Patent():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/uspto-api-catalog-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases) |
-| Python | `voxgig-sdk-uspto-api-catalog` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases) |
-| PHP | `voxgig-sdk/uspto-api-catalog` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases) |
+| TypeScript | `@voxgig-sdk/uspto-api-catalog-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/tags) |
+| Python | `voxgig-sdk-uspto-api-catalog` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/tags) |
+| PHP | `voxgig-sdk/uspto-api-catalog` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/uspto-api-catalog-sdk/go` | `go get github.com/voxgig-sdk/uspto-api-catalog-sdk/go@latest` |
-| Ruby | `voxgig-sdk-uspto-api-catalog` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases) |
-| Lua | `voxgig-sdk-uspto-api-catalog` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases) |
+| Ruby | `voxgig-sdk-uspto-api-catalog` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/tags) |
+| Lua | `voxgig-sdk-uspto-api-catalog` | publish pending — [install from git tag](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/uspto-api-catalog-sdk/go-cli` | `go install github.com/voxgig-sdk/uspto-api-catalog-sdk/go-cli/cmd/uspto-api-catalog@latest` |
 | Go MCP server | `github.com/voxgig-sdk/uspto-api-catalog-sdk/go-mcp` | `go get github.com/voxgig-sdk/uspto-api-catalog-sdk/go-mcp@latest` |
 

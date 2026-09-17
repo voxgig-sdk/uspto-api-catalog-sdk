@@ -1,4 +1,4 @@
 # Entity Models
 
-@"patent.aon"
-@"trademark.aon"
+@"./patent.aon"
+@"./trademark.aon"

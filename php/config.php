@@ -103,6 +103,7 @@ class UsptoApiCatalogConfig
                 "base" => "https://developer.uspto.gov",
                 "auth" => [
                     "prefix" => "",
+                    "name" => "X-API-KEY",
                 ],
                 "headers" => [
           'content-type' => 'application/json',

@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicPatentFlow.aon"
-@"BasicTrademarkFlow.aon"
+@"./BasicPatentFlow.aon"
+@"./BasicTrademarkFlow.aon"
