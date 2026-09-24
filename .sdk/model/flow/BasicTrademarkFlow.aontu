@@ -1,0 +1,40 @@
+# BasicTrademarkFlow
+
+main: kit: flow: BasicTrademarkFlow:
+{
+  entity: "trademark",
+  kind: "basic",
+  name: "BasicTrademarkFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "trademark_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "trademark_ref01",
+        srcdatavar: "trademark_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-trademark_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTrademarkFlow"
+}

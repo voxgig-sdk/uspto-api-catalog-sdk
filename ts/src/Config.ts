@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -147,66 +140,81 @@ class Config {
       "fields": [
         {
           "name": "applicationNumber",
+          "title": "Application Number",
           "type": "`$STRING`"
         },
         {
           "name": "assignee",
+          "title": "Assignee",
           "type": "`$STRING`"
         },
         {
-          "format": "date",
           "name": "assignmentDate",
-          "type": "`$STRING`"
+          "title": "Assignment Date",
+          "type": "`$STRING`",
+          "format": "date"
         },
         {
           "name": "assignmentId",
+          "title": "Assignment Id",
           "type": "`$STRING`"
         },
         {
           "name": "assignor",
+          "title": "Assignor",
           "type": "`$STRING`"
         },
         {
           "name": "citationNumber",
+          "title": "Citation Number",
           "type": "`$STRING`"
         },
         {
           "name": "citationType",
+          "title": "Citation Type",
           "type": "`$STRING`"
         },
         {
           "name": "citations",
+          "title": "Citations",
           "type": "`$ARRAY`"
         },
         {
           "name": "data",
+          "title": "Data",
           "type": "`$ARRAY`"
         },
         {
-          "format": "date",
           "name": "date",
-          "type": "`$STRING`"
+          "title": "Date",
+          "type": "`$STRING`",
+          "format": "date"
         },
         {
           "name": "patentNumber",
+          "title": "Patent Number",
           "type": "`$STRING`"
         },
         {
           "name": "rejectionText",
+          "title": "Rejection Text",
           "type": "`$STRING`"
         },
         {
           "name": "rejectionType",
+          "title": "Rejection Type",
           "type": "`$STRING`"
         },
         {
           "name": "text",
+          "title": "Text",
           "type": "`$STRING`"
         },
         {
-          "format": "uri",
           "name": "url",
-          "type": "`$STRING`"
+          "title": "Url",
+          "type": "`$STRING`",
+          "format": "uri"
         }
       ],
       "name": "patent",
@@ -216,23 +224,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "xml",
-                    "kind": "query",
-                    "name": "format",
-                    "orig": "format",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "search_query",
-                    "orig": "search_query",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/patent-assignment/v1.4",
@@ -244,32 +235,40 @@ class Config {
                   "lit": "v1.4"
                 }
               ],
+              "parts": [
+                "patent-assignment",
+                "v1.4"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.assignments`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "format",
+                    "orig": "format",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "xml"
+                  },
+                  {
+                    "name": "search_query",
+                    "orig": "search_query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "format",
                   "search_query"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.assignments`"
-              },
-              "parts": [
-                "patent-assignment",
-                "v1.4"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "application_number",
-                    "orig": "application_number",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/office-action-citations/v2",
@@ -281,31 +280,32 @@ class Config {
                   "lit": "v2"
                 }
               ],
-              "select": {
-                "exist": [
-                  "application_number"
-                ]
-              },
+              "parts": [
+                "office-action-citations",
+                "v2"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.citations`"
               },
-              "parts": [
-                "office-action-citations",
-                "v2"
-              ]
-            },
-            {
               "args": {
                 "query": [
                   {
-                    "kind": "query",
                     "name": "application_number",
                     "orig": "application_number",
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "query"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "application_number"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/office-action-rejections/v2",
@@ -317,31 +317,32 @@ class Config {
                   "lit": "v2"
                 }
               ],
-              "select": {
-                "exist": [
-                  "application_number"
-                ]
-              },
+              "parts": [
+                "office-action-rejections",
+                "v2"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.rejections`"
               },
-              "parts": [
-                "office-action-rejections",
-                "v2"
-              ]
-            },
-            {
               "args": {
                 "query": [
                   {
-                    "kind": "query",
-                    "name": "date",
-                    "orig": "date",
-                    "type": "`$STRING`"
+                    "name": "application_number",
+                    "orig": "application_number",
+                    "type": "`$STRING`",
+                    "kind": "query"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "application_number"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/office-action-weekly-zips/v1",
@@ -353,31 +354,32 @@ class Config {
                   "lit": "v1"
                 }
               ],
-              "select": {
-                "exist": [
-                  "date"
-                ]
-              },
+              "parts": [
+                "office-action-weekly-zips",
+                "v1"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.files`"
               },
-              "parts": [
-                "office-action-weekly-zips",
-                "v1"
-              ]
-            },
-            {
               "args": {
                 "query": [
                   {
-                    "kind": "query",
-                    "name": "patent_number",
-                    "orig": "patent_number",
-                    "type": "`$STRING`"
+                    "name": "date",
+                    "orig": "date",
+                    "type": "`$STRING`",
+                    "kind": "query"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "date"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/enriched-citation/v3",
@@ -389,31 +391,32 @@ class Config {
                   "lit": "v3"
                 }
               ],
-              "select": {
-                "exist": [
-                  "patent_number"
-                ]
-              },
+              "parts": [
+                "enriched-citation",
+                "v3"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.citations`"
               },
-              "parts": [
-                "enriched-citation",
-                "v3"
-              ]
-            },
-            {
               "args": {
                 "query": [
                   {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
+                    "name": "patent_number",
+                    "orig": "patent_number",
+                    "type": "`$STRING`",
+                    "kind": "query"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "patent_number"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/ptab/v3",
@@ -425,19 +428,30 @@ class Config {
                   "lit": "v3"
                 }
               ],
-              "select": {
-                "exist": [
-                  "query"
-                ]
-              },
+              "parts": [
+                "ptab",
+                "v3"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "ptab",
-                "v3"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "query"
+                ]
+              }
             }
           ]
         },
@@ -446,16 +460,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "application_number",
-                    "orig": "application_number",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/office-action-text/v1",
@@ -467,19 +471,30 @@ class Config {
                   "lit": "v1"
                 }
               ],
-              "select": {
-                "exist": [
-                  "application_number"
-                ]
-              },
+              "parts": [
+                "office-action-text",
+                "v1"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.officeAction`"
               },
-              "parts": [
-                "office-action-text",
-                "v1"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "application_number",
+                    "orig": "application_number",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "application_number"
+                ]
+              }
             }
           ]
         }
@@ -492,18 +507,22 @@ class Config {
       "fields": [
         {
           "name": "assignments",
+          "title": "Assignments",
           "type": "`$ARRAY`"
         },
         {
           "name": "documents",
+          "title": "Documents",
           "type": "`$ARRAY`"
         },
         {
           "name": "serialNumber",
+          "title": "Serial Number",
           "type": "`$STRING`"
         },
         {
           "name": "status",
+          "title": "Status",
           "type": "`$STRING`"
         }
       ],
@@ -514,23 +533,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "xml",
-                    "kind": "query",
-                    "name": "format",
-                    "orig": "format",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "search_query",
-                    "orig": "search_query",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/trademark-assignment/v1.4",
@@ -542,20 +544,38 @@ class Config {
                   "lit": "v1.4"
                 }
               ],
+              "parts": [
+                "trademark-assignment",
+                "v1.4"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.assignments`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "format",
+                    "orig": "format",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "xml"
+                  },
+                  {
+                    "name": "search_query",
+                    "orig": "search_query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "format",
                   "search_query"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.assignments`"
-              },
-              "parts": [
-                "trademark-assignment",
-                "v1.4"
-              ]
+              }
             }
           ]
         },
@@ -564,22 +584,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "registration_number",
-                    "orig": "registration_number",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "serial_number",
-                    "orig": "serial_number",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/tsdr/v1.0",
@@ -591,20 +595,37 @@ class Config {
                   "lit": "v1.0"
                 }
               ],
+              "parts": [
+                "tsdr",
+                "v1.0"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.trademarkStatus`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "registration_number",
+                    "orig": "registration_number",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "serial_number",
+                    "orig": "serial_number",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "registration_number",
                   "serial_number"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.trademarkStatus`"
-              },
-              "parts": [
-                "tsdr",
-                "v1.0"
-              ]
+              }
             }
           ]
         }

@@ -96,66 +96,81 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "applicationNumber",
+						"title": "Application Number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "assignee",
+						"title": "Assignee",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date",
 						"name": "assignmentDate",
+						"title": "Assignment Date",
 						"type": "`$STRING`",
+						"format": "date",
 					},
 					map[string]any{
 						"name": "assignmentId",
+						"title": "Assignment Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "assignor",
+						"title": "Assignor",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "citationNumber",
+						"title": "Citation Number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "citationType",
+						"title": "Citation Type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "citations",
+						"title": "Citations",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "data",
+						"title": "Data",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
-						"format": "date",
 						"name": "date",
+						"title": "Date",
 						"type": "`$STRING`",
+						"format": "date",
 					},
 					map[string]any{
 						"name": "patentNumber",
+						"title": "Patent Number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rejectionText",
+						"title": "Rejection Text",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rejectionType",
+						"title": "Rejection Type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "text",
+						"title": "Text",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "url",
+						"title": "Url",
 						"type": "`$STRING`",
+						"format": "uri",
 					},
 				},
 				"name": "patent",
@@ -165,23 +180,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "xml",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "search_query",
-											"orig": "search_query",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/patent-assignment/v1.4",
@@ -193,32 +191,40 @@ func MakeConfig() map[string]any {
 										"lit": "v1.4",
 									},
 								},
+								"parts": []any{
+									"patent-assignment",
+									"v1.4",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.assignments`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "xml",
+										},
+										map[string]any{
+											"name": "search_query",
+											"orig": "search_query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"format",
 										"search_query",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.assignments`",
-								},
-								"parts": []any{
-									"patent-assignment",
-									"v1.4",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "application_number",
-											"orig": "application_number",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/office-action-citations/v2",
@@ -230,31 +236,32 @@ func MakeConfig() map[string]any {
 										"lit": "v2",
 									},
 								},
+								"parts": []any{
+									"office-action-citations",
+									"v2",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.citations`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "application_number",
+											"orig": "application_number",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"application_number",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.citations`",
-								},
-								"parts": []any{
-									"office-action-citations",
-									"v2",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "application_number",
-											"orig": "application_number",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/office-action-rejections/v2",
@@ -266,31 +273,32 @@ func MakeConfig() map[string]any {
 										"lit": "v2",
 									},
 								},
+								"parts": []any{
+									"office-action-rejections",
+									"v2",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.rejections`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "application_number",
+											"orig": "application_number",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"application_number",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.rejections`",
-								},
-								"parts": []any{
-									"office-action-rejections",
-									"v2",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/office-action-weekly-zips/v1",
@@ -302,31 +310,32 @@ func MakeConfig() map[string]any {
 										"lit": "v1",
 									},
 								},
+								"parts": []any{
+									"office-action-weekly-zips",
+									"v1",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.files`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"date",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.files`",
-								},
-								"parts": []any{
-									"office-action-weekly-zips",
-									"v1",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "patent_number",
-											"orig": "patent_number",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/enriched-citation/v3",
@@ -338,31 +347,32 @@ func MakeConfig() map[string]any {
 										"lit": "v3",
 									},
 								},
+								"parts": []any{
+									"enriched-citation",
+									"v3",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.citations`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "patent_number",
+											"orig": "patent_number",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"patent_number",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.citations`",
-								},
-								"parts": []any{
-									"enriched-citation",
-									"v3",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/ptab/v3",
@@ -374,18 +384,29 @@ func MakeConfig() map[string]any {
 										"lit": "v3",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"query",
-									},
+								"parts": []any{
+									"ptab",
+									"v3",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"ptab",
-									"v3",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"query",
+									},
 								},
 							},
 						},
@@ -395,16 +416,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "application_number",
-											"orig": "application_number",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/office-action-text/v1",
@@ -416,18 +427,29 @@ func MakeConfig() map[string]any {
 										"lit": "v1",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"application_number",
-									},
+								"parts": []any{
+									"office-action-text",
+									"v1",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.officeAction`",
 								},
-								"parts": []any{
-									"office-action-text",
-									"v1",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "application_number",
+											"orig": "application_number",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"application_number",
+									},
 								},
 							},
 						},
@@ -441,18 +463,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "assignments",
+						"title": "Assignments",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "documents",
+						"title": "Documents",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "serialNumber",
+						"title": "Serial Number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "status",
+						"title": "Status",
 						"type": "`$STRING`",
 					},
 				},
@@ -463,23 +489,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "xml",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "search_query",
-											"orig": "search_query",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/trademark-assignment/v1.4",
@@ -491,19 +500,37 @@ func MakeConfig() map[string]any {
 										"lit": "v1.4",
 									},
 								},
+								"parts": []any{
+									"trademark-assignment",
+									"v1.4",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.assignments`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "xml",
+										},
+										map[string]any{
+											"name": "search_query",
+											"orig": "search_query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"format",
 										"search_query",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.assignments`",
-								},
-								"parts": []any{
-									"trademark-assignment",
-									"v1.4",
 								},
 							},
 						},
@@ -513,22 +540,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "registration_number",
-											"orig": "registration_number",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "serial_number",
-											"orig": "serial_number",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/tsdr/v1.0",
@@ -540,19 +551,36 @@ func MakeConfig() map[string]any {
 										"lit": "v1.0",
 									},
 								},
+								"parts": []any{
+									"tsdr",
+									"v1.0",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.trademarkStatus`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "registration_number",
+											"orig": "registration_number",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "serial_number",
+											"orig": "serial_number",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"registration_number",
 										"serial_number",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.trademarkStatus`",
-								},
-								"parts": []any{
-									"tsdr",
-									"v1.0",
 								},
 							},
 						},

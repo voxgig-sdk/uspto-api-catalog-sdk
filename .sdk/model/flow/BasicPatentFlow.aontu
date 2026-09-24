@@ -1,0 +1,40 @@
+# BasicPatentFlow
+
+main: kit: flow: BasicPatentFlow:
+{
+  entity: "patent",
+  kind: "basic",
+  name: "BasicPatentFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "patent_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "patent_ref01",
+        srcdatavar: "patent_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-patent_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPatentFlow"
+}

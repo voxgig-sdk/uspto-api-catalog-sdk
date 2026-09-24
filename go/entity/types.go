@@ -1,7 +1,7 @@
 // Typed models for the UsptoApiCatalog SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,21 +14,6 @@ import (
 
 // Patent is the typed data model for the patent entity.
 type Patent struct {
-	ApplicationNumber *string `json:"applicationNumber,omitempty"`
-	Assignee *string `json:"assignee,omitempty"`
-	AssignmentDate *string `json:"assignmentDate,omitempty"`
-	AssignmentId *string `json:"assignmentId,omitempty"`
-	Assignor *string `json:"assignor,omitempty"`
-	CitationNumber *string `json:"citationNumber,omitempty"`
-	CitationType *string `json:"citationType,omitempty"`
-	Citations *[]any `json:"citations,omitempty"`
-	Data *[]any `json:"data,omitempty"`
-	Date *string `json:"date,omitempty"`
-	PatentNumber *string `json:"patentNumber,omitempty"`
-	RejectionText *string `json:"rejectionText,omitempty"`
-	RejectionType *string `json:"rejectionType,omitempty"`
-	Text *string `json:"text,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // PatentLoadMatch is the typed request payload for Patent.LoadTyped.
@@ -44,10 +29,6 @@ type PatentListMatch struct {
 
 // Trademark is the typed data model for the trademark entity.
 type Trademark struct {
-	Assignments *[]any `json:"assignments,omitempty"`
-	Documents *[]any `json:"documents,omitempty"`
-	SerialNumber *string `json:"serialNumber,omitempty"`
-	Status *string `json:"status,omitempty"`
 }
 
 // TrademarkLoadMatch is the typed request payload for Trademark.LoadTyped.

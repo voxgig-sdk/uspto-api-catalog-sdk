@@ -104,66 +104,81 @@ module UsptoApiCatalogConfig
           "fields" => [
             {
               "name" => "applicationNumber",
+              "title" => "Application Number",
               "type" => "`$STRING`",
             },
             {
               "name" => "assignee",
+              "title" => "Assignee",
               "type" => "`$STRING`",
             },
             {
-              "format" => "date",
               "name" => "assignmentDate",
+              "title" => "Assignment Date",
               "type" => "`$STRING`",
+              "format" => "date",
             },
             {
               "name" => "assignmentId",
+              "title" => "Assignment Id",
               "type" => "`$STRING`",
             },
             {
               "name" => "assignor",
+              "title" => "Assignor",
               "type" => "`$STRING`",
             },
             {
               "name" => "citationNumber",
+              "title" => "Citation Number",
               "type" => "`$STRING`",
             },
             {
               "name" => "citationType",
+              "title" => "Citation Type",
               "type" => "`$STRING`",
             },
             {
               "name" => "citations",
+              "title" => "Citations",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "data",
+              "title" => "Data",
               "type" => "`$ARRAY`",
             },
             {
-              "format" => "date",
               "name" => "date",
+              "title" => "Date",
               "type" => "`$STRING`",
+              "format" => "date",
             },
             {
               "name" => "patentNumber",
+              "title" => "Patent Number",
               "type" => "`$STRING`",
             },
             {
               "name" => "rejectionText",
+              "title" => "Rejection Text",
               "type" => "`$STRING`",
             },
             {
               "name" => "rejectionType",
+              "title" => "Rejection Type",
               "type" => "`$STRING`",
             },
             {
               "name" => "text",
+              "title" => "Text",
               "type" => "`$STRING`",
             },
             {
-              "format" => "uri",
               "name" => "url",
+              "title" => "Url",
               "type" => "`$STRING`",
+              "format" => "uri",
             },
           ],
           "name" => "patent",
@@ -173,23 +188,6 @@ module UsptoApiCatalogConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "xml",
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "search_query",
-                        "orig" => "search_query",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/patent-assignment/v1.4",
@@ -201,32 +199,40 @@ module UsptoApiCatalogConfig
                       "lit" => "v1.4",
                     },
                   ],
+                  "parts" => [
+                    "patent-assignment",
+                    "v1.4",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.assignments`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "xml",
+                      },
+                      {
+                        "name" => "search_query",
+                        "orig" => "search_query",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "format",
                       "search_query",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.assignments`",
-                  },
-                  "parts" => [
-                    "patent-assignment",
-                    "v1.4",
-                  ],
                 },
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "application_number",
-                        "orig" => "application_number",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/office-action-citations/v2",
@@ -238,31 +244,32 @@ module UsptoApiCatalogConfig
                       "lit" => "v2",
                     },
                   ],
+                  "parts" => [
+                    "office-action-citations",
+                    "v2",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.citations`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "application_number",
+                        "orig" => "application_number",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "application_number",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.citations`",
-                  },
-                  "parts" => [
-                    "office-action-citations",
-                    "v2",
-                  ],
                 },
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "application_number",
-                        "orig" => "application_number",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/office-action-rejections/v2",
@@ -274,31 +281,32 @@ module UsptoApiCatalogConfig
                       "lit" => "v2",
                     },
                   ],
+                  "parts" => [
+                    "office-action-rejections",
+                    "v2",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.rejections`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "application_number",
+                        "orig" => "application_number",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "application_number",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.rejections`",
-                  },
-                  "parts" => [
-                    "office-action-rejections",
-                    "v2",
-                  ],
                 },
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "date",
-                        "orig" => "date",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/office-action-weekly-zips/v1",
@@ -310,31 +318,32 @@ module UsptoApiCatalogConfig
                       "lit" => "v1",
                     },
                   ],
+                  "parts" => [
+                    "office-action-weekly-zips",
+                    "v1",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.files`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "date",
+                        "orig" => "date",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "date",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.files`",
-                  },
-                  "parts" => [
-                    "office-action-weekly-zips",
-                    "v1",
-                  ],
                 },
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "patent_number",
-                        "orig" => "patent_number",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/enriched-citation/v3",
@@ -346,31 +355,32 @@ module UsptoApiCatalogConfig
                       "lit" => "v3",
                     },
                   ],
+                  "parts" => [
+                    "enriched-citation",
+                    "v3",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.citations`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "patent_number",
+                        "orig" => "patent_number",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "patent_number",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.citations`",
-                  },
-                  "parts" => [
-                    "enriched-citation",
-                    "v3",
-                  ],
                 },
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "query",
-                        "orig" => "query",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/ptab/v3",
@@ -382,19 +392,30 @@ module UsptoApiCatalogConfig
                       "lit" => "v3",
                     },
                   ],
+                  "parts" => [
+                    "ptab",
+                    "v3",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.data`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "query",
+                        "orig" => "query",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "query",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.data`",
-                  },
-                  "parts" => [
-                    "ptab",
-                    "v3",
-                  ],
                 },
               ],
             },
@@ -403,16 +424,6 @@ module UsptoApiCatalogConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "application_number",
-                        "orig" => "application_number",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/office-action-text/v1",
@@ -424,19 +435,30 @@ module UsptoApiCatalogConfig
                       "lit" => "v1",
                     },
                   ],
+                  "parts" => [
+                    "office-action-text",
+                    "v1",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.officeAction`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "application_number",
+                        "orig" => "application_number",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "application_number",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.officeAction`",
-                  },
-                  "parts" => [
-                    "office-action-text",
-                    "v1",
-                  ],
                 },
               ],
             },
@@ -449,18 +471,22 @@ module UsptoApiCatalogConfig
           "fields" => [
             {
               "name" => "assignments",
+              "title" => "Assignments",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "documents",
+              "title" => "Documents",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "serialNumber",
+              "title" => "Serial Number",
               "type" => "`$STRING`",
             },
             {
               "name" => "status",
+              "title" => "Status",
               "type" => "`$STRING`",
             },
           ],
@@ -471,23 +497,6 @@ module UsptoApiCatalogConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "xml",
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "search_query",
-                        "orig" => "search_query",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/trademark-assignment/v1.4",
@@ -499,20 +508,38 @@ module UsptoApiCatalogConfig
                       "lit" => "v1.4",
                     },
                   ],
+                  "parts" => [
+                    "trademark-assignment",
+                    "v1.4",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.assignments`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "xml",
+                      },
+                      {
+                        "name" => "search_query",
+                        "orig" => "search_query",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "format",
                       "search_query",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.assignments`",
-                  },
-                  "parts" => [
-                    "trademark-assignment",
-                    "v1.4",
-                  ],
                 },
               ],
             },
@@ -521,22 +548,6 @@ module UsptoApiCatalogConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "registration_number",
-                        "orig" => "registration_number",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "serial_number",
-                        "orig" => "serial_number",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/tsdr/v1.0",
@@ -548,20 +559,37 @@ module UsptoApiCatalogConfig
                       "lit" => "v1.0",
                     },
                   ],
+                  "parts" => [
+                    "tsdr",
+                    "v1.0",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.trademarkStatus`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "registration_number",
+                        "orig" => "registration_number",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "serial_number",
+                        "orig" => "serial_number",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "registration_number",
                       "serial_number",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.trademarkStatus`",
-                  },
-                  "parts" => [
-                    "tsdr",
-                    "v1.0",
-                  ],
                 },
               ],
             },

@@ -45,7 +45,7 @@ local patents, err = client:Patent():list()
 if err then error(err) end
 
 for _, item in ipairs(patents) do
-  print(item["applicationNumber"])
+  print(item)
 end
 ```
 

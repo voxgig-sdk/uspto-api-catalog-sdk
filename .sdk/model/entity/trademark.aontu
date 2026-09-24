@@ -1,0 +1,141 @@
+# Entity: trademark
+
+main: kit: entity: trademark: {
+
+  alias: field: {}
+
+  fields: {
+    assignments: {
+      h: "Assignments"
+      n: "assignments"
+      r: false
+      t: "`$ARRAY`"
+    }
+    documents: {
+      h: "Documents"
+      n: "documents"
+      r: false
+      t: "`$ARRAY`"
+    }
+    serialNumber: {
+      h: "Serial Number"
+      n: "serialNumber"
+      r: false
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "trademark"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /trademark-assignment/v1.4"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "xml"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "search_query"
+                or: "search_query"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/trademark-assignment/v1.4"
+          q: {
+            exist: [
+              "format"
+              "search_query"
+            ]
+          }
+          s: [
+            {
+              lit: "trademark-assignment"
+            }
+            {
+              lit: "v1.4"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.assignments`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /tsdr/v1.0"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "registration_number"
+                or: "registration_number"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "serial_number"
+                or: "serial_number"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/tsdr/v1.0"
+          q: {
+            exist: [
+              "registration_number"
+              "serial_number"
+            ]
+          }
+          s: [
+            {
+              lit: "tsdr"
+            }
+            {
+              lit: "v1.0"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.trademarkStatus`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

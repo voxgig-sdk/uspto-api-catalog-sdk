@@ -1,0 +1,387 @@
+# Entity: patent
+
+main: kit: entity: patent: {
+
+  alias: field: {}
+
+  fields: {
+    applicationNumber: {
+      h: "Application Number"
+      n: "applicationNumber"
+      r: false
+      t: "`$STRING`"
+    }
+    assignee: {
+      h: "Assignee"
+      n: "assignee"
+      r: false
+      t: "`$STRING`"
+    }
+    assignmentDate: {
+      fo: "date"
+      h: "Assignment Date"
+      n: "assignmentDate"
+      r: false
+      t: "`$STRING`"
+    }
+    assignmentId: {
+      h: "Assignment Id"
+      n: "assignmentId"
+      r: false
+      t: "`$STRING`"
+    }
+    assignor: {
+      h: "Assignor"
+      n: "assignor"
+      r: false
+      t: "`$STRING`"
+    }
+    citationNumber: {
+      h: "Citation Number"
+      n: "citationNumber"
+      r: false
+      t: "`$STRING`"
+    }
+    citationType: {
+      h: "Citation Type"
+      n: "citationType"
+      r: false
+      t: "`$STRING`"
+    }
+    citations: {
+      h: "Citations"
+      n: "citations"
+      r: false
+      t: "`$ARRAY`"
+    }
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      t: "`$ARRAY`"
+    }
+    date: {
+      fo: "date"
+      h: "Date"
+      n: "date"
+      r: false
+      t: "`$STRING`"
+    }
+    patentNumber: {
+      h: "Patent Number"
+      n: "patentNumber"
+      r: false
+      t: "`$STRING`"
+    }
+    rejectionText: {
+      h: "Rejection Text"
+      n: "rejectionText"
+      r: false
+      t: "`$STRING`"
+    }
+    rejectionType: {
+      h: "Rejection Type"
+      n: "rejectionType"
+      r: false
+      t: "`$STRING`"
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: false
+      t: "`$STRING`"
+    }
+    url: {
+      fo: "uri"
+      h: "Url"
+      n: "url"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "patent"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /patent-assignment/v1.4"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "xml"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "search_query"
+                or: "search_query"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/patent-assignment/v1.4"
+          q: {
+            exist: [
+              "format"
+              "search_query"
+            ]
+          }
+          s: [
+            {
+              lit: "patent-assignment"
+            }
+            {
+              lit: "v1.4"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.assignments`"
+          }
+        }
+        {
+          co: {
+            id: "GET /office-action-citations/v2"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "application_number"
+                or: "application_number"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/office-action-citations/v2"
+          q: {
+            exist: [
+              "application_number"
+            ]
+          }
+          s: [
+            {
+              lit: "office-action-citations"
+            }
+            {
+              lit: "v2"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.citations`"
+          }
+        }
+        {
+          co: {
+            id: "GET /office-action-rejections/v2"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "application_number"
+                or: "application_number"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/office-action-rejections/v2"
+          q: {
+            exist: [
+              "application_number"
+            ]
+          }
+          s: [
+            {
+              lit: "office-action-rejections"
+            }
+            {
+              lit: "v2"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.rejections`"
+          }
+        }
+        {
+          co: {
+            id: "GET /office-action-weekly-zips/v1"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/office-action-weekly-zips/v1"
+          q: {
+            exist: [
+              "date"
+            ]
+          }
+          s: [
+            {
+              lit: "office-action-weekly-zips"
+            }
+            {
+              lit: "v1"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.files`"
+          }
+        }
+        {
+          co: {
+            id: "GET /enriched-citation/v3"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "patent_number"
+                or: "patent_number"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/enriched-citation/v3"
+          q: {
+            exist: [
+              "patent_number"
+            ]
+          }
+          s: [
+            {
+              lit: "enriched-citation"
+            }
+            {
+              lit: "v3"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.citations`"
+          }
+        }
+        {
+          co: {
+            id: "GET /ptab/v3"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/ptab/v3"
+          q: {
+            exist: [
+              "query"
+            ]
+          }
+          s: [
+            {
+              lit: "ptab"
+            }
+            {
+              lit: "v3"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /office-action-text/v1"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "application_number"
+                or: "application_number"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/office-action-text/v1"
+          q: {
+            exist: [
+              "application_number"
+            ]
+          }
+          s: [
+            {
+              lit: "office-action-text"
+            }
+            {
+              lit: "v1"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.officeAction`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

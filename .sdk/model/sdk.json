@@ -24,107 +24,188 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "patent": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "applicationNumber",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "applicationNumber": {
+              "a": true,
+              "h": "Application Number",
+              "n": "applicationNumber",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "assignee",
-              "req": false,
-              "type": "`$STRING`"
+            "assignee": {
+              "a": true,
+              "h": "Assignee",
+              "n": "assignee",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "assignmentDate",
-              "req": false,
-              "type": "`$STRING`"
+            "assignmentDate": {
+              "a": true,
+              "fo": "date",
+              "h": "Assignment Date",
+              "n": "assignmentDate",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "assignmentId",
-              "req": false,
-              "type": "`$STRING`"
+            "assignmentId": {
+              "a": true,
+              "h": "Assignment Id",
+              "n": "assignmentId",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "assignor",
-              "req": false,
-              "type": "`$STRING`"
+            "assignor": {
+              "a": true,
+              "h": "Assignor",
+              "n": "assignor",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "citationNumber",
-              "req": false,
-              "type": "`$STRING`"
+            "citationNumber": {
+              "a": true,
+              "h": "Citation Number",
+              "n": "citationNumber",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "citationType",
-              "req": false,
-              "type": "`$STRING`"
+            "citationType": {
+              "a": true,
+              "h": "Citation Type",
+              "n": "citationType",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "citations",
-              "req": false,
-              "type": "`$ARRAY`"
+            "citations": {
+              "a": true,
+              "h": "Citations",
+              "n": "citations",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "data",
-              "req": false,
-              "type": "`$ARRAY`"
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "date",
-              "req": false,
-              "type": "`$STRING`"
+            "date": {
+              "a": true,
+              "fo": "date",
+              "h": "Date",
+              "n": "date",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "patentNumber",
-              "req": false,
-              "type": "`$STRING`"
+            "patentNumber": {
+              "a": true,
+              "h": "Patent Number",
+              "n": "patentNumber",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "rejectionText",
-              "req": false,
-              "type": "`$STRING`"
+            "rejectionText": {
+              "a": true,
+              "h": "Rejection Text",
+              "n": "rejectionText",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "rejectionType",
-              "req": false,
-              "type": "`$STRING`"
+            "rejectionType": {
+              "a": true,
+              "h": "Rejection Type",
+              "n": "rejectionType",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "text",
-              "req": false,
-              "type": "`$STRING`"
+            "text": {
+              "a": true,
+              "h": "Text",
+              "n": "text",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "url",
-              "req": false,
-              "type": "`$STRING`"
+            "url": {
+              "a": true,
+              "fo": "uri",
+              "h": "Url",
+              "n": "url",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "patent",
           "op": {
             "list": {
@@ -132,38 +213,44 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /patent-assignment/v1.4",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "xml",
-                        "kind": "query",
-                        "name": "format",
-                        "orig": "format",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "xml",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "search_query",
-                        "orig": "search_query",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "search_query",
+                        "or": "search_query",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /patent-assignment/v1.4",
-                    "json": "{\"operationId\":\"getPatentAssignments\",\"parameters\":[{\"description\":\"Search query for patent assignments\",\"in\":\"query\",\"name\":\"searchQuery\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format (xml or json)\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"xml\",\"enum\":[\"xml\",\"json\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"assignments\":{\"items\":{\"properties\":{\"assignee\":{\"type\":\"string\"},\"assignmentDate\":{\"format\":\"date\",\"type\":\"string\"},\"assignmentId\":{\"type\":\"string\"},\"assignor\":{\"type\":\"string\"},\"patentNumber\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Successful response with patent assignment data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/patent-assignment/v1.4",
+                  "q": {
+                    "exist": [
+                      "format",
+                      "search_query"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/patent-assignment/v1.4",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "patent-assignment"
                     },
@@ -171,41 +258,40 @@
                       "lit": "v1.4"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "format",
-                      "search_query"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.assignments`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /office-action-citations/v2",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "application_number",
-                        "orig": "application_number",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "application_number",
+                        "or": "application_number",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /office-action-citations/v2",
-                    "json": "{\"operationId\":\"getOfficeActionCitations\",\"parameters\":[{\"description\":\"Patent application number\",\"in\":\"query\",\"name\":\"applicationNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"citations\":{\"items\":{\"properties\":{\"citationNumber\":{\"type\":\"string\"},\"citationType\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with office action citations\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"404\":{\"description\":\"Citations not found\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/office-action-citations/v2",
+                  "q": {
+                    "exist": [
+                      "application_number"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/office-action-citations/v2",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "office-action-citations"
                     },
@@ -213,40 +299,40 @@
                       "lit": "v2"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "application_number"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.citations`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /office-action-rejections/v2",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "application_number",
-                        "orig": "application_number",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "application_number",
+                        "or": "application_number",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /office-action-rejections/v2",
-                    "json": "{\"operationId\":\"getOfficeActionRejections\",\"parameters\":[{\"description\":\"Patent application number\",\"in\":\"query\",\"name\":\"applicationNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"rejections\":{\"items\":{\"properties\":{\"rejectionText\":{\"type\":\"string\"},\"rejectionType\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with office action rejections\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"404\":{\"description\":\"Rejections not found\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/office-action-rejections/v2",
+                  "q": {
+                    "exist": [
+                      "application_number"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/office-action-rejections/v2",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "office-action-rejections"
                     },
@@ -254,40 +340,40 @@
                       "lit": "v2"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "application_number"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.rejections`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /office-action-weekly-zips/v1",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "date",
-                        "orig": "date",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "date",
+                        "or": "date",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /office-action-weekly-zips/v1",
-                    "json": "{\"operationId\":\"getOfficeActionWeeklyZips\",\"parameters\":[{\"description\":\"Date for the weekly zip file (YYYY-MM-DD format)\",\"in\":\"query\",\"name\":\"date\",\"required\":false,\"schema\":{\"format\":\"date\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"files\":{\"items\":{\"properties\":{\"date\":{\"format\":\"date\",\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with office action weekly zip data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/office-action-weekly-zips/v1",
+                  "q": {
+                    "exist": [
+                      "date"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/office-action-weekly-zips/v1",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "office-action-weekly-zips"
                     },
@@ -295,40 +381,40 @@
                       "lit": "v1"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "date"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.files`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /enriched-citation/v3",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "patent_number",
-                        "orig": "patent_number",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "patent_number",
+                        "or": "patent_number",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /enriched-citation/v3",
-                    "json": "{\"operationId\":\"getEnrichedCitations\",\"parameters\":[{\"description\":\"Patent number to retrieve citation data for\",\"in\":\"query\",\"name\":\"patentNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"citations\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with enriched citation data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"404\":{\"description\":\"Patent not found\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/enriched-citation/v3",
+                  "q": {
+                    "exist": [
+                      "patent_number"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/enriched-citation/v3",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "enriched-citation"
                     },
@@ -336,40 +422,40 @@
                       "lit": "v3"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "patent_number"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.citations`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /ptab/v3",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "query",
-                        "orig": "query",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "query",
+                        "or": "query",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /ptab/v3",
-                    "json": "{\"operationId\":\"getPTABData\",\"parameters\":[{\"description\":\"Search query for PTAB data\",\"in\":\"query\",\"name\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with PTAB data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/ptab/v3",
+                  "q": {
+                    "exist": [
+                      "query"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/ptab/v3",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "ptab"
                     },
@@ -377,12 +463,7 @@
                       "lit": "v3"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "query"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -394,29 +475,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /office-action-text/v1",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "application_number",
-                        "orig": "application_number",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "application_number",
+                        "or": "application_number",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /office-action-text/v1",
-                    "json": "{\"operationId\":\"getOfficeActionText\",\"parameters\":[{\"description\":\"Patent application number\",\"in\":\"query\",\"name\":\"applicationNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"officeAction\":{\"properties\":{\"applicationNumber\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with office action text\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"404\":{\"description\":\"Office action not found\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/office-action-text/v1",
+                  "q": {
+                    "exist": [
+                      "application_number"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/office-action-text/v1",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "office-action-text"
                     },
@@ -424,12 +510,7 @@
                       "lit": "v1"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "application_number"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.officeAction`"
                   }
@@ -446,32 +527,36 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "assignments",
-              "req": false,
-              "type": "`$ARRAY`"
+          "fields": {
+            "assignments": {
+              "a": true,
+              "h": "Assignments",
+              "n": "assignments",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "documents",
-              "req": false,
-              "type": "`$ARRAY`"
+            "documents": {
+              "a": true,
+              "h": "Documents",
+              "n": "documents",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "serialNumber",
-              "req": false,
-              "type": "`$STRING`"
+            "serialNumber": {
+              "a": true,
+              "h": "Serial Number",
+              "n": "serialNumber",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "status",
-              "req": false,
-              "type": "`$STRING`"
+            "status": {
+              "a": true,
+              "h": "Status",
+              "n": "status",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "trademark",
           "op": {
             "list": {
@@ -479,38 +564,44 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /trademark-assignment/v1.4",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "xml",
-                        "kind": "query",
-                        "name": "format",
-                        "orig": "format",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "xml",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "search_query",
-                        "orig": "search_query",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "search_query",
+                        "or": "search_query",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /trademark-assignment/v1.4",
-                    "json": "{\"operationId\":\"getTrademarkAssignments\",\"parameters\":[{\"description\":\"Search query for trademark assignments\",\"in\":\"query\",\"name\":\"searchQuery\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format (xml or json)\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"xml\",\"enum\":[\"xml\",\"json\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"assignments\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Successful response with trademark assignment data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/trademark-assignment/v1.4",
+                  "q": {
+                    "exist": [
+                      "format",
+                      "search_query"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/trademark-assignment/v1.4",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "trademark-assignment"
                     },
@@ -518,13 +609,7 @@
                       "lit": "v1.4"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "format",
-                      "search_query"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.assignments`"
                   }
@@ -536,37 +621,43 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /tsdr/v1.0",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "registration_number",
-                        "orig": "registration_number",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "registration_number",
+                        "or": "registration_number",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "serial_number",
-                        "orig": "serial_number",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "serial_number",
+                        "or": "serial_number",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /tsdr/v1.0",
-                    "json": "{\"operationId\":\"getTSDRData\",\"parameters\":[{\"description\":\"Trademark serial number\",\"in\":\"query\",\"name\":\"serialNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Trademark registration number\",\"in\":\"query\",\"name\":\"registrationNumber\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"trademarkStatus\":{\"properties\":{\"documents\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"serialNumber\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with trademark status data\"},\"400\":{\"description\":\"Bad request\"},\"401\":{\"description\":\"Unauthorized - API key required\"},\"404\":{\"description\":\"Trademark not found\"},\"500\":{\"description\":\"Internal server error\"}},\"security\":[{\"apiKeyAuth\":[]}],\"securitySchemes\":{\"apiKeyAuth\":{\"description\":\"API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.\",\"in\":\"header\",\"name\":\"X-API-KEY\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/tsdr/v1.0",
+                  "q": {
+                    "exist": [
+                      "registration_number",
+                      "serial_number"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/tsdr/v1.0",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "tsdr"
                     },
@@ -574,13 +665,7 @@
                       "lit": "v1.0"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "registration_number",
-                      "serial_number"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.trademarkStatus`"
                   }
@@ -1009,13 +1094,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1025,17 +1110,17 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "patent_ref01",
                 "srcdatavar": "patent_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1055,13 +1140,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1071,17 +1156,17 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "trademark_ref01",
                 "srcdatavar": "trademark_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
