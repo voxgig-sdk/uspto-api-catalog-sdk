@@ -1,5 +1,5 @@
 {
-  "name": "voxgig-sdk/uspto-api-catalog",
+  "name": "voxgig-sdk/uspto-api-catalog-sdk",
   "description": "Unofficial generated PHP SDK for the USPTO API Catalog public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
   "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "uspto-api-catalog"],
