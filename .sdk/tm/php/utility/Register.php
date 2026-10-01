@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 UsptoApiCatalogUtility::setRegistrar(function (UsptoApiCatalogUtility $u): void {
     $u->clean = [UsptoApiCatalogClean::class, 'call'];
+    $u->clean_add = [UsptoApiCatalogClean::class, 'add'];
+    $u->clean_explain = [UsptoApiCatalogDone::class, 'clean_explain'];
     $u->done = [UsptoApiCatalogDone::class, 'call'];
     $u->make_error = [UsptoApiCatalogMakeError::class, 'call'];
     $u->feature_add = [UsptoApiCatalogFeatureAdd::class, 'call'];

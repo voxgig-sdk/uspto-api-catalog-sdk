@@ -124,7 +124,7 @@ main: kit: entity: patent: {
               {
                 k: "query"
                 n: "search_query"
-                or: "search_query"
+                or: "searchQuery"
                 r: false
                 t: "`$STRING`"
               }
@@ -162,7 +162,7 @@ main: kit: entity: patent: {
               {
                 k: "query"
                 n: "application_number"
-                or: "application_number"
+                or: "applicationNumber"
                 r: false
                 t: "`$STRING`"
               }
@@ -199,7 +199,7 @@ main: kit: entity: patent: {
               {
                 k: "query"
                 n: "application_number"
-                or: "application_number"
+                or: "applicationNumber"
                 r: false
                 t: "`$STRING`"
               }
@@ -273,7 +273,7 @@ main: kit: entity: patent: {
               {
                 k: "query"
                 n: "patent_number"
-                or: "patent_number"
+                or: "patentNumber"
                 r: false
                 t: "`$STRING`"
               }
@@ -352,7 +352,7 @@ main: kit: entity: patent: {
               {
                 k: "query"
                 n: "application_number"
-                or: "application_number"
+                or: "applicationNumber"
                 r: false
                 t: "`$STRING`"
               }

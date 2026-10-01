@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 UsptoApiCatalogUtility.registrar = ->(u) {
   u.clean = UsptoApiCatalogUtilities::Clean
+  u.clean_add = UsptoApiCatalogUtilities::CleanAdd
+  u.clean_explain = UsptoApiCatalogUtilities::CleanExplain
   u.done = UsptoApiCatalogUtilities::Done
   u.make_error = UsptoApiCatalogUtilities::MakeError
   u.feature_add = UsptoApiCatalogUtilities::FeatureAdd

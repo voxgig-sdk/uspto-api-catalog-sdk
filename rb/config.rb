@@ -219,7 +219,7 @@ module UsptoApiCatalogConfig
                       },
                       {
                         "name" => "search_query",
-                        "orig" => "search_query",
+                        "orig" => "searchQuery",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -257,7 +257,7 @@ module UsptoApiCatalogConfig
                     "query" => [
                       {
                         "name" => "application_number",
-                        "orig" => "application_number",
+                        "orig" => "applicationNumber",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -294,7 +294,7 @@ module UsptoApiCatalogConfig
                     "query" => [
                       {
                         "name" => "application_number",
-                        "orig" => "application_number",
+                        "orig" => "applicationNumber",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -368,7 +368,7 @@ module UsptoApiCatalogConfig
                     "query" => [
                       {
                         "name" => "patent_number",
-                        "orig" => "patent_number",
+                        "orig" => "patentNumber",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -448,7 +448,7 @@ module UsptoApiCatalogConfig
                     "query" => [
                       {
                         "name" => "application_number",
-                        "orig" => "application_number",
+                        "orig" => "applicationNumber",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -528,7 +528,7 @@ module UsptoApiCatalogConfig
                       },
                       {
                         "name" => "search_query",
-                        "orig" => "search_query",
+                        "orig" => "searchQuery",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
@@ -572,13 +572,13 @@ module UsptoApiCatalogConfig
                     "query" => [
                       {
                         "name" => "registration_number",
-                        "orig" => "registration_number",
+                        "orig" => "registrationNumber",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },
                       {
                         "name" => "serial_number",
-                        "orig" => "serial_number",
+                        "orig" => "serialNumber",
                         "type" => "`$STRING`",
                         "kind" => "query",
                       },

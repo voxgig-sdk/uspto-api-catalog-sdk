@@ -234,7 +234,7 @@
                         "a": true,
                         "k": "query",
                         "n": "search_query",
-                        "or": "search_query",
+                        "or": "searchQuery",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -276,7 +276,7 @@
                         "a": true,
                         "k": "query",
                         "n": "application_number",
-                        "or": "application_number",
+                        "or": "applicationNumber",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -317,7 +317,7 @@
                         "a": true,
                         "k": "query",
                         "n": "application_number",
-                        "or": "application_number",
+                        "or": "applicationNumber",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -399,7 +399,7 @@
                         "a": true,
                         "k": "query",
                         "n": "patent_number",
-                        "or": "patent_number",
+                        "or": "patentNumber",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -487,7 +487,7 @@
                         "a": true,
                         "k": "query",
                         "n": "application_number",
-                        "or": "application_number",
+                        "or": "applicationNumber",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -585,7 +585,7 @@
                         "a": true,
                         "k": "query",
                         "n": "search_query",
-                        "or": "search_query",
+                        "or": "searchQuery",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -633,7 +633,7 @@
                         "a": true,
                         "k": "query",
                         "n": "registration_number",
-                        "or": "registration_number",
+                        "or": "registrationNumber",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -641,7 +641,7 @@
                         "a": true,
                         "k": "query",
                         "n": "serial_number",
-                        "or": "serial_number",
+                        "or": "serialNumber",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -1223,7 +1223,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

@@ -211,7 +211,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "search_query",
-											"orig": "search_query",
+											"orig": "searchQuery",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -249,7 +249,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "application_number",
-											"orig": "application_number",
+											"orig": "applicationNumber",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -286,7 +286,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "application_number",
-											"orig": "application_number",
+											"orig": "applicationNumber",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -360,7 +360,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "patent_number",
-											"orig": "patent_number",
+											"orig": "patentNumber",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -440,7 +440,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "application_number",
-											"orig": "application_number",
+											"orig": "applicationNumber",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -520,7 +520,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "search_query",
-											"orig": "search_query",
+											"orig": "searchQuery",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
@@ -564,13 +564,13 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "registration_number",
-											"orig": "registration_number",
+											"orig": "registrationNumber",
 											"type": "`$STRING`",
 											"kind": "query",
 										},
 										map[string]any{
 											"name": "serial_number",
-											"orig": "serial_number",
+											"orig": "serialNumber",
 											"type": "`$STRING`",
 											"kind": "query",
 										},

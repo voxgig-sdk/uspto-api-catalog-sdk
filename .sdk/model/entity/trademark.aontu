@@ -55,7 +55,7 @@ main: kit: entity: trademark: {
               {
                 k: "query"
                 n: "search_query"
-                or: "search_query"
+                or: "searchQuery"
                 r: false
                 t: "`$STRING`"
               }
@@ -98,14 +98,14 @@ main: kit: entity: trademark: {
               {
                 k: "query"
                 n: "registration_number"
-                or: "registration_number"
+                or: "registrationNumber"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "serial_number"
-                or: "serial_number"
+                or: "serialNumber"
                 r: false
                 t: "`$STRING`"
               }
