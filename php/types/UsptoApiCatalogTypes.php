@@ -41,8 +41,7 @@ class PatentLoadMatch
 /** Request payload for Patent#list. */
 class PatentListMatch
 {
-    public ?string $format = null;
-    public ?string $search_query = null;
+    public ?string $patent_number = null;
 }
 
 /** Trademark entity data model. */

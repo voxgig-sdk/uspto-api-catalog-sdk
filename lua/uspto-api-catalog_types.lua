@@ -27,8 +27,7 @@
 ---@field application_number? string
 
 ---@class PatentListMatch
----@field format? string
----@field search_query? string
+---@field patent_number? string
 
 ---@class Trademark
 ---@field assignments? table

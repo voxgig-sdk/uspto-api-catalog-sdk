@@ -12,6 +12,8 @@ type UsptoApiCatalogError struct {
 	Ctx    *Context `json:"-"`
 	Result any
 	Spec   any
+	// The HTTP status, -1 when there was no response.
+	Status int
 }
 
 func NewUsptoApiCatalogError(code string, msg string, ctx *Context) *UsptoApiCatalogError {
@@ -21,7 +23,12 @@ func NewUsptoApiCatalogError(code string, msg string, ctx *Context) *UsptoApiCat
 		Code:               code,
 		Msg:                msg,
 		Ctx:                ctx,
+		Status:             -1,
 	}
+}
+
+func (e *UsptoApiCatalogError) NotFound() bool {
+	return 404 == e.Status
 }
 
 func (e *UsptoApiCatalogError) Error() string {
@@ -35,6 +42,7 @@ func (e *UsptoApiCatalogError) Record() map[string]any {
 		"sdk":     e.Sdk,
 		"code":    e.Code,
 		"message": e.Msg,
+		"status":  e.Status,
 		"result":  e.Result,
 		"spec":    e.Spec,
 	}

@@ -215,7 +215,7 @@
                 {
                   "a": true,
                   "co": {
-                    "id": "GET /patent-assignment/v1.4",
+                    "id": "GET /enriched-citation/v3",
                     "source": "openapi3",
                     "version": 2
                   },
@@ -223,18 +223,9 @@
                     "query": [
                       {
                         "a": true,
-                        "ex": "xml",
                         "k": "query",
-                        "n": "format",
-                        "or": "format",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "search_query",
-                        "or": "searchQuery",
+                        "n": "patent_number",
+                        "or": "patentNumber",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -242,25 +233,24 @@
                   },
                   "k": "http",
                   "m": "GET",
-                  "o": "/patent-assignment/v1.4",
-                  "q": {
-                    "exist": [
-                      "format",
-                      "search_query"
-                    ]
-                  },
+                  "o": "/enriched-citation/v3",
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
-                      "lit": "patent-assignment"
+                      "lit": "enriched-citation"
                     },
                     {
-                      "lit": "v1.4"
+                      "lit": "v3"
                     }
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body.assignments`"
+                    "res": "`body.citations`"
                   }
                 },
                 {
@@ -285,12 +275,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/office-action-citations/v2",
-                  "q": {
-                    "exist": [
-                      "application_number"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "office-action-citations"
@@ -326,12 +316,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/office-action-rejections/v2",
-                  "q": {
-                    "exist": [
-                      "application_number"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "office-action-rejections"
@@ -367,12 +357,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/office-action-weekly-zips/v1",
-                  "q": {
-                    "exist": [
-                      "date"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "office-action-weekly-zips"
@@ -389,7 +379,7 @@
                 {
                   "a": true,
                   "co": {
-                    "id": "GET /enriched-citation/v3",
+                    "id": "GET /patent-assignment/v1.4",
                     "source": "openapi3",
                     "version": 2
                   },
@@ -397,9 +387,18 @@
                     "query": [
                       {
                         "a": true,
+                        "ex": "xml",
                         "k": "query",
-                        "n": "patent_number",
-                        "or": "patentNumber",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "search_query",
+                        "or": "searchQuery",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -407,24 +406,30 @@
                   },
                   "k": "http",
                   "m": "GET",
-                  "o": "/enriched-citation/v3",
-                  "q": {
-                    "exist": [
-                      "patent_number"
-                    ]
-                  },
+                  "o": "/patent-assignment/v1.4",
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "raw",
+                        "media": "application/xml"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
-                      "lit": "enriched-citation"
+                      "lit": "patent-assignment"
                     },
                     {
-                      "lit": "v3"
+                      "lit": "v1.4"
                     }
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body.citations`"
+                    "res": "`body.assignments`"
                   }
                 },
                 {
@@ -449,12 +454,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/ptab/v3",
-                  "q": {
-                    "exist": [
-                      "query"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "ptab"
@@ -496,12 +501,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/office-action-text/v1",
-                  "q": {
-                    "exist": [
-                      "application_number"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "office-action-text"
@@ -594,13 +599,18 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/trademark-assignment/v1.4",
-                  "q": {
-                    "exist": [
-                      "format",
-                      "search_query"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "raw",
+                        "media": "application/xml"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "trademark-assignment"
@@ -650,13 +660,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/tsdr/v1.0",
-                  "q": {
-                    "exist": [
-                      "registration_number",
-                      "serial_number"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "tsdr"
@@ -1000,6 +1009,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -1212,7 +1222,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -1265,6 +1275,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -1495,7 +1510,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -1872,6 +1890,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

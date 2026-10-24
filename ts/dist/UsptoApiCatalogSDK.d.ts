@@ -8,6 +8,19 @@ import { UsptoApiCatalogEntityBase } from './UsptoApiCatalogEntityBase';
 import { Utility } from './utility/Utility';
 import { BaseFeature } from './feature/base/BaseFeature';
 declare const stdutil: Utility;
+type DirectResult = {
+    ok: false;
+    err: any;
+    status?: undefined;
+    headers?: undefined;
+    data?: undefined;
+} | {
+    ok: boolean;
+    status: number;
+    headers: any;
+    data: any;
+    err?: any;
+};
 declare class UsptoApiCatalogSDK {
     _mode: string;
     _options: any;
@@ -18,32 +31,8 @@ declare class UsptoApiCatalogSDK {
     options(): any;
     utility(): any;
     prepare(fetchargs?: any): Promise<any>;
-    direct(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
-    _rawRequest(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
+    direct(fetchargs?: any): Promise<DirectResult>;
+    _rawRequest(fetchargs?: any): Promise<DirectResult>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     Patent(entopts?: Record<string, any>): PatentEntity;
     Trademark(entopts?: Record<string, any>): TrademarkEntity;
@@ -57,3 +46,4 @@ declare class UsptoApiCatalogSDK {
 }
 declare const SDK: typeof UsptoApiCatalogSDK;
 export { stdutil, config, BaseFeature, UsptoApiCatalogEntityBase, UsptoApiCatalogSDK, SDK, };
+export type { DirectResult };

@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/uspto-api-catalog-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -29,7 +29,7 @@ gem "voxgig-sdk-uspto-api-catalog-sdk", path: "./uspto-api-catalog-sdk/rb"
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key in the `X-API-KEY` header.
 
 ### 1. Create a client
 
@@ -45,10 +45,11 @@ client = UsptoApiCatalogSDK.new({
 
 ```ruby
 begin
-  # list returns an Array of Patent records — iterate directly.
+  # list returns an Array of Patent entities, one per record; data_get reads the record.
   patents = client.Patent.list
   patents.each do |item|
-    puts "#{item["applicationNumber"]}"
+    record = item.data_get
+    puts "#{record["applicationNumber"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -61,7 +62,7 @@ end
 begin
   # load returns the ENTITY — call data_get for the Patent record (raises on error).
   patent = client.Patent.load()
-  puts patent
+  puts patent.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -142,10 +143,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = UsptoApiCatalogSDK.test
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-patent = client.Patent.list()
-puts patent
+# list returns an Array of Patent entities, one per mock record (raises on
+# error); data_get reads each record.
+patents = client.Patent.list()
+patents.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -232,8 +233,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -243,9 +244,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `UsptoApiCatalogError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`UsptoApiCatalogError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -282,7 +284,7 @@ returns a result `Hash` with these keys:
 
 Operations: List, Load.
 
-API path: `/patent-assignment/v1.4`
+API path: `/enriched-citation/v3`
 
 #### Trademark
 
@@ -343,8 +345,9 @@ patent = client.Patent.load()
 #### Example: List
 
 ```ruby
-# list returns an Array of Patent records (raises on error).
+# list returns an Array of Patent entities, one per record (raises on error).
 patents = client.Patent.list
+patents.each { |item| puts item.data_get }
 ```
 
 
@@ -378,8 +381,9 @@ trademark = client.Trademark.load()
 #### Example: List
 
 ```ruby
-# list returns an Array of Trademark records (raises on error).
+# list returns an Array of Trademark entities, one per record (raises on error).
 trademarks = client.Trademark.list
+trademarks.each { |item| puts item.data_get }
 ```
 
 ## Features

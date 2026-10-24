@@ -63,11 +63,15 @@ main: kit: entity: trademark: {
           }
           m: "GET"
           o: "/trademark-assignment/v1.4"
-          q: {
-            exist: [
-              "format"
-              "search_query"
+          rs: {
+            alternatives: [
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -113,11 +117,9 @@ main: kit: entity: trademark: {
           }
           m: "GET"
           o: "/tsdr/v1.0"
-          q: {
-            exist: [
-              "registration_number"
-              "serial_number"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

@@ -1,0 +1,15 @@
+{
+  point: "warning"
+  note: "Points GET /enriched-citation/v3, GET /office-action-citations/v2, GET /office-action-rejections/v2, GET /office-action-weekly-zips/v1, GET /patent-assignment/v1.4 and GET /ptab/v3 on entity=patent op=list have the same selector (exist: none), so only GET /enriched-citation/v3 is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "patent"
+  op: "list"
+  points: [
+    "GET /enriched-citation/v3"
+    "GET /office-action-citations/v2"
+    "GET /office-action-rejections/v2"
+    "GET /office-action-weekly-zips/v1"
+    "GET /patent-assignment/v1.4"
+    "GET /ptab/v3"
+  ]
+
+}

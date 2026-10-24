@@ -19,8 +19,7 @@ export interface PatentLoadMatch {
     application_number?: string;
 }
 export interface PatentListMatch {
-    format?: string;
-    search_query?: string;
+    patent_number?: string;
 }
 export interface Trademark {
     assignments?: any[];

@@ -14,7 +14,7 @@ An entity groups related API operations. An operation can have several routes wi
 
 ### Patent
 
-Results: Successful response with patent assignment data; Successful response with office action citations; Successful response with office action rejections; Successful response with office action weekly zip data; Successful response with enriched citation data; Successful response with PTAB data; Successful response with office action text.
+Results: Successful response with enriched citation data; Successful response with office action citations; Successful response with office action rejections; Successful response with office action weekly zip data; Successful response with patent assignment data; Successful response with PTAB data; Successful response with office action text.
 
 SDK operations: `list`, `load`.
 
@@ -30,11 +30,11 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 
 | Entity | SDK operation | HTTP route | Authentication |
 | --- | --- | --- | --- |
-| Patent | `list` | `GET /patent-assignment/v1.4` | Required |
+| Patent | `list` | `GET /enriched-citation/v3` | Required |
 | Patent | `list` | `GET /office-action-citations/v2` | Required |
 | Patent | `list` | `GET /office-action-rejections/v2` | Required |
 | Patent | `list` | `GET /office-action-weekly-zips/v1` | Required |
-| Patent | `list` | `GET /enriched-citation/v3` | Required |
+| Patent | `list` | `GET /patent-assignment/v1.4` | Required |
 | Patent | `list` | `GET /ptab/v3` | Required |
 | Patent | `load` | `GET /office-action-text/v1` | Required |
 | Trademark | `list` | `GET /trademark-assignment/v1.4` | Required |

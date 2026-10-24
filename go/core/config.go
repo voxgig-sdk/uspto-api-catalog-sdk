@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -182,6 +183,155 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
+								"orig": "/enriched-citation/v3",
+								"segments": []any{
+									map[string]any{
+										"lit": "enriched-citation",
+									},
+									map[string]any{
+										"lit": "v3",
+									},
+								},
+								"parts": []any{
+									"enriched-citation",
+									"v3",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.citations`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "patent_number",
+											"orig": "patentNumber",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/office-action-citations/v2",
+								"segments": []any{
+									map[string]any{
+										"lit": "office-action-citations",
+									},
+									map[string]any{
+										"lit": "v2",
+									},
+								},
+								"parts": []any{
+									"office-action-citations",
+									"v2",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.citations`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "application_number",
+											"orig": "applicationNumber",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/office-action-rejections/v2",
+								"segments": []any{
+									map[string]any{
+										"lit": "office-action-rejections",
+									},
+									map[string]any{
+										"lit": "v2",
+									},
+								},
+								"parts": []any{
+									"office-action-rejections",
+									"v2",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.rejections`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "application_number",
+											"orig": "applicationNumber",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/office-action-weekly-zips/v1",
+								"segments": []any{
+									map[string]any{
+										"lit": "office-action-weekly-zips",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+								},
+								"parts": []any{
+									"office-action-weekly-zips",
+									"v1",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.files`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+									},
+								},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
 								"orig": "/patent-assignment/v1.4",
 								"segments": []any{
 									map[string]any{
@@ -217,159 +367,16 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"format",
-										"search_query",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/office-action-citations/v2",
-								"segments": []any{
-									map[string]any{
-										"lit": "office-action-citations",
-									},
-									map[string]any{
-										"lit": "v2",
-									},
-								},
-								"parts": []any{
-									"office-action-citations",
-									"v2",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.citations`",
-								},
-								"args": map[string]any{
-									"query": []any{
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
 										map[string]any{
-											"name": "application_number",
-											"orig": "applicationNumber",
-											"type": "`$STRING`",
-											"kind": "query",
+											"kind": "raw",
+											"media": "application/xml",
 										},
 									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"application_number",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/office-action-rejections/v2",
-								"segments": []any{
-									map[string]any{
-										"lit": "office-action-rejections",
-									},
-									map[string]any{
-										"lit": "v2",
-									},
-								},
-								"parts": []any{
-									"office-action-rejections",
-									"v2",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.rejections`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "application_number",
-											"orig": "applicationNumber",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"application_number",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/office-action-weekly-zips/v1",
-								"segments": []any{
-									map[string]any{
-										"lit": "office-action-weekly-zips",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-								},
-								"parts": []any{
-									"office-action-weekly-zips",
-									"v1",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.files`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"date",
-									},
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/enriched-citation/v3",
-								"segments": []any{
-									map[string]any{
-										"lit": "enriched-citation",
-									},
-									map[string]any{
-										"lit": "v3",
-									},
-								},
-								"parts": []any{
-									"enriched-citation",
-									"v3",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.citations`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "patent_number",
-											"orig": "patentNumber",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"patent_number",
-									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 							map[string]any{
@@ -403,10 +410,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"query",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -446,10 +453,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"application_number",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -526,11 +533,16 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"format",
-										"search_query",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -576,11 +588,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"registration_number",
-										"serial_number",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},

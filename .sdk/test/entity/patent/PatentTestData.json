@@ -79,7 +79,7 @@
     }
   },
   "requests": {
-    "GET /patent-assignment/v1.4": {
+    "GET /enriched-citation/v3": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
@@ -99,7 +99,7 @@
       "version": 2,
       "source": "openapi3"
     },
-    "GET /enriched-citation/v3": {
+    "GET /patent-assignment/v1.4": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

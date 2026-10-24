@@ -87,6 +87,7 @@ class Config {
             },
             "optspec": {
                 "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
                 "setTimer": "`$FUNCTION`"
             },
             "strict": false,
@@ -198,6 +199,155 @@ class Config {
                         {
                             "kind": "http",
                             "method": "GET",
+                            "orig": "/enriched-citation/v3",
+                            "segments": [
+                                {
+                                    "lit": "enriched-citation"
+                                },
+                                {
+                                    "lit": "v3"
+                                }
+                            ],
+                            "parts": [
+                                "enriched-citation",
+                                "v3"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.citations`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "patent_number",
+                                        "orig": "patentNumber",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        },
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/office-action-citations/v2",
+                            "segments": [
+                                {
+                                    "lit": "office-action-citations"
+                                },
+                                {
+                                    "lit": "v2"
+                                }
+                            ],
+                            "parts": [
+                                "office-action-citations",
+                                "v2"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.citations`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "application_number",
+                                        "orig": "applicationNumber",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        },
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/office-action-rejections/v2",
+                            "segments": [
+                                {
+                                    "lit": "office-action-rejections"
+                                },
+                                {
+                                    "lit": "v2"
+                                }
+                            ],
+                            "parts": [
+                                "office-action-rejections",
+                                "v2"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.rejections`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "application_number",
+                                        "orig": "applicationNumber",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        },
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/office-action-weekly-zips/v1",
+                            "segments": [
+                                {
+                                    "lit": "office-action-weekly-zips"
+                                },
+                                {
+                                    "lit": "v1"
+                                }
+                            ],
+                            "parts": [
+                                "office-action-weekly-zips",
+                                "v1"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.files`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "date",
+                                        "orig": "date",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "field": true
+                                    }
+                                ]
+                            },
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        },
+                        {
+                            "kind": "http",
+                            "method": "GET",
                             "orig": "/patent-assignment/v1.4",
                             "segments": [
                                 {
@@ -233,159 +383,16 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "format",
-                                    "search_query"
-                                ]
-                            }
-                        },
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/office-action-citations/v2",
-                            "segments": [
-                                {
-                                    "lit": "office-action-citations"
-                                },
-                                {
-                                    "lit": "v2"
-                                }
-                            ],
-                            "parts": [
-                                "office-action-citations",
-                                "v2"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.citations`"
-                            },
-                            "args": {
-                                "query": [
+                            "select": {},
+                            "response": {
+                                "alternatives": [
                                     {
-                                        "name": "application_number",
-                                        "orig": "applicationNumber",
-                                        "type": "`$STRING`",
-                                        "kind": "query"
+                                        "kind": "raw",
+                                        "media": "application/xml"
                                     }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "application_number"
-                                ]
-                            }
-                        },
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/office-action-rejections/v2",
-                            "segments": [
-                                {
-                                    "lit": "office-action-rejections"
-                                },
-                                {
-                                    "lit": "v2"
-                                }
-                            ],
-                            "parts": [
-                                "office-action-rejections",
-                                "v2"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.rejections`"
-                            },
-                            "args": {
-                                "query": [
-                                    {
-                                        "name": "application_number",
-                                        "orig": "applicationNumber",
-                                        "type": "`$STRING`",
-                                        "kind": "query"
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "application_number"
-                                ]
-                            }
-                        },
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/office-action-weekly-zips/v1",
-                            "segments": [
-                                {
-                                    "lit": "office-action-weekly-zips"
-                                },
-                                {
-                                    "lit": "v1"
-                                }
-                            ],
-                            "parts": [
-                                "office-action-weekly-zips",
-                                "v1"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.files`"
-                            },
-                            "args": {
-                                "query": [
-                                    {
-                                        "name": "date",
-                                        "orig": "date",
-                                        "type": "`$STRING`",
-                                        "kind": "query"
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "date"
-                                ]
-                            }
-                        },
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/enriched-citation/v3",
-                            "segments": [
-                                {
-                                    "lit": "enriched-citation"
-                                },
-                                {
-                                    "lit": "v3"
-                                }
-                            ],
-                            "parts": [
-                                "enriched-citation",
-                                "v3"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.citations`"
-                            },
-                            "args": {
-                                "query": [
-                                    {
-                                        "name": "patent_number",
-                                        "orig": "patentNumber",
-                                        "type": "`$STRING`",
-                                        "kind": "query"
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "patent_number"
-                                ]
+                                ],
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         },
                         {
@@ -419,10 +426,10 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "query"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -462,10 +469,10 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "application_number"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -542,11 +549,16 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "format",
-                                    "search_query"
-                                ]
+                            "select": {},
+                            "response": {
+                                "alternatives": [
+                                    {
+                                        "kind": "raw",
+                                        "media": "application/xml"
+                                    }
+                                ],
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -592,11 +604,10 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "registration_number",
-                                    "serial_number"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]

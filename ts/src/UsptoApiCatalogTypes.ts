@@ -28,8 +28,7 @@ export interface PatentLoadMatch {
 }
 
 export interface PatentListMatch {
-  format?: string
-  search_query?: string
+  patent_number?: string
 }
 
 export interface Trademark {

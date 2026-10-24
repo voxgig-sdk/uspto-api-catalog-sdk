@@ -3,5 +3,21 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "API key required for accessing USPTO APIs. Request an API key from the USPTO Open Data Portal.",
+      "Successful response with PTAB data",
+      "Successful response with enriched citation data",
+      "Successful response with office action citations",
+      "Successful response with office action rejections",
+      "Successful response with office action text",
+      "Successful response with office action weekly zip data",
+      "Successful response with patent assignment data",
+      "Successful response with trademark assignment data",
+      "Successful response with trademark status data",
+      "The USPTO API Catalog provides developers with access to various APIs related to intellectual property. It includes information about registering, searching, and managing patents and trademarks, allowing for easy integration of government data into applications.",
+      "USPTO Production Server"
+    ]
+  }
 }

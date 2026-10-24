@@ -110,19 +110,19 @@ patent = client.Patent()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[PatentEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Patent().list()
 for patent in results:
-    print(patent)
+    print(patent.data_get())
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> PatentEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Patent().load()
@@ -174,19 +174,19 @@ trademark = client.Trademark()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[TrademarkEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Trademark().list()
 for trademark in results:
-    print(trademark)
+    print(trademark.data_get())
 ```
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> TrademarkEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Trademark().load()
@@ -378,6 +378,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { UsptoApiCatalogSDK, BaseFeature, stdutil } from '../../..'
+import { UsptoApiCatalogSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('TrademarkEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('trademark hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of UsptoApiCatalogSDK.test(offline).Trademark().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of UsptoApiCatalogSDK.test(offline).Trademark()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = UsptoApiCatalogSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Trademark().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of UsptoApiCatalogSDK.test().Trademark().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new UsptoApiCatalogSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Trademark().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Trademark().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = UsptoApiCatalogSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Trademark().list({"format":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.USPTO_API_CATALOG_TEST_LIVE
@@ -51,7 +109,7 @@ describe('TrademarkEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"assignments":{"a":true,"h":"Assignments","n":"assignments","r":false,"t":"`$ARRAY`","key$":"assignments","index$":0},"documents":{"a":true,"h":"Documents","n":"documents","r":false,"t":"`$ARRAY`","key$":"documents","index$":1},"serialNumber":{"a":true,"h":"Serial Number","n":"serialNumber","r":false,"t":"`$STRING`","key$":"serialNumber","index$":2},"status":{"a":true,"h":"Status","n":"status","r":false,"t":"`$STRING`","key$":"status","index$":3}},"name":"trademark","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /trademark-assignment/v1.4","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"xml","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"search_query","or":"searchQuery","r":false,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/trademark-assignment/v1.4","q":{"exist":["format","search_query"]},"r":{},"s":[{"lit":"trademark-assignment"},{"lit":"v1.4"}],"t":{"req":"`reqdata`","res":"`body.assignments`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /tsdr/v1.0","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"registration_number","or":"registrationNumber","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"serial_number","or":"serialNumber","r":false,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/tsdr/v1.0","q":{"exist":["registration_number","serial_number"]},"r":{},"s":[{"lit":"tsdr"},{"lit":"v1.0"}],"t":{"req":"`reqdata`","res":"`body.trademarkStatus`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"trademark","name__orig":"trademark","Name":"Trademark","name_":"trademark","name-":"trademark","NAME":"TRADEMARK","index$":1}, {"active":true,"entity":"trademark","key$":"BasicTrademarkFlow","kind":"basic","name":"BasicTrademarkFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"trademark_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"trademark_ref01","srcdatavar":"trademark_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-trademark_ref01"}}],"index$":1}]}, 'Trademark', {"GET /trademark-assignment/v1.4":{"protocol":"http","parameters":[{"name":"searchQuery","in":"query","description":"Search query for trademark assignments","required":false,"schema":{"type":"string"},"index$":0},{"name":"format","in":"query","description":"Response format (xml or json)","required":false,"schema":{"type":"string","enum":["xml","json"],"default":"xml"},"index$":1}]},"GET /tsdr/v1.0":{"protocol":"http","parameters":[{"name":"serialNumber","in":"query","description":"Trademark serial number","required":false,"schema":{"type":"string"},"index$":0},{"name":"registrationNumber","in":"query","description":"Trademark registration number","required":false,"schema":{"type":"string"},"index$":1}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"assignments":{"a":true,"h":"Assignments","n":"assignments","r":false,"t":"`$ARRAY`","key$":"assignments","index$":0},"documents":{"a":true,"h":"Documents","n":"documents","r":false,"t":"`$ARRAY`","key$":"documents","index$":1},"serialNumber":{"a":true,"h":"Serial Number","n":"serialNumber","r":false,"t":"`$STRING`","key$":"serialNumber","index$":2},"status":{"a":true,"h":"Status","n":"status","r":false,"t":"`$STRING`","key$":"status","index$":3}},"name":"trademark","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /trademark-assignment/v1.4","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"xml","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"search_query","or":"searchQuery","r":false,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/trademark-assignment/v1.4","q":{},"r":{},"rs":{"alternatives":[{"kind":"raw","media":"application/xml"}],"kind":"json","media":"application/json"},"s":[{"lit":"trademark-assignment"},{"lit":"v1.4"}],"t":{"req":"`reqdata`","res":"`body.assignments`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /tsdr/v1.0","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"registration_number","or":"registrationNumber","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"serial_number","or":"serialNumber","r":false,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/tsdr/v1.0","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"tsdr"},{"lit":"v1.0"}],"t":{"req":"`reqdata`","res":"`body.trademarkStatus`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"trademark","name__orig":"trademark","Name":"Trademark","name_":"trademark","name-":"trademark","NAME":"TRADEMARK","index$":1}, {"active":true,"entity":"trademark","key$":"BasicTrademarkFlow","kind":"basic","name":"BasicTrademarkFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"trademark_ref01"}}],"index$":0},{"a":true,"d":{},"i":{"ref":"trademark_ref01","srcdatavar":"trademark_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-trademark_ref01"}}],"index$":1}]}, 'Trademark', {"GET /trademark-assignment/v1.4":{"protocol":"http","parameters":[{"name":"searchQuery","in":"query","description":"Search query for trademark assignments","required":false,"schema":{"type":"string"},"index$":0},{"name":"format","in":"query","description":"Response format (xml or json)","required":false,"schema":{"type":"string","enum":["xml","json"],"default":"xml"},"index$":1}]},"GET /tsdr/v1.0":{"protocol":"http","parameters":[{"name":"serialNumber","in":"query","description":"Trademark serial number","required":false,"schema":{"type":"string"},"index$":0},{"name":"registrationNumber","in":"query","description":"Trademark registration number","required":false,"schema":{"type":"string"},"index$":1}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -78,6 +136,12 @@ describe('TrademarkEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

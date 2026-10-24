@@ -11,137 +11,6 @@ const PLAN = [
     {
         "entity": "patent",
         "accessor": "Patent",
-        "op": "list",
-        "method": "GET",
-        "path": "/patent-assignment/v1.4",
-        "args": [],
-        "select": {
-            "format": "v1",
-            "search_query": "v1"
-        },
-        "headers": [],
-        "query": [
-            "searchQuery",
-            "format"
-        ],
-        "auth": [
-            [
-                {
-                    "in": "header",
-                    "name": "x-api-key"
-                }
-            ]
-        ],
-        "status": 200,
-        "sample": {
-            "assignments": [
-                {
-                    "assignee": "x",
-                    "assignmentDate": "2026-01-01",
-                    "assignmentId": "x",
-                    "assignor": "x",
-                    "patentNumber": "x"
-                }
-            ]
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "patent",
-        "accessor": "Patent",
-        "op": "list",
-        "method": "GET",
-        "path": "/office-action-weekly-zips/v1",
-        "args": [],
-        "select": {
-            "date": "v1"
-        },
-        "headers": [],
-        "query": [
-            "date"
-        ],
-        "auth": [
-            [
-                {
-                    "in": "header",
-                    "name": "x-api-key"
-                }
-            ]
-        ],
-        "status": 200,
-        "sample": {
-            "files": [
-                {
-                    "date": "2026-01-01",
-                    "url": "x"
-                }
-            ]
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "patent",
-        "accessor": "Patent",
-        "op": "list",
-        "method": "GET",
-        "path": "/enriched-citation/v3",
-        "args": [],
-        "select": {
-            "patent_number": "v1"
-        },
-        "headers": [],
-        "query": [
-            "patentNumber"
-        ],
-        "auth": [
-            [
-                {
-                    "in": "header",
-                    "name": "x-api-key"
-                }
-            ]
-        ],
-        "status": 200,
-        "sample": {
-            "citations": [
-                {}
-            ]
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "patent",
-        "accessor": "Patent",
-        "op": "list",
-        "method": "GET",
-        "path": "/ptab/v3",
-        "args": [],
-        "select": {
-            "query": "v1"
-        },
-        "headers": [],
-        "query": [
-            "query"
-        ],
-        "auth": [
-            [
-                {
-                    "in": "header",
-                    "name": "x-api-key"
-                }
-            ]
-        ],
-        "status": 200,
-        "sample": {
-            "data": [
-                {}
-            ]
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "patent",
-        "accessor": "Patent",
         "op": "load",
         "method": "GET",
         "path": "/office-action-text/v1",
@@ -150,8 +19,18 @@ const PLAN = [
             "application_number": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "applicationNumber"
+        ],
+        "queryArgs": [
+            {
+                "name": "application_number",
+                "wire": "applicationNumber"
+            }
         ],
         "auth": [
             [
@@ -178,13 +57,28 @@ const PLAN = [
         "path": "/trademark-assignment/v1.4",
         "args": [],
         "select": {
-            "format": "v1",
+            "format": "xml",
             "search_query": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/xml",
+            "application/json"
+        ],
         "query": [
             "searchQuery",
             "format"
+        ],
+        "queryArgs": [
+            {
+                "name": "format",
+                "wire": "format"
+            },
+            {
+                "name": "search_query",
+                "wire": "searchQuery"
+            }
         ],
         "auth": [
             [
@@ -214,9 +108,23 @@ const PLAN = [
             "serial_number": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "serialNumber",
             "registrationNumber"
+        ],
+        "queryArgs": [
+            {
+                "name": "registration_number",
+                "wire": "registrationNumber"
+            },
+            {
+                "name": "serial_number",
+                "wire": "serialNumber"
+            }
         ],
         "auth": [
             [
@@ -229,11 +137,11 @@ const PLAN = [
         "status": 200,
         "sample": {
             "trademarkStatus": {
+                "serialNumber": "x",
+                "status": "x",
                 "documents": [
                     {}
-                ],
-                "serialNumber": "x",
-                "status": "x"
+                ]
             }
         },
         "idField": "id"

@@ -23,8 +23,7 @@ type PatentLoadMatch struct {
 
 // PatentListMatch is the typed request payload for Patent.ListTyped.
 type PatentListMatch struct {
-	Format *string `json:"format,omitempty"`
-	SearchQuery *string `json:"search_query,omitempty"`
+	PatentNumber *string `json:"patent_number,omitempty"`
 }
 
 // Trademark is the typed data model for the trademark entity.

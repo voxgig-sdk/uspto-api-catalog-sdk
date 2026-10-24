@@ -39,8 +39,7 @@ class PatentLoadMatch(TypedDict, total=False):
 
 
 class PatentListMatch(TypedDict, total=False):
-    format: str
-    search_query: str
+    patent_number: str
 
 
 class Trademark(TypedDict, total=False):

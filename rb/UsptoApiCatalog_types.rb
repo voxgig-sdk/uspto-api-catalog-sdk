@@ -84,14 +84,10 @@ PatentLoadMatch = Struct.new(
 
 # Request payload for Patent#list.
 #
-# @!attribute [rw] format
-#   @return [String, nil]
-#
-# @!attribute [rw] search_query
+# @!attribute [rw] patent_number
 #   @return [String, nil]
 PatentListMatch = Struct.new(
-  :format,
-  :search_query,
+  :patent_number,
   keyword_init: true
 )
 
